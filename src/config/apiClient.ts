@@ -7,11 +7,15 @@ const options: CreateAxiosDefaults = {
 
 const API = axios.create(options);
 
-// API.interceptors.response.use(
-//   ((response: AxiosResponse) => {
-//     return response;
-//   },
-//   (error) => {})
-// );
+API.interceptors.response.use(
+  (response) => {
+    const { data } = response || {};
+    return data;
+  },
+  (error) => {
+    const { status, response } = error;
+    return Promise.reject({ status, response });
+  }
+);
 
 export default API;

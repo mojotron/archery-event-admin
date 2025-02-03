@@ -1,5 +1,7 @@
+import { useMutation } from "@tanstack/react-query";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { register } from "../lib/api";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +12,13 @@ const Register = () => {
     confirmPassword: "",
   });
 
+  const navigate = useNavigate();
+
+  const { mutate, isPending, isError, error } = useMutation({
+    mutationFn: () => register(formData),
+    onSuccess: () => navigate("/login", { replace: true }),
+  });
+
   const handleFormDataChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((oldState) => ({ ...oldState, [name]: value }));
@@ -17,7 +26,7 @@ const Register = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    mutate();
   };
 
   const buttonDisabled =
@@ -29,8 +38,10 @@ const Register = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <h1>Create New Account</h1>
+      <h1 className="font-oswald">Create New Account</h1>
       <form className="w-full sm:w-80" onSubmit={handleSubmit}>
+        {isError && <p>{JSON.stringify(error)}</p>}
+
         <div className="flex flex-col">
           <label htmlFor="firstName">first name</label>
           <input
@@ -97,7 +108,7 @@ const Register = () => {
         </div>
 
         <button disabled={buttonDisabled} type="submit">
-          Create Account
+          {isPending ? "Creating..." : "Create Account"}
         </button>
       </form>
 
