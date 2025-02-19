@@ -1,8 +1,51 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Passion+One:wght@400;700;900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
 
 @import "tailwindcss";
 
 @theme {
-  --font-inter: Inter, sans-serif,
-  --font-oswald: Oswald, sans-serif,
+  /* fonts */
+  --font-inter: Inter, sans-serif;
+  --font-passion-one: "Passion One", sans-serif;
+  --font-source-code-pro: "Source Code Pro", monospace;
+  /* colors */
+  --color-main-900: #2b2c30;
+  --color-main-700: #2b2a33;
+  --color-main-500: #42414d;
+  --color-main-300: #a5a4ac;
+  --color-main-100: #fbfbfe;
+  --color-sec-green-700: #008236;
+  --color-sec-green-500: #00c950;
+  --color-sec-green-300: #7bf1a8;
+  --color-sec-blue-700: #1447e6;
+  --color-sec-blue-500: #00a6f4;
+  --color-sec-blue-300: #53eafd;
+  --color-error: #ff2056;
+  /* spacing */
+  --spacing-: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-0.5: 4px;
+  --spacing-1: 8px;
+  --spacing-2: 12px;
+  --spacing-3: 16px;
+  --spacing-4: 24px;
+  --spacing-5: 32px;
+  --spacing-6: 40px;
+  --spacing-7: 48px;
+  --spacing-8: 56px;
+  /* font size */
+  --font-size-xs: 0.64rem;
+  --font-size-sm: 0.8rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.563rem;
+  --font-size-2xl: 1.953rem;
+  --font-size-3xl: 2.441rem;
+  --font-size-4xl: 3.052rem;
+  --font-size-5xl: 3.815rem;
+  /* font weight */
+  --font-weight-thin: 200;
+  --font-weight-normal: 500;
+  --font-weight-bold: 800;
 }

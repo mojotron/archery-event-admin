@@ -1,14 +1,19 @@
-import { Routes, Route } from "react-router";
-import Dashboard from "./pages/Dashboard";
-import Register from "./pages/Register";
+import { Routes, Route, useNavigate } from "react-router";
+import { setNavigate } from "./lib/navigation";
+import ProtectedRoutes from "./components/layouts/ProtectedRoutes";
+import Login from "./pages/Login";
 
 const App = () => {
-  return (
-    <div className="min-w-[100vw] min-h-[100vh] bg-gray-700">
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
+  const navigate = useNavigate();
+  setNavigate(navigate);
 
-        <Route path="/register" element={<Register />} />
+  return (
+    <div className="min-w-[100vw] min-h-[100vh] bg-main-700">
+      <Routes>
+        <Route path="/dashboard" element={<ProtectedRoutes />}>
+          <Route index element={"what is matrix"} />
+        </Route>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

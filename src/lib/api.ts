@@ -1,10 +1,12 @@
 import API from "../config/apiClient";
-
-type RegisterParams = {
-  firstName: string;
-  lastName: string;
+import { ResponseUserType } from "../types/userType";
+type LoginParams = {
   email: string;
   password: string;
-  confirmPassword: string;
 };
-export const register = async (data: RegisterParams) => API.post("/auth", data);
+export const postLoginUser = async (data: LoginParams) =>
+  API.post("/auth/login", data);
+// logout
+export const getLogout = async () => API.get("/auth/logout");
+
+export const getUser = async (): Promise<ResponseUserType> => API.get("/user");
