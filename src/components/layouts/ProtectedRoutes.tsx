@@ -1,24 +1,30 @@
 import { Outlet } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import LoadingSpinner from "../ui/LoadingSpinner";
 
 const ProtectedRoutes = () => {
   const { user, isLoading } = useAuth();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <LoadingSpinner />
+      </div>
+    );
 
   if (user) {
     return (
-      <div>
+      <>
         {user.isAdmin === true ? (
-          <div>
+          <>
             <Outlet />
-          </div>
+          </>
         ) : (
-          <div>
+          <>
             <h2>not admin</h2>
-          </div>
+          </>
         )}
-      </div>
+      </>
     );
   }
 };
