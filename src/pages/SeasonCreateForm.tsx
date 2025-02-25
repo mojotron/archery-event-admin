@@ -5,14 +5,28 @@ import FormInput from "../components/ui/FormInput";
 import Button from "../components/ui/Button";
 import FormSelect from "../components/ui/FormSelect";
 
-const tournamentType = ["scandinavian_3D", "duel"];
+import { TOURNAMENT_TYPE } from "../constants/apiConstants";
+import { useMutation } from "@tanstack/react-query";
+import { postCreateSeason } from "../lib/api";
+import { useNavigate } from "react-router";
 
 const SeasonCreateForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     tournamentCount: "",
-    type: tournamentType[0],
+    type: TOURNAMENT_TYPE[0],
+  });
+
+  const navigate = useNavigate();
+
+  const { mutate, isPending, isError, error } = useMutation({
+    mutationFn: () =>
+      postCreateSeason({
+        ...formData,
+        tournamentCount: parseInt(formData.tournamentCount),
+      }),
+    onSuccess: () => navigate("/dashboard/seasons", { replace: true }),
   });
 
   const handleChange = (
@@ -26,7 +40,9 @@ const SeasonCreateForm = () => {
     <div className="p-4 flex flex-col items-center">
       <PageHeading>create new season</PageHeading>
 
-      <Form handler={() => console.log(formData)}>
+      <Form handler={mutate}>
+        {isError && <p className="text-error">{error.message}</p>}
+
         <FormInput
           type="text"
           label="title"
@@ -56,10 +72,10 @@ const SeasonCreateForm = () => {
           handleChange={handleChange}
           label="tournament rule type"
           name="type"
-          options={tournamentType}
+          options={TOURNAMENT_TYPE}
         />
 
-        <Button label="create season" type="submit" />
+        <Button label="create season" type="submit" isLoading={isPending} />
       </Form>
     </div>
   );

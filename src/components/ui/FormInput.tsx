@@ -23,6 +23,7 @@ const FormInput = ({ type, label, name, value, handleChange }: Params) => {
           name={name}
           value={value}
           onChange={handleChange}
+          required
         >
           {value}
         </textarea>
@@ -34,6 +35,7 @@ const FormInput = ({ type, label, name, value, handleChange }: Params) => {
           name={name}
           value={value}
           onChange={handleChange}
+          required
         />
       )}
     </div>
