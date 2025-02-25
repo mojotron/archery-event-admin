@@ -1,22 +1,20 @@
-import Button from "../components/ui/Button";
+import { useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 
 const Dashboard = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <div className="p-4 text-main-100">
       <header>
         <span>Hello, {user?.firstName}</span>
       </header>
-      <h2>Season</h2>
-      <div>
-        <h3>Active Season</h3>
-      </div>
-      <div>
-        <h3>Past Season</h3>
-      </div>
-      <Button label="create new season" />
+      <nav>
+        <ul>
+          <li onClick={() => navigate("seasons")}>seasons</li>
+        </ul>
+      </nav>
     </div>
   );
 };
