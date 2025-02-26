@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import Button from "../components/ui/Button";
+import SeasonList from "../components/seasons/SeasonList";
 
 const Seasons = () => {
   const navigate = useNavigate();
@@ -10,6 +11,8 @@ const Seasons = () => {
         label="create new season"
         clickHandler={() => navigate("create")}
       />
+      <SeasonList title="active seasons" filter="active" />
+      <SeasonList title="finished seasons" filter="finished" />
     </div>
   );
 };

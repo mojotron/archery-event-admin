@@ -1,4 +1,5 @@
 import API from "../config/apiClient";
+import { ResponseSeasonType, SeasonFilterType } from "../types/seasonType";
 import { ResponseUserType } from "../types/userType";
 type LoginParams = {
   email: string;
@@ -19,3 +20,7 @@ type CreateSeasonParams = {
 };
 export const postCreateSeason = async (data: CreateSeasonParams) =>
   API.post("/seasons", data);
+
+export const getSeasons = async (
+  filter: SeasonFilterType
+): Promise<ResponseSeasonType> => API.get(`/seasons?seasonFilter=${filter}`);
