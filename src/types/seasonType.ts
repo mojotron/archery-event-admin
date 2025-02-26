@@ -21,3 +21,28 @@ export type ResponseSeasonType = {
   message: string;
   seasons: SeasonType[];
 };
+
+export type SeasonDetailsType = {
+  tournaments: {
+    title: string;
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    seasonId: string;
+  }[];
+
+  id: string;
+  title: string;
+  description: string;
+  tournamentCount: number;
+  type: string;
+  isFinished: boolean;
+  createdAt: string;
+  updatedAt: string;
+  createdById: string;
+};
+
+export type ResponseSeasonDetailsType = {
+  message: string;
+  season: SeasonDetailsType;
+};

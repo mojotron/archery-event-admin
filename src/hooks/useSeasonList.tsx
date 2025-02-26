@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { SeasonFilterType } from "../types/seasonType";
 import { getSeasons } from "../lib/api";
 
-const QUERY_KEY_SEASON_LIST = "seasons";
+const QUERY_KEY_SEASON_LIST = "season-list";
 
 const useSeasonList = (filter: SeasonFilterType) => {
   const { data, ...rest } = useQuery({

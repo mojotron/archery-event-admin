@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Seasons from "./pages/Seasons";
 import SeasonCreateForm from "./pages/SeasonCreateForm";
+import SeasonDetails from "./pages/SeasonDetails";
 
 const App = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const App = () => {
           <Route index element={<Dashboard />} />
           <Route path="seasons" element={<SeasonRoutes />}>
             <Route index element={<Seasons />} />
+            <Route path=":seasonId" element={<SeasonDetails />} />
             <Route path="create" element={<SeasonCreateForm />} />
           </Route>
         </Route>
