@@ -1,11 +1,19 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 import useSeason from "../hooks/useSeason";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
 import PageHeading from "../components/ui/PageHeading";
 import SeasonInfo from "../components/seasons/SeasonInfo";
+// icons
+import {
+  MdDeleteForever as IconDelete,
+  MdEditDocument as IconEdit,
+  MdDoneAll as IconFinish,
+} from "react-icons/md";
+import ButtonIcon from "../components/ui/ButtonIcon";
 
 const SeasonDetails = () => {
+  const navigate = useNavigate();
   const { seasonId } = useParams() as { seasonId: string };
 
   const { season, isLoading, isSuccess, isError } = useSeason(seasonId);
@@ -19,12 +27,26 @@ const SeasonDetails = () => {
         <>
           <header>
             <PageHeading>{season?.title}</PageHeading>
-            <div>
-              <span>edit</span>
-              <span>delete</span>
-              <span>complete</span>
-            </div>
           </header>
+
+          <div className="w-50">
+            <ButtonIcon
+              clickHandler={() => navigate(`delete`)}
+              label="delete season"
+              icon={<IconDelete className="text-error" />}
+            />
+            <ButtonIcon
+              clickHandler={() => navigate(``)}
+              label="edit season"
+              icon={<IconEdit />}
+            />
+            <ButtonIcon
+              clickHandler={() => navigate(``)}
+              label="finish season"
+              icon={<IconFinish className="text-sec-green-500" />}
+            />
+          </div>
+
           <SeasonInfo
             tournaments={season?.tournaments.length}
             tournamentCount={season?.tournamentCount}
