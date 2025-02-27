@@ -8,13 +8,22 @@ import {
   MdDeleteForever as IconDelete,
   MdCancel as IconCancel,
 } from "react-icons/md";
+import { useMutation } from "@tanstack/react-query";
+import { deleteSeason } from "../lib/api";
 
 const SeasonDelete = () => {
   const { seasonId } = useParams() as { seasonId: string };
   const navigate = useNavigate();
 
   const { season, isLoading, isError, isSuccess } = useSeason(seasonId);
-  // MUTATION
+  const {
+    mutate,
+    isPending,
+    isError: isDeleteError,
+  } = useMutation({
+    mutationFn: () => deleteSeason(seasonId),
+    onSuccess: () => navigate("/dashboard/seasons", { replace: true }),
+  });
 
   return (
     <div className="w-full flex flex-col items-center gap-8">
@@ -36,10 +45,21 @@ const SeasonDelete = () => {
               </>
             ) : (
               <>
-                <form className="font-inter border border-error p-8 flex flex-col items-center justify-center gap-4 rounded-md text-main-100">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    mutate();
+                  }}
+                  className="font-inter border border-error p-8 flex flex-col items-center justify-center gap-4 rounded-md text-main-100"
+                >
                   <h3 className="font-bold text-2xl uppercase">
                     delete season
                   </h3>
+                  {isDeleteError && (
+                    <p className="text-error">
+                      could not delete season, please try again later!
+                    </p>
+                  )}
                   <p className="text-lg text-main-300">
                     Are you about to delete this season. This process in
                     permanent! are you sure?
@@ -56,7 +76,7 @@ const SeasonDelete = () => {
                       label="delete"
                       type="submit"
                       icon={<IconDelete className="text-error" />}
-                      clickHandler={() => {}}
+                      isLoading={isPending}
                     />
                   </div>
                 </form>

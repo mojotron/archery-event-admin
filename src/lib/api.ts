@@ -32,3 +32,9 @@ export const getSeasons = async (
 export const getSingleSeason = async (
   seasonId: string
 ): Promise<ResponseSeasonDetailsType> => API.get(`/seasons/${seasonId}`);
+
+export const deleteSeason = async (seasonId: string) =>
+  API.delete(`/seasons/${seasonId}`);
+
+// export const patchSeason = async (seasonId: string) =>
+//   API.patch(`/seasons/${seasonId}`);

@@ -6,7 +6,7 @@ type Params = {
   icon: ReactNode;
   isLoading?: boolean;
   type?: "button" | "submit";
-  clickHandler: () => void;
+  clickHandler?: () => void;
 };
 
 const ButtonIcon = ({
@@ -14,7 +14,7 @@ const ButtonIcon = ({
   icon,
   isLoading = false,
   type = "button",
-  clickHandler,
+  clickHandler = undefined,
 }: Params) => {
   return (
     <button
