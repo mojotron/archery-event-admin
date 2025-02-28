@@ -8,6 +8,7 @@ import Seasons from "./pages/Seasons";
 import SeasonCreateForm from "./pages/SeasonCreateForm";
 import SeasonDetails from "./pages/SeasonDetails";
 import SeasonDelete from "./pages/SeasonDelete";
+import SeasonEdit from "./pages/SeasonEdit";
 
 const App = () => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const App = () => {
             <Route path="create" element={<SeasonCreateForm />} />
             <Route path=":seasonId" element={<SeasonDetails />} />
             <Route path=":seasonId/delete" element={<SeasonDelete />} />
-            <Route path=":seasonId/edit" element={<SeasonDetails />} />
+            <Route path=":seasonId/edit" element={<SeasonEdit />} />
             <Route path=":seasonId/finish" element={<SeasonDetails />} />
           </Route>
         </Route>

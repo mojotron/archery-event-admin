@@ -2,14 +2,9 @@ import { useNavigate, useParams } from "react-router";
 import useSeason from "../hooks/useSeason";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
 import PageHeading from "../components/ui/PageHeading";
-import ButtonIcon from "../components/ui/ButtonIcon";
-// icons
-import {
-  MdDeleteForever as IconDelete,
-  MdCancel as IconCancel,
-} from "react-icons/md";
 import { useMutation } from "@tanstack/react-query";
 import { deleteSeason } from "../lib/api";
+import ConfirmDelete from "../components/general/ConfirmDelete";
 
 const SeasonDelete = () => {
   const { seasonId } = useParams() as { seasonId: string };
@@ -26,13 +21,13 @@ const SeasonDelete = () => {
   });
 
   return (
-    <div className="w-full flex flex-col items-center gap-8">
+    <div className="w-full flex flex-col items-center gap-4">
       {isLoading && <LoadingSpinner />}
       {isError && <p>error fetching season data...</p>}
 
       {isSuccess && season && (
         <>
-          <header className="">
+          <header className="flex flex-col items-center">
             <h2 className="font-source-code-pro font-bold text-xl text-main-300">
               delete options for
             </h2>
@@ -44,43 +39,15 @@ const SeasonDelete = () => {
                 <p>Season already have tournaments</p>
               </>
             ) : (
-              <>
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    mutate();
-                  }}
-                  className="font-inter border border-error p-8 flex flex-col items-center justify-center gap-4 rounded-md text-main-100"
-                >
-                  <h3 className="font-bold text-2xl uppercase">
-                    delete season
-                  </h3>
-                  {isDeleteError && (
-                    <p className="text-error">
-                      could not delete season, please try again later!
-                    </p>
-                  )}
-                  <p className="text-lg text-main-300">
-                    Are you about to delete this season. This process in
-                    permanent! are you sure?
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <ButtonIcon
-                      label="cancel"
-                      icon={<IconCancel className="text-sec-green-300" />}
-                      clickHandler={() =>
-                        navigate(`/dashboard/seasons/${seasonId}`)
-                      }
-                    />
-                    <ButtonIcon
-                      label="delete"
-                      type="submit"
-                      icon={<IconDelete className="text-error" />}
-                      isLoading={isPending}
-                    />
-                  </div>
-                </form>
-              </>
+              <ConfirmDelete
+                heading="delete season"
+                text="Are you about to delete this season. This process in
+                  permanent! Are you sure?"
+                onConfirm={mutate}
+                onCancel={() => navigate(`/dashboard/seasons/${seasonId}`)}
+                isPending={isPending}
+                isError={isDeleteError}
+              />
             )}
           </section>
         </>

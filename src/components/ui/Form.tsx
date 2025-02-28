@@ -8,7 +8,7 @@ type FormParams = {
 const Form = ({ handler, children }: FormParams) => {
   return (
     <form
-      className="w-full sm:w-96 flex flex-col items-center gap-2"
+      className="w-full p-4 sm:w-[600px] flex flex-col items-center gap-2"
       onSubmit={(e) => {
         e.preventDefault();
         handler();

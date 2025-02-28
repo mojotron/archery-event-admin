@@ -29,31 +29,34 @@ const SeasonDetails = () => {
             <PageHeading>{season?.title}</PageHeading>
           </header>
 
-          <div className="w-50">
-            <ButtonIcon
-              clickHandler={() => navigate(`delete`)}
-              label="delete season"
-              icon={<IconDelete className="text-error" />}
+          <aside className="space-y-4">
+            <SeasonInfo
+              tournaments={season?.tournaments.length}
+              tournamentCount={season?.tournamentCount}
+              createdAt={season.createdAt}
+              updatedAt={season.updatedAt}
+              seasonType={season.type}
             />
-            <ButtonIcon
-              clickHandler={() => navigate(``)}
-              label="edit season"
-              icon={<IconEdit />}
-            />
-            <ButtonIcon
-              clickHandler={() => navigate(``)}
-              label="finish season"
-              icon={<IconFinish className="text-sec-green-500" />}
-            />
-          </div>
 
-          <SeasonInfo
-            tournaments={season?.tournaments.length}
-            tournamentCount={season?.tournamentCount}
-            createdAt={season.createdAt}
-            updatedAt={season.updatedAt}
-            seasonType={season.type}
-          />
+            <div className="w-50">
+              <ButtonIcon
+                clickHandler={() => navigate(`delete`)}
+                label="delete season"
+                icon={<IconDelete className="text-error" />}
+              />
+              <ButtonIcon
+                clickHandler={() => navigate(`edit`)}
+                label="edit season"
+                icon={<IconEdit />}
+              />
+              <ButtonIcon
+                clickHandler={() => navigate(`finish`)}
+                label="finish season"
+                icon={<IconFinish className="text-sec-green-500" />}
+              />
+            </div>
+          </aside>
+
           <section></section>
         </>
       )}
