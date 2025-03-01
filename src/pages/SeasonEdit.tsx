@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router";
-import useSeason from "../hooks/useSeason";
+import useSeason, { QUERY_KEY_SEASON } from "../hooks/useSeason";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
 import { useState } from "react";
 import PageHeading from "../components/ui/PageHeading";
@@ -10,6 +10,9 @@ import {
 } from "react-icons/md";
 import Form from "../components/ui/Form";
 import FormInput from "../components/ui/FormInput";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { patchSeason } from "../lib/api";
+import { ResponseSeasonDetailsType } from "../types/seasonType";
 
 const SeasonEdit = () => {
   const { seasonId } = useParams() as { seasonId: string };
@@ -21,6 +24,36 @@ const SeasonEdit = () => {
     undefined | "title" | "description" | "tournamentCount"
   >(undefined);
   const [value, setValue] = useState("");
+
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: () =>
+      patchSeason(seasonId, {
+        ...((fieldName === "title" || fieldName === "description") && {
+          [fieldName]: value,
+        }),
+        ...(fieldName === "tournamentCount" && {
+          tournamentCount: parseInt(value),
+        }),
+      }),
+    onSuccess: () => {
+      queryClient.setQueryData(
+        [QUERY_KEY_SEASON, seasonId],
+        (cache: ResponseSeasonDetailsType) => {
+          return {
+            ...cache,
+            season: {
+              ...cache.season,
+              [fieldName as string]:
+                fieldName === "tournamentCount" ? parseInt(value) : value,
+            },
+          };
+        }
+      );
+      setFieldName(undefined);
+      setValue("");
+    },
+  });
 
   return (
     <div>
@@ -39,7 +72,7 @@ const SeasonEdit = () => {
           </header>
 
           {fieldName && (
-            <Form handler={() => {}}>
+            <Form handler={mutate}>
               <h3 className="font-passion-one text-main-300 text-2xl uppercase">
                 Edit Field
               </h3>
@@ -71,12 +104,9 @@ const SeasonEdit = () => {
                 />
 
                 <ButtonIcon
-                  label="cancel"
+                  label="update"
+                  type="submit"
                   icon={<IconEdit className="text-sec-green-500" />}
-                  clickHandler={() => {
-                    setFieldName(undefined);
-                    setValue("");
-                  }}
                 />
               </div>
             </Form>

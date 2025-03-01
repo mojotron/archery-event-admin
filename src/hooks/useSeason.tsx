@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getSingleSeason } from "../lib/api";
 
-const QUERY_KEY_SEASON = "season";
+export const QUERY_KEY_SEASON = "season";
 
 const useSeason = (seasonId: string) => {
   const { data, ...rest } = useQuery({
