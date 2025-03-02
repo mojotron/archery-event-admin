@@ -1,18 +1,19 @@
-import { useParams, useNavigate } from "react-router";
-import useSeason, { QUERY_KEY_SEASON } from "../hooks/useSeason";
-import LoadingSpinner from "../components/ui/LoadingSpinner";
+// hooks
 import { useState } from "react";
+import { useParams, useNavigate } from "react-router";
+import useSeason from "../hooks/useSeason";
+import useSeasonMutate from "../hooks/useSeasonMutate";
+// components
+import LoadingSpinner from "../components/ui/LoadingSpinner";
 import PageHeading from "../components/ui/PageHeading";
 import ButtonIcon from "../components/ui/ButtonIcon";
+import Form from "../components/ui/Form";
+import FormInput from "../components/ui/FormInput";
+// icons
 import {
   MdArrowBack as IconBack,
   MdEditDocument as IconEdit,
 } from "react-icons/md";
-import Form from "../components/ui/Form";
-import FormInput from "../components/ui/FormInput";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { patchSeason } from "../lib/api";
-import { ResponseSeasonDetailsType } from "../types/seasonType";
 
 const SeasonEdit = () => {
   const { seasonId } = useParams() as { seasonId: string };
@@ -25,35 +26,20 @@ const SeasonEdit = () => {
   >(undefined);
   const [value, setValue] = useState("");
 
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    mutationFn: () =>
-      patchSeason(seasonId, {
-        ...((fieldName === "title" || fieldName === "description") && {
-          [fieldName]: value,
-        }),
-        ...(fieldName === "tournamentCount" && {
-          tournamentCount: parseInt(value),
-        }),
+  const { updateSeason } = useSeasonMutate(seasonId);
+
+  const handleSubmit = () => {
+    updateSeason({
+      ...((fieldName === "title" || fieldName === "description") && {
+        [fieldName]: value,
       }),
-    onSuccess: () => {
-      queryClient.setQueryData(
-        [QUERY_KEY_SEASON, seasonId],
-        (cache: ResponseSeasonDetailsType) => {
-          return {
-            ...cache,
-            season: {
-              ...cache.season,
-              [fieldName as string]:
-                fieldName === "tournamentCount" ? parseInt(value) : value,
-            },
-          };
-        }
-      );
-      setFieldName(undefined);
-      setValue("");
-    },
-  });
+      ...(fieldName === "tournamentCount" && {
+        tournamentCount: parseInt(value),
+      }),
+    });
+    setFieldName(undefined);
+    setValue("");
+  };
 
   return (
     <div>
@@ -72,7 +58,7 @@ const SeasonEdit = () => {
           </header>
 
           {fieldName && (
-            <Form handler={mutate}>
+            <Form handler={handleSubmit}>
               <h3 className="font-passion-one text-main-300 text-2xl uppercase">
                 Edit Field
               </h3>

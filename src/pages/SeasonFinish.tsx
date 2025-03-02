@@ -1,15 +1,21 @@
-import { useParams } from "react-router";
+// hooks
+import { useNavigate, useParams } from "react-router";
 import useSeason from "../hooks/useSeason";
+import useSeasonMutate from "../hooks/useSeasonMutate";
+// components
 import LoadingSpinner from "../components/ui/LoadingSpinner";
 import PageHeading from "../components/ui/PageHeading";
-import { SeasonDetailsType } from "../types/seasonType";
 import Form from "../components/ui/Form";
 import ButtonIcon from "../components/ui/ButtonIcon";
+// icons
 import { FaLockOpen as IconOpen, FaLock as IconClose } from "react-icons/fa";
+import { MdArrowBack as IconBack } from "react-icons/md";
 
 const SeasonFinish = () => {
+  const navigate = useNavigate();
   const { seasonId } = useParams() as { seasonId: string };
   const { season, isLoading, isError, isSuccess } = useSeason(seasonId);
+  const { updateSeason } = useSeasonMutate(seasonId);
 
   return (
     <div className="font-inter">
@@ -18,6 +24,11 @@ const SeasonFinish = () => {
 
       {isSuccess && season && (
         <>
+          <ButtonIcon
+            label="go back"
+            icon={<IconBack className="text-sec-blue-500" />}
+            clickHandler={() => navigate(`/dashboard/seasons/${seasonId}`)}
+          />
           <PageHeading>{season.title}</PageHeading>
           <h2 className="text-2xl text-main-300">
             season status{" "}
@@ -58,14 +69,20 @@ const SeasonFinish = () => {
             </span>
           </div>
 
-          <Form handler={() => {}}>
-            <h3></h3>
-            <ButtonIcon
-              label={season.isFinished ? "open season" : "close season"}
-              type="submit"
-              icon={<IconOpen />}
-            />
-          </Form>
+          <div className="mt-8">
+            <h3 className="font-bold uppercase text-main-100 text-2xl">
+              Toggle season finish status
+            </h3>
+            <Form
+              handler={() => updateSeason({ isFinished: !season.isFinished })}
+            >
+              <ButtonIcon
+                label={season.isFinished ? "open season" : "close season"}
+                type="submit"
+                icon={season.isFinished ? <IconOpen /> : <IconClose />}
+              />
+            </Form>
+          </div>
         </>
       )}
     </div>

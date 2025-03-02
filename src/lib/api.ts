@@ -36,10 +36,11 @@ export const getSingleSeason = async (
 export const deleteSeason = async (seasonId: string) =>
   API.delete(`/seasons/${seasonId}`);
 
-type UpdateSeasonFields = {
+export type UpdateSeasonFields = {
   title?: string;
   description?: string;
   tournamentCount?: number;
+  isFinished?: boolean;
 };
 export const patchSeason = async (seasonId: string, data: UpdateSeasonFields) =>
   API.patch(`/seasons/${seasonId}`, data);

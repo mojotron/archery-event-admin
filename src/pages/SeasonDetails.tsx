@@ -29,35 +29,39 @@ const SeasonDetails = () => {
             <PageHeading>{season?.title}</PageHeading>
           </header>
 
-          <aside className="space-y-4">
-            <SeasonInfo
-              tournaments={season?.tournaments.length}
-              tournamentCount={season?.tournamentCount}
-              createdAt={season.createdAt}
-              updatedAt={season.updatedAt}
-              seasonType={season.type}
-            />
+          <div className="flex items-start gap-8">
+            <aside className="space-y-4">
+              <SeasonInfo
+                tournaments={season?.tournaments.length}
+                tournamentCount={season?.tournamentCount}
+                createdAt={season.createdAt}
+                updatedAt={season.updatedAt}
+                seasonType={season.type}
+              />
 
-            <div className="w-50">
-              <ButtonIcon
-                clickHandler={() => navigate(`delete`)}
-                label="delete season"
-                icon={<IconDelete className="text-error" />}
-              />
-              <ButtonIcon
-                clickHandler={() => navigate(`edit`)}
-                label="edit season"
-                icon={<IconEdit />}
-              />
-              <ButtonIcon
-                clickHandler={() => navigate(`finish`)}
-                label="finish season"
-                icon={<IconFinish className="text-sec-green-500" />}
-              />
-            </div>
-          </aside>
+              <div className="w-70">
+                <ButtonIcon
+                  clickHandler={() => navigate(`delete`)}
+                  label="delete season"
+                  icon={<IconDelete className="text-error" />}
+                />
+                <ButtonIcon
+                  clickHandler={() => navigate(`edit`)}
+                  label="edit season info"
+                  icon={<IconEdit />}
+                />
+                <ButtonIcon
+                  clickHandler={() => navigate(`finish`)}
+                  label="change season status"
+                  icon={<IconFinish className="text-sec-green-500" />}
+                />
+              </div>
+            </aside>
 
-          <section></section>
+            <section className="w-full">
+              <h3 className="font-bold text-2xl text-main-300">Tournaments</h3>
+            </section>
+          </div>
         </>
       )}
     </div>
