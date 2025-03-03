@@ -11,6 +11,7 @@ import {
   MdDoneAll as IconFinish,
 } from "react-icons/md";
 import ButtonIcon from "../components/ui/ButtonIcon";
+import TournamentList from "../components/seasons/TournamentList";
 
 const SeasonDetails = () => {
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ const SeasonDetails = () => {
 
             <section className="w-full">
               <h3 className="font-bold text-2xl text-main-300">Tournaments</h3>
+              <TournamentList tournaments={season.tournaments} />
             </section>
           </div>
         </>

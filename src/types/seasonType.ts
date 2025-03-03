@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { SEASON_FILTERS } from "../constants/apiConstants";
+import { TournamentType } from "./tournamentType";
 
 const filters = [...SEASON_FILTERS] as const;
 export type SeasonFilterType = (typeof filters)[number];
@@ -23,14 +24,7 @@ export type ResponseSeasonType = {
 };
 
 export type SeasonDetailsType = {
-  tournaments: {
-    title: string;
-    id: string;
-    createdAt: Date;
-    updatedAt: Date;
-    seasonId: string;
-  }[];
-
+  tournaments: TournamentType[];
   id: string;
   title: string;
   description: string;
