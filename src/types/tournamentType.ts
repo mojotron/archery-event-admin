@@ -11,3 +11,8 @@ export type TournamentType = {
   seasonId: string;
   isFinished: boolean;
 };
+
+export type ResponseTournamentType = {
+  message: string;
+  tournament: TournamentType;
+};

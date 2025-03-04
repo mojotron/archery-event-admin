@@ -3,7 +3,7 @@ type Props = {
   highlighted: string;
 };
 
-const SeasonInfoRecord = ({ regular, highlighted }: Props) => {
+const HighlightRecord = ({ regular, highlighted }: Props) => {
   return (
     <p className="text-lg space-x-1 font-inter text-main-300">
       <span>{regular}</span>
@@ -12,4 +12,4 @@ const SeasonInfoRecord = ({ regular, highlighted }: Props) => {
   );
 };
 
-export default SeasonInfoRecord;
+export default HighlightRecord;

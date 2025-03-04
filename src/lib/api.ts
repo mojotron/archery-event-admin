@@ -4,6 +4,7 @@ import {
   ResponseSeasonType,
   SeasonFilterType,
 } from "../types/seasonType";
+import { ResponseTournamentType } from "../types/tournamentType";
 import { ResponseUserType } from "../types/userType";
 type LoginParams = {
   email: string;
@@ -44,3 +45,8 @@ export type UpdateSeasonFields = {
 };
 export const patchSeason = async (seasonId: string, data: UpdateSeasonFields) =>
   API.patch(`/seasons/${seasonId}`, data);
+
+// TOURNAMENT
+export const getSingleTournament = async (
+  tournamentId: string
+): Promise<ResponseTournamentType> => API.get(`/tournaments/${tournamentId}`);

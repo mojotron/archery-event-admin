@@ -9,6 +9,7 @@ import {
   MdDeleteForever as IconDelete,
   MdEditDocument as IconEdit,
   MdDoneAll as IconFinish,
+  MdAdd as IconAdd,
 } from "react-icons/md";
 import ButtonIcon from "../components/ui/ButtonIcon";
 import TournamentList from "../components/seasons/TournamentList";
@@ -31,7 +32,7 @@ const SeasonDetails = () => {
           </header>
 
           <div className="flex items-start gap-8">
-            <aside className="space-y-4">
+            <aside className="space-y-4 w-[450px]">
               <SeasonInfo
                 tournaments={season?.tournaments.length}
                 tournamentCount={season?.tournamentCount}
@@ -40,7 +41,7 @@ const SeasonDetails = () => {
                 seasonType={season.type}
               />
 
-              <div className="w-70">
+              <div>
                 <ButtonIcon
                   clickHandler={() => navigate(`delete`)}
                   label="delete season"
@@ -60,7 +61,22 @@ const SeasonDetails = () => {
             </aside>
 
             <section className="w-full">
-              <h3 className="font-bold text-2xl text-main-300">Tournaments</h3>
+              <div className="flex  justify-between">
+                <h3 className="font-bold text-2xl text-main-300">
+                  Tournaments
+                </h3>
+                {season.tournaments.length < season.tournamentCount && (
+                  <ButtonIcon
+                    label="add tournament"
+                    icon={<IconAdd className="text-sec-green-500" />}
+                    clickHandler={() =>
+                      navigate(
+                        `/dashboard/tournaments/create?seasonId=${seasonId}`
+                      )
+                    }
+                  />
+                )}
+              </div>
               <TournamentList tournaments={season.tournaments} />
             </section>
           </div>

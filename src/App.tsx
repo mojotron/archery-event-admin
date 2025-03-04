@@ -10,6 +10,9 @@ import SeasonDetails from "./pages/SeasonDetails";
 import SeasonDelete from "./pages/SeasonDelete";
 import SeasonEdit from "./pages/SeasonEdit";
 import SeasonFinish from "./pages/SeasonFinish";
+import TournamentRoutes from "./components/layouts/TournamentRoutes";
+import TournamentControl from "./pages/TournamentControl";
+import TournamentCreateForm from "./pages/TournamentCreateForm";
 
 const App = () => {
   const navigate = useNavigate();
@@ -28,9 +31,10 @@ const App = () => {
             <Route path=":seasonId/edit" element={<SeasonEdit />} />
             <Route path=":seasonId/finish" element={<SeasonFinish />} />
           </Route>
-          <Route path="tournaments" element={"hello"}>
+          <Route path="tournaments" element={<TournamentRoutes />}>
             <Route index element={"list of tournaments"} />
-            <Route path=":tournamentId/edit" element={"list of turnaments"} />
+            <Route path="create" element={<TournamentCreateForm />} />
+            <Route path=":tournamentId/edit" element={<TournamentControl />} />
             <Route path=":tournamentId/view" element={"list of turnaments"} />
           </Route>
         </Route>

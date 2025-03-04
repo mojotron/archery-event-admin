@@ -1,5 +1,5 @@
 import { format, formatDistance } from "date-fns";
-import SeasonInfoRecord from "./SeasonInfoRecord";
+import HighlightRecord from "../ui/HighlightRecord";
 
 type Params = {
   tournaments: number;
@@ -23,16 +23,16 @@ const SeasonInfo = ({
 
   return (
     <div>
-      <SeasonInfoRecord
+      <HighlightRecord
         regular="tournament progress"
         highlighted={`${tournaments}/${tournamentCount}`}
       />
-      <SeasonInfoRecord
+      <HighlightRecord
         regular="tournament rules"
         highlighted={`${seasonType}`}
       />
-      <SeasonInfoRecord regular="created at" highlighted={`${created}`} />
-      <SeasonInfoRecord regular="last update" highlighted={`${updated}`} />
+      <HighlightRecord regular="created at" highlighted={`${created}`} />
+      <HighlightRecord regular="last update" highlighted={`${updated}`} />
     </div>
   );
 };
