@@ -25,6 +25,12 @@ const Dashboard = () => {
             seasons
           </li>
           <li
+            className="font-bold text-main-100 cursor-pointer hover:text-sec-blue-500"
+            onClick={() => navigate("tournaments")}
+          >
+            tournaments
+          </li>
+          <li
             className="font-bold text-main-100 cursor-pointer hover:text-error"
             onClick={() => getLogout()}
           >

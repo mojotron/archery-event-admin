@@ -28,6 +28,11 @@ const App = () => {
             <Route path=":seasonId/edit" element={<SeasonEdit />} />
             <Route path=":seasonId/finish" element={<SeasonFinish />} />
           </Route>
+          <Route path="tournaments" element={"hello"}>
+            <Route index element={"list of tournaments"} />
+            <Route path=":tournamentId/edit" element={"list of turnaments"} />
+            <Route path=":tournamentId/view" element={"list of turnaments"} />
+          </Route>
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<Navigate to="/dashboard" />} />
