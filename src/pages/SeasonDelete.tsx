@@ -5,6 +5,9 @@ import PageHeading from "../components/ui/PageHeading";
 import { useMutation } from "@tanstack/react-query";
 import { deleteSeason } from "../lib/api";
 import ConfirmDelete from "../components/general/ConfirmDelete";
+import ButtonIcon from "../components/ui/ButtonIcon";
+// icons
+import { MdArrowBack as IconBack } from "react-icons/md";
 
 const SeasonDelete = () => {
   const { seasonId } = useParams() as { seasonId: string };
@@ -35,9 +38,24 @@ const SeasonDelete = () => {
           </header>
           <section>
             {season?.tournaments.length > 0 ? (
-              <>
-                <p>Season already have tournaments</p>
-              </>
+              <div className="flex flex-col gap-4 items-center">
+                <h3 className="font-bold font-source-code-pro uppercase tracking-wide text-main-300 text-2xl">
+                  Attention!
+                </h3>
+                <p className="text-main-100 text-lg">
+                  Season is active and already have tournaments. You must delete
+                  each tournament before you can delete season!
+                </p>
+                <ButtonIcon
+                  label="go back"
+                  icon={<IconBack />}
+                  clickHandler={() =>
+                    navigate(`/dashboard/seasons/${seasonId}`, {
+                      replace: true,
+                    })
+                  }
+                />
+              </div>
             ) : (
               <ConfirmDelete
                 heading="delete season"

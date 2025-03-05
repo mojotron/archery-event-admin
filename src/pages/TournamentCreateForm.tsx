@@ -1,10 +1,11 @@
 import { ChangeEvent, useState } from "react";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import PageHeading from "../components/ui/PageHeading";
 import Form from "../components/ui/Form";
 import FormInput from "../components/ui/FormInput";
 import Button from "../components/ui/Button";
 import { useMutation } from "@tanstack/react-query";
+import { postCreateTournament } from "../lib/api";
 
 type LocationInputType = {
   addLocation: boolean;
@@ -14,7 +15,8 @@ type LocationInputType = {
 
 const TournamentCreateForm = () => {
   const [params] = useSearchParams();
-  const seasonId = params.get("seasonId");
+  const seasonId = params.get("seasonId") || "";
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -37,12 +39,23 @@ const TournamentCreateForm = () => {
     setFormData((oldState) => ({ ...oldState, [name]: value }));
   };
 
-  const { mutate } = useMutation({ mutationFn: () => {}, onSuccess: () => {} });
+  const { mutate } = useMutation({
+    mutationFn: () =>
+      postCreateTournament({
+        ...formData,
+        attendAt: new Date(formData.attendAt).toISOString(),
+        seasonId,
+      }),
+    onSuccess: () =>
+      navigate(`/dashboard/seasons/${seasonId}`, { replace: true }),
+  });
+
+  console.log(formData.attendAt);
 
   return (
     <div className="p-4 flex flex-col items-center">
       <PageHeading>Create New Tournament</PageHeading>
-      <Form handler={() => {}}>
+      <Form handler={mutate}>
         <FormInput
           label="title"
           type="text"

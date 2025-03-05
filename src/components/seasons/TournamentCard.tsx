@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router";
-import { formatDate, formatDistance } from "date-fns";
 import ButtonIcon from "../ui/ButtonIcon";
 // icons
 import {
@@ -8,6 +7,7 @@ import {
 } from "react-icons/md";
 // types
 import type { TournamentType } from "../../types/tournamentType";
+import TournamentAttendAt from "../tournaments/TournamentAttendAt";
 
 type Props = {
   tournament: TournamentType;
@@ -15,12 +15,6 @@ type Props = {
 
 const TournamentCard = ({ tournament }: Props) => {
   const navigate = useNavigate();
-
-  const attendDate = new Date(tournament.attendAt);
-  const now = new Date();
-  const attendAt = formatDate(attendDate, "dd/MM/yyyy hh:mm");
-  const attendDistance = formatDistance(attendDate, now, { addSuffix: true });
-  const attendDatePast = attendDate.getTime() < now.getTime();
 
   return (
     <li className="border border-main-300 rounded-md px-6 py-4 text-main-300 font-inter flex items-start justify-between gap-4">
@@ -32,19 +26,7 @@ const TournamentCard = ({ tournament }: Props) => {
           <p>{tournament.description}</p>
         </header>
 
-        <div>
-          <h4 className="font-bold text-lg">date and time</h4>
-          <p className="space-x-1">
-            <span>{attendAt}</span>
-            <span
-              className={`${
-                attendDatePast ? "text-error" : "text-sec-green-500"
-              }`}
-            >
-              {attendDistance}
-            </span>
-          </p>
-        </div>
+        <TournamentAttendAt date={tournament.attendAt} />
 
         <div>
           <h4 className="font-bold text-lg">location</h4>

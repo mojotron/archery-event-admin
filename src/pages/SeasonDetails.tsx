@@ -5,14 +5,10 @@ import LoadingSpinner from "../components/ui/LoadingSpinner";
 import PageHeading from "../components/ui/PageHeading";
 import SeasonInfo from "../components/seasons/SeasonInfo";
 // icons
-import {
-  MdDeleteForever as IconDelete,
-  MdEditDocument as IconEdit,
-  MdDoneAll as IconFinish,
-  MdAdd as IconAdd,
-} from "react-icons/md";
+import { MdAdd as IconAdd } from "react-icons/md";
 import ButtonIcon from "../components/ui/ButtonIcon";
 import TournamentList from "../components/seasons/TournamentList";
+import NavigateCommands from "../components/general/NavigateCommands";
 
 const SeasonDetails = () => {
   const navigate = useNavigate();
@@ -41,23 +37,7 @@ const SeasonDetails = () => {
                 seasonType={season.type}
               />
 
-              <div>
-                <ButtonIcon
-                  clickHandler={() => navigate(`delete`)}
-                  label="delete season"
-                  icon={<IconDelete className="text-error" />}
-                />
-                <ButtonIcon
-                  clickHandler={() => navigate(`edit`)}
-                  label="edit season info"
-                  icon={<IconEdit />}
-                />
-                <ButtonIcon
-                  clickHandler={() => navigate(`finish`)}
-                  label="change season status"
-                  icon={<IconFinish className="text-sec-green-500" />}
-                />
-              </div>
+              <NavigateCommands label="season" />
             </aside>
 
             <section className="w-full">

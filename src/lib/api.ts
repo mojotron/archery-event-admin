@@ -50,3 +50,14 @@ export const patchSeason = async (seasonId: string, data: UpdateSeasonFields) =>
 export const getSingleTournament = async (
   tournamentId: string
 ): Promise<ResponseTournamentType> => API.get(`/tournaments/${tournamentId}`);
+
+type CreateTournamentParams = {
+  seasonId: string;
+  title: string;
+  description: string;
+  location: string;
+  organizedBy: string;
+  attendAt: string;
+};
+export const postCreateTournament = async (data: CreateTournamentParams) =>
+  API.post("/tournaments", data);

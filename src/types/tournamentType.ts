@@ -1,7 +1,7 @@
 export type TournamentType = {
+  id: string;
   title: string;
   description: string | null;
-  id: string;
   createdAt: string;
   updatedAt: string;
   createdById: string;
