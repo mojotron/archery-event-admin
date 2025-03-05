@@ -7,7 +7,13 @@ type Params = {
   handleChange: (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  type: "text" | "email" | "password" | "number" | "textarea";
+  type:
+    | "text"
+    | "email"
+    | "password"
+    | "number"
+    | "textarea"
+    | "datetime-local";
 };
 
 const FormInput = ({ type, label, name, value, handleChange }: Params) => {
