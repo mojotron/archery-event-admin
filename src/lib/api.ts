@@ -64,3 +64,17 @@ export const postCreateTournament = async (data: CreateTournamentParams) =>
 
 export const deleteTournament = async (tournamentId: string) =>
   API.delete(`/tournaments/${tournamentId}`);
+
+export type UpdateTournamentParams = {
+  title?: string;
+  description?: string;
+  location?: string;
+  attendAt?: string;
+};
+export const patchTournament = async (
+  tournamentId: string,
+  data: UpdateTournamentParams
+) => {
+  console.log(data);
+  return API.patch(`/tournaments/${tournamentId}`, data);
+};

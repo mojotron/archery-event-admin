@@ -54,7 +54,7 @@ const SeasonEdit = () => {
               icon={<IconBack className="text-sec-blue-500" />}
               clickHandler={() => navigate(`/dashboard/seasons/${seasonId}`)}
             />
-            <PageHeading>Edit Season Information</PageHeading>
+            <PageHeading>Edit Season Data</PageHeading>
           </header>
 
           {fieldName && (
