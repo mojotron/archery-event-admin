@@ -12,7 +12,7 @@ import Paragraph from "../components/ui/Paragraph";
 import NavigateCommands from "../components/general/NavigateCommands";
 import AddToListHeader from "../components/general/AddToListHeader";
 
-const TournamentControl = () => {
+const TournamentDetails = () => {
   const { tournamentId } = useParams() as {
     tournamentId: string;
   };
@@ -60,4 +60,4 @@ const TournamentControl = () => {
   );
 };
 
-export default TournamentControl;
+export default TournamentDetails;

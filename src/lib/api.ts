@@ -61,3 +61,6 @@ type CreateTournamentParams = {
 };
 export const postCreateTournament = async (data: CreateTournamentParams) =>
   API.post("/tournaments", data);
+
+export const deleteTournament = async (tournamentId: string) =>
+  API.delete(`/tournaments/${tournamentId}`);

@@ -1,56 +1,57 @@
-import { useNavigate, useParams } from "react-router";
-import useSeason from "../hooks/useSeason";
+import useTournament from "../hooks/useTournament";
+import { useParams, useNavigate } from "react-router";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
 import PageHeading from "../components/ui/PageHeading";
-import { useMutation } from "@tanstack/react-query";
-import { deleteSeason } from "../lib/api";
-import ConfirmDelete from "../components/general/ConfirmDelete";
 import ButtonIcon from "../components/ui/ButtonIcon";
+import ConfirmDelete from "../components/general/ConfirmDelete";
 // icons
 import { MdArrowBack as IconBack } from "react-icons/md";
+import { useMutation } from "@tanstack/react-query";
+import { deleteTournament } from "../lib/api";
 
-const SeasonDelete = () => {
-  const { seasonId } = useParams() as { seasonId: string };
+const TournamentDelete = () => {
+  const { tournamentId } = useParams() as { tournamentId: string };
   const navigate = useNavigate();
+  const { tournament, isLoading, isError, isSuccess } =
+    useTournament(tournamentId);
 
-  const { season, isLoading, isError, isSuccess } = useSeason(seasonId);
   const {
     mutate,
     isPending,
     isError: isDeleteError,
   } = useMutation({
-    mutationFn: () => deleteSeason(seasonId),
-    onSuccess: () => navigate("/dashboard/seasons", { replace: true }),
+    mutationFn: () => deleteTournament(tournamentId),
+    onSuccess: () => navigate(`/dashboard/seasons/${tournament?.seasonId}`),
   });
 
   return (
     <div className="w-full flex flex-col items-center gap-4">
       {isLoading && <LoadingSpinner />}
-      {isError && <p>error fetching season data...</p>}
+      {isError && <p>failed to fetch tournament data</p>}
 
-      {isSuccess && season && (
+      {isSuccess && tournament && (
         <>
           <header className="flex flex-col items-center">
             <h2 className="font-source-code-pro font-bold text-xl text-main-300">
-              delete options for season
+              delete options for tournament
             </h2>
-            <PageHeading>{season.title}</PageHeading>
+            <PageHeading>{tournament.title}</PageHeading>
           </header>
           <section>
-            {season?.tournaments.length > 0 ? (
+            {tournament.isFinished === true ? (
               <div className="flex flex-col gap-4 items-center">
                 <h3 className="font-bold font-source-code-pro uppercase tracking-wide text-main-300 text-2xl">
                   Attention!
                 </h3>
                 <p className="text-main-100 text-lg">
-                  Season is active and already have tournaments. You must delete
+                  Season is active and already have archers. You must delete
                   each tournament before you can delete season!
                 </p>
                 <ButtonIcon
                   label="go back"
                   icon={<IconBack />}
                   clickHandler={() =>
-                    navigate(`/dashboard/seasons/${seasonId}`, {
+                    navigate(`/dashboard/tournaments/${tournamentId}`, {
                       replace: true,
                     })
                   }
@@ -59,10 +60,12 @@ const SeasonDelete = () => {
             ) : (
               <ConfirmDelete
                 heading="delete season"
-                text="Are you about to delete this season. This process in
+                text="Are you about to delete this tournament. This process in
                   permanent! Are you sure?"
                 onConfirm={mutate}
-                onCancel={() => navigate(`/dashboard/seasons/${seasonId}`)}
+                onCancel={() =>
+                  navigate(`/dashboard/tournaments/${tournamentId}`)
+                }
                 isPending={isPending}
                 isError={isDeleteError}
               />
@@ -74,4 +77,4 @@ const SeasonDelete = () => {
   );
 };
 
-export default SeasonDelete;
+export default TournamentDelete;

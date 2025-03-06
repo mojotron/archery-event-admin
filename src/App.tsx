@@ -11,8 +11,10 @@ import SeasonDelete from "./pages/SeasonDelete";
 import SeasonEdit from "./pages/SeasonEdit";
 import SeasonFinish from "./pages/SeasonFinish";
 import TournamentRoutes from "./components/layouts/TournamentRoutes";
-import TournamentControl from "./pages/TournamentControl";
+import TournamentDetails from "./pages/TournamentDetails";
 import TournamentCreateForm from "./pages/TournamentCreateForm";
+import TournamentDelete from "./pages/TournamentDelete";
+import TournamentEdit from "./pages/TournamentEdit";
 
 const App = () => {
   const navigate = useNavigate();
@@ -34,8 +36,9 @@ const App = () => {
           <Route path="tournaments" element={<TournamentRoutes />}>
             <Route index element={"list of tournaments"} />
             <Route path="create" element={<TournamentCreateForm />} />
-            <Route path=":tournamentId/edit" element={<TournamentControl />} />
-            <Route path=":tournamentId/view" element={"list of turnaments"} />
+            <Route path=":tournamentId" element={<TournamentDetails />} />
+            <Route path=":tournamentId/delete" element={<TournamentDelete />} />
+            <Route path=":tournamentId/edit" element={<TournamentEdit />} />
           </Route>
         </Route>
         <Route path="/login" element={<Login />} />

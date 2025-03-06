@@ -54,11 +54,7 @@ const TournamentCard = ({ tournament }: Props) => {
             tournament.isFinished ? "view tournament" : "manage tournament"
           }
           clickHandler={() =>
-            navigate(
-              `/dashboard/tournaments/${tournament.id}/${
-                tournament.isFinished ? "view" : "edit"
-              }`
-            )
+            navigate(`/dashboard/tournaments/${tournament.id}/`)
           }
           icon={
             tournament.isFinished ? (
