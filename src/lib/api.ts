@@ -70,6 +70,7 @@ export type UpdateTournamentParams = {
   description?: string;
   location?: string;
   attendAt?: string;
+  isFinished?: boolean;
 };
 export const patchTournament = async (
   tournamentId: string,
