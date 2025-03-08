@@ -1,9 +1,14 @@
 import { ChangeEvent } from "react";
 
+type Option = {
+  label: string;
+  value: string;
+};
+
 type Props = {
   label: string;
   name: string;
-  options: string[];
+  options: Option[];
   defaultValue: string;
   handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 };
@@ -25,11 +30,11 @@ const FormSelect = ({
         onChange={handleChange}
         id={name}
         name={name}
-        className="shadow-xs bg-main-500 border border-main-900 text-gray-100 text-sm rounded-lg focus:ring focus:ring-sec-blue-500 focus:border-sec-blue-500 w-full px-4 py-2.5 outline-none"
+        className="cursor-pointer shadow-xs bg-main-500 border border-main-900 text-gray-100 text-sm rounded-lg focus:ring focus:ring-sec-blue-500 focus:border-sec-blue-500 w-full px-4 py-2.5 outline-none"
       >
         {options.map((opt, i) => (
-          <option key={i} value={opt}>
-            {opt}
+          <option key={i} value={opt.value} className="cursor-pointer">
+            {opt.label}
           </option>
         ))}
       </select>

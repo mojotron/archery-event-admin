@@ -10,6 +10,8 @@ export type TournamentType = {
   organizedBy: string;
   seasonId: string;
   isFinished: boolean;
+  // added TODO
+  season: { type: string };
 };
 
 export type ResponseTournamentType = {

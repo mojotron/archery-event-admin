@@ -16,6 +16,7 @@ import TournamentCreateForm from "./pages/TournamentCreateForm";
 import TournamentDelete from "./pages/TournamentDelete";
 import TournamentEdit from "./pages/TournamentEdit";
 import TournamentFinish from "./pages/TournamentFinish";
+import ScoreCardForm from "./pages/ScoreCardForm";
 
 const App = () => {
   const navigate = useNavigate();
@@ -41,6 +42,10 @@ const App = () => {
             <Route path=":tournamentId/delete" element={<TournamentDelete />} />
             <Route path=":tournamentId/edit" element={<TournamentEdit />} />
             <Route path=":tournamentId/finish" element={<TournamentFinish />} />
+            <Route
+              path=":tournamentId/score-card"
+              element={<ScoreCardForm />}
+            />
           </Route>
         </Route>
         <Route path="/login" element={<Login />} />

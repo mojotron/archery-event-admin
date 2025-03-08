@@ -5,7 +5,7 @@ import {
   SeasonFilterType,
 } from "../types/seasonType";
 import { ResponseTournamentType } from "../types/tournamentType";
-import { ResponseUserType } from "../types/userType";
+import { ResponseUserType, ResponseUsersListType } from "../types/userType";
 type LoginParams = {
   email: string;
   password: string;
@@ -16,6 +16,9 @@ export const postLoginUser = async (data: LoginParams) =>
 export const getLogout = async () => API.get("/auth/logout");
 // USER
 export const getUser = async (): Promise<ResponseUserType> => API.get("/user");
+
+export const getUsersList = async (): Promise<ResponseUsersListType> =>
+  API.get("/user/list");
 // SEASONS
 type CreateSeasonParams = {
   title: string;

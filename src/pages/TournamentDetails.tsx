@@ -49,7 +49,7 @@ const TournamentDetails = () => {
           <section className="w-full">
             <AddToListHeader
               heading="Tournament Participants"
-              formPath={""}
+              formPath={`score-card`}
               showBtn={tournament.isFinished === false}
               btnLabel="add participant score"
             />
