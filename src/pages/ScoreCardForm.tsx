@@ -8,6 +8,9 @@ import Form from "../components/ui/Form";
 import Button from "../components/ui/Button";
 import useUsersList from "../hooks/useUsersList";
 import FormSelect from "../components/ui/FormSelect";
+import Scandinavian3DTargetOptions from "../components/scorecards/Scandinavian3DTargetOptions";
+
+const targetNumber = 3;
 
 const ScoreCardForm = () => {
   const { tournamentId } = useParams() as { tournamentId: string };
@@ -15,12 +18,17 @@ const ScoreCardForm = () => {
   const { users } = useUsersList();
 
   const [formData, setFormData] = useState({ userId: "" });
+  const [targets, setTargets] = useState(() =>
+    Array.from({ length: targetNumber }, () => {
+      return { hit: "center", arrow: "1" };
+    })
+  );
 
   const handlePickUser = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
-
     setFormData((oldState) => ({ ...oldState, userId: e.target.value }));
   };
+
+  console.log(targets);
 
   const userOptions = users
     ? [
@@ -51,25 +59,32 @@ const ScoreCardForm = () => {
               defaultValue={formData.userId}
             />
 
-            <div>
-              <h3>Target number 1</h3>
-              <div className="flex">
-                <FormSelect
-                  label="arrow"
-                  name="temp"
-                  options={[{ value: "1", label: "1" }]}
-                  handleChange={() => {}}
-                  defaultValue={"1"}
+            {Array.from({ length: targetNumber }, (_, i) => {
+              return (
+                <Scandinavian3DTargetOptions
+                  label={`Target ${i + 1}`}
+                  selectedHit={targets[i].hit}
+                  selectedArrow={targets[i].arrow}
+                  onChangeHit={(e) =>
+                    setTargets((oldSate) => {
+                      const modify = oldSate.map((ele, j) =>
+                        i === j ? { ...ele, hit: e.target.value } : ele
+                      );
+                      return modify;
+                    })
+                  }
+                  onChangeArrow={(e) =>
+                    setTargets((oldSate) => {
+                      const modify = oldSate.map((ele, j) =>
+                        i === j ? { ...ele, arrow: e.target.value } : ele
+                      );
+                      return modify;
+                    })
+                  }
+                  key={i}
                 />
-                <FormSelect
-                  label="hit"
-                  name="temp"
-                  options={[{ value: "center", label: "center" }]}
-                  handleChange={() => {}}
-                  defaultValue={"center"}
-                />
-              </div>
-            </div>
+              );
+            })}
 
             <Button type="submit" label="create score card" />
           </Form>

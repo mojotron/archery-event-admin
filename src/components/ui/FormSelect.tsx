@@ -1,14 +1,14 @@
 import { ChangeEvent } from "react";
 
-type Option = {
+export type SelectOptionType = {
   label: string;
-  value: string;
+  value: string | number;
 };
 
 type Props = {
   label: string;
   name: string;
-  options: Option[];
+  options: SelectOptionType[];
   defaultValue: string;
   handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 };
