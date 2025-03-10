@@ -2,6 +2,7 @@ import { RadioOptionType } from "../components/ui/FormRadio";
 
 export const SCANDINAVIAN3D_HIT = ["center", "vital", "body", "miss"];
 export const SCANDINAVIAN3D_ARROWS_PER_TARGET = 3;
+export const SCANDINAVIAN3D_TARGETS_COUNT = 28;
 
 export const SCANDINAVIAN3D_HIT_FORM_OPTIONS: RadioOptionType[] =
   SCANDINAVIAN3D_HIT.map((hit) => ({ label: hit, value: hit }));

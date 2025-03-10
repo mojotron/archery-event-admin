@@ -1,34 +1,34 @@
-import { ChangeEvent, useState } from "react";
-import { useParams } from "react-router";
+// hooks
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import useTournament from "../hooks/useTournament";
+import useUsersList from "../hooks/useUsersList";
+// components
 import LoadingSpinner from "../components/ui/LoadingSpinner";
 import ButtonGoBack from "../components/ui/ButtonGoBack";
 import PageHeading from "../components/ui/PageHeading";
 import Form from "../components/ui/Form";
 import Button from "../components/ui/Button";
-import useUsersList from "../hooks/useUsersList";
 import FormSelect from "../components/ui/FormSelect";
 import Scandinavian3DTargetOptions from "../components/scorecards/Scandinavian3DTargetOptions";
+// constants
+import { SCANDINAVIAN3D_TARGETS_COUNT } from "../constants/score";
+import { useMutation } from "@tanstack/react-query";
+import { postScandinavian3DScorecard } from "../lib/api";
+import { Scandinavian3DTargetType } from "../types/scorecardType";
 
-const targetNumber = 3;
-
-const ScoreCardForm = () => {
+const ScoreCardFormScandinavian3D = () => {
+  const navigate = useNavigate();
   const { tournamentId } = useParams() as { tournamentId: string };
   const { tournament, isLoading, isError } = useTournament(tournamentId);
   const { users } = useUsersList();
 
-  const [formData, setFormData] = useState({ userId: "" });
-  const [targets, setTargets] = useState(() =>
-    Array.from({ length: targetNumber }, () => {
-      return { hit: "center", arrow: "1" };
+  const [archerId, setArcherId] = useState("--- pick user ---");
+  const [targets, setTargets] = useState<Scandinavian3DTargetType[]>(() =>
+    Array.from({ length: SCANDINAVIAN3D_TARGETS_COUNT }, () => {
+      return { hit: "center", arrow: 1 };
     })
   );
-
-  const handlePickUser = (e: ChangeEvent<HTMLSelectElement>) => {
-    setFormData((oldState) => ({ ...oldState, userId: e.target.value }));
-  };
-
-  console.log(targets);
 
   const userOptions = users
     ? [
@@ -40,6 +40,13 @@ const ScoreCardForm = () => {
       ]
     : [];
 
+  const { mutate } = useMutation({
+    mutationFn: () =>
+      postScandinavian3DScorecard({ userId: archerId, tournamentId, targets }),
+    onSuccess: () =>
+      navigate(`/dashboard/tournaments/${tournamentId}`, { replace: true }),
+  });
+
   return (
     <div>
       {isLoading && <LoadingSpinner />}
@@ -50,33 +57,35 @@ const ScoreCardForm = () => {
             <ButtonGoBack path={`/dashboard/tournaments/${tournamentId}`} />
             <PageHeading>add score card</PageHeading>
           </header>
-          <Form handler={() => console.log(formData)}>
+          <Form handler={mutate}>
             <FormSelect
               label="select archer"
               name="temp"
               options={userOptions}
-              handleChange={handlePickUser}
-              defaultValue={formData.userId}
+              handleChange={(e) => setArcherId(e.target.value)}
+              defaultValue={archerId}
             />
 
-            {Array.from({ length: targetNumber }, (_, i) => {
+            {Array.from({ length: SCANDINAVIAN3D_TARGETS_COUNT }, (_, i) => {
               return (
                 <Scandinavian3DTargetOptions
                   label={`Target ${i + 1}`}
                   selectedHit={targets[i].hit}
-                  selectedArrow={targets[i].arrow}
+                  selectedArrow={targets[i].arrow.toString()}
                   onChangeHit={(e) =>
                     setTargets((oldSate) => {
                       const modify = oldSate.map((ele, j) =>
                         i === j ? { ...ele, hit: e.target.value } : ele
                       );
-                      return modify;
+                      return modify as Scandinavian3DTargetType[];
                     })
                   }
                   onChangeArrow={(e) =>
                     setTargets((oldSate) => {
                       const modify = oldSate.map((ele, j) =>
-                        i === j ? { ...ele, arrow: e.target.value } : ele
+                        i === j
+                          ? { ...ele, arrow: parseInt(e.target.value) }
+                          : ele
                       );
                       return modify;
                     })
@@ -94,4 +103,4 @@ const ScoreCardForm = () => {
   );
 };
 
-export default ScoreCardForm;
+export default ScoreCardFormScandinavian3D;

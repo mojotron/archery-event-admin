@@ -16,7 +16,7 @@ import TournamentCreateForm from "./pages/TournamentCreateForm";
 import TournamentDelete from "./pages/TournamentDelete";
 import TournamentEdit from "./pages/TournamentEdit";
 import TournamentFinish from "./pages/TournamentFinish";
-import ScoreCardForm from "./pages/ScoreCardForm";
+import ScoreCardFormScandinavian3D from "./pages/ScoreCardFormScandinavian3D";
 
 const App = () => {
   const navigate = useNavigate();
@@ -43,8 +43,8 @@ const App = () => {
             <Route path=":tournamentId/edit" element={<TournamentEdit />} />
             <Route path=":tournamentId/finish" element={<TournamentFinish />} />
             <Route
-              path=":tournamentId/score-card"
-              element={<ScoreCardForm />}
+              path=":tournamentId/add-score-card/:tournamentType"
+              element={<ScoreCardFormScandinavian3D />}
             />
           </Route>
         </Route>

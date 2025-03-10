@@ -1,5 +1,9 @@
 import API from "../config/apiClient";
 import {
+  ResponseScandinavian3DScorecards,
+  Scandinavian3DTargetType,
+} from "../types/scorecardType";
+import {
   ResponseSeasonDetailsType,
   ResponseSeasonType,
   SeasonFilterType,
@@ -82,3 +86,18 @@ export const patchTournament = async (
   console.log(data);
   return API.patch(`/tournaments/${tournamentId}`, data);
 };
+
+// SCORECARDS
+type CreateS3DScorecardParams = {
+  userId: string;
+  tournamentId: string;
+  targets: Scandinavian3DTargetType[];
+};
+export const postScandinavian3DScorecard = async (
+  data: CreateS3DScorecardParams
+) => API.post(`/scorecards/add-score-card/scandinavian3D`, data);
+
+export const getScandinavian3DScorecardList = async (
+  tournamentId: string
+): Promise<ResponseScandinavian3DScorecards> =>
+  API.get(`/scorecards/scandinavian3D/${tournamentId}`);

@@ -11,6 +11,7 @@ import TournamentInfo from "../components/tournaments/TournamentInfo";
 import Paragraph from "../components/ui/Paragraph";
 import NavigateCommands from "../components/general/NavigateCommands";
 import AddToListHeader from "../components/general/AddToListHeader";
+import Scandinavian3DScores from "../components/scorecards/Scandinavian3DScores";
 
 const TournamentDetails = () => {
   const { tournamentId } = useParams() as {
@@ -49,10 +50,13 @@ const TournamentDetails = () => {
           <section className="w-full">
             <AddToListHeader
               heading="Tournament Participants"
-              formPath={`score-card`}
+              formPath={`add-score-card/${tournament.season.type}`}
               showBtn={tournament.isFinished === false}
               btnLabel="add participant score"
             />
+            {tournament.season.type === "scandinavian_3D" && (
+              <Scandinavian3DScores />
+            )}
           </section>
         </div>
       )}
