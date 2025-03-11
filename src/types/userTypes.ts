@@ -5,12 +5,6 @@ export type UserType = {
   email: string;
   createdAt: string;
   updatedAt: string;
-  isAdmin: boolean;
-};
-
-export type ResponseUserType = {
-  message: string;
-  user: UserType;
 };
 
 export type UserListType = {

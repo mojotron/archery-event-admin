@@ -22,6 +22,7 @@ import Login from "./pages/auth/Login";
 import VerifyEmail from "./pages/auth/VerifyEmail";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
+import UserSettings from "./pages/UserSettings";
 
 const App = () => {
   const navigate = useNavigate();
@@ -32,6 +33,8 @@ const App = () => {
       <Routes>
         <Route path="/dashboard" element={<ProtectedRoutes />}>
           <Route index element={<Dashboard />} />
+          <Route path="settings" element={<UserSettings />} />
+
           <Route path="seasons" element={<SeasonRoutes />}>
             <Route index element={<Seasons />} />
             <Route path="create" element={<SeasonCreateForm />} />

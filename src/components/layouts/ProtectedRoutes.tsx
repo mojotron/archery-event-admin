@@ -6,7 +6,7 @@ const ProtectedRoutes = () => {
   const { user, isLoading } = useAuth();
 
   return (
-    <div>
+    <>
       {isLoading ? (
         <LoadingSpinner />
       ) : user ? (
@@ -18,7 +18,7 @@ const ProtectedRoutes = () => {
           state={{ redirectUrl: window.location.pathname }}
         />
       )}
-    </div>
+    </>
   );
 };
 

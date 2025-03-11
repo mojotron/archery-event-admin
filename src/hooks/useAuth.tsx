@@ -4,13 +4,13 @@ import { getUser } from "../lib/api";
 const ADMIN_AUTH_QUERY_KEY = "ADMIN_AUTH";
 
 const useAuth = () => {
-  const { data, ...rest } = useQuery({
+  const { data: user, ...rest } = useQuery({
     queryKey: [ADMIN_AUTH_QUERY_KEY],
     queryFn: () => getUser(),
     staleTime: Infinity,
   });
 
-  return { user: data?.user, ...rest };
+  return { user, ...rest };
 };
 
 export default useAuth;
