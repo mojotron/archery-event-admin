@@ -1,10 +1,20 @@
 import { useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
-import { getLogout } from "../lib/api";
+import { logout } from "../lib/api";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const Dashboard = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const { mutate: logoutUser } = useMutation({
+    mutationFn: () => logout(),
+    onSettled: () => {
+      queryClient.clear();
+      navigate("/login", { replace: true });
+    },
+  });
 
   return (
     <div className="p-4">
@@ -32,7 +42,7 @@ const Dashboard = () => {
           </li>
           <li
             className="font-bold text-main-100 cursor-pointer hover:text-error"
-            onClick={() => getLogout()}
+            onClick={() => logoutUser()}
           >
             logout
           </li>

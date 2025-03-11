@@ -4,9 +4,7 @@ type Params = {
   label: string;
   name: string;
   value: string;
-  handleChange: (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   type:
     | "text"
     | "email"
@@ -16,7 +14,7 @@ type Params = {
     | "datetime-local";
 };
 
-const FormInput = ({ type, label, name, value, handleChange }: Params) => {
+const FormInput = ({ type, label, name, value, onChange }: Params) => {
   return (
     <div className="w-full">
       <label className="text-md font-inter text-main-100" htmlFor={name}>
@@ -28,7 +26,7 @@ const FormInput = ({ type, label, name, value, handleChange }: Params) => {
           id={name}
           name={name}
           value={value}
-          onChange={handleChange}
+          onChange={onChange}
           required
         >
           {value}
@@ -40,7 +38,7 @@ const FormInput = ({ type, label, name, value, handleChange }: Params) => {
           id={name}
           name={name}
           value={value}
-          onChange={handleChange}
+          onChange={onChange}
           required
         />
       )}

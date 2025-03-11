@@ -1,8 +1,7 @@
-import { Routes, Route, useNavigate, Navigate } from "react-router";
+import { Routes, Route, useNavigate } from "react-router";
 import { setNavigate } from "./lib/navigation";
 import ProtectedRoutes from "./components/layouts/ProtectedRoutes";
 import SeasonRoutes from "./components/layouts/SeasonRoutes";
-import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Seasons from "./pages/Seasons";
 import SeasonCreateForm from "./pages/SeasonCreateForm";
@@ -17,6 +16,12 @@ import TournamentDelete from "./pages/TournamentDelete";
 import TournamentEdit from "./pages/TournamentEdit";
 import TournamentFinish from "./pages/TournamentFinish";
 import ScoreCardFormScandinavian3D from "./pages/ScoreCardFormScandinavian3D";
+// pages auth
+import Register from "./pages/auth/Register";
+import Login from "./pages/auth/Login";
+import VerifyEmail from "./pages/auth/VerifyEmail";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+import ResetPassword from "./pages/auth/ResetPassword";
 
 const App = () => {
   const navigate = useNavigate();
@@ -48,8 +53,12 @@ const App = () => {
             />
           </Route>
         </Route>
+        {/* AUTH */}
+        <Route path="/register" element={<Register />} />
+        <Route path="/email/verify/:code" element={<VerifyEmail />} />
         <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="/password/forgot" element={<ForgotPassword />} />
+        <Route path="/password/reset/" element={<ResetPassword />} />
       </Routes>
     </div>
   );

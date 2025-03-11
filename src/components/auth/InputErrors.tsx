@@ -1,10 +1,11 @@
-export type InputError = {
-  message: string;
-  inputErrors: { message: string }[];
+import { ResponseInputErrorsType } from "../../types/errorTypes";
+
+type Props = {
+  response: ResponseInputErrorsType;
 };
 
-const InputErrors = ({ error }: { error: InputError }) => {
-  const { message, inputErrors } = error;
+const InputErrors = ({ response }: Props) => {
+  const { message, inputErrors } = response;
 
   if (message === "Form input error") {
     return (

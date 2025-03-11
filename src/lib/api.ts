@@ -10,14 +10,39 @@ import {
 } from "../types/seasonType";
 import { ResponseTournamentType } from "../types/tournamentType";
 import { ResponseUserType, ResponseUsersListType } from "../types/userType";
+
+// AUTH
+type RegisterParams = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+export const register = async (data: RegisterParams) =>
+  API.post("/auth/register", data);
+
 type LoginParams = {
   email: string;
   password: string;
 };
-export const postLoginUser = async (data: LoginParams) =>
-  API.post("/auth/login", data);
-// logout
-export const getLogout = async () => API.get("/auth/logout");
+export const login = async (data: LoginParams) => API.post("/auth/login", data);
+
+export const verifyEmail = async (verificationCode: string) =>
+  API.get(`/auth/email/verify/${verificationCode}`);
+
+export const passwordForget = async (email: string) =>
+  API.post("/auth/password/forgot", { email });
+
+type PasswordResetParams = {
+  verificationCode: string;
+  password: string;
+};
+export const passwordReset = async (data: PasswordResetParams) =>
+  API.post("/auth/password/reset", data);
+
+export const logout = async () => API.get("/auth/logout");
+
 // USER
 export const getUser = async (): Promise<ResponseUserType> => API.get("/user");
 

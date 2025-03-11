@@ -1,12 +1,14 @@
 import { ChangeEvent, useState } from "react";
-import PageHeading from "../ui/PageHeading";
-import AuthForm from "./AuthForm";
 import { useMutation } from "@tanstack/react-query";
-import { postResetPassword } from "../../lib/api";
-import AuthInput from "./AuthInput";
-import Button from "../ui/Button";
-import InputErrors, { InputError } from "./InputErrors";
+import PageHeading from "../ui/PageHeading";
+import Form from "../ui/Form";
 import LinkCard from "./LinkCard";
+import InputErrors from "./InputErrors";
+import FormInput from "../ui/FormInput";
+
+import Button from "../ui/Button";
+import { ResponseInputErrorsType } from "../../types/errorTypes";
+import { passwordReset } from "../../lib/api";
 
 const ResetPasswordForm = ({ code }: { code: string }) => {
   const [formData, setFormData] = useState({
@@ -16,20 +18,22 @@ const ResetPasswordForm = ({ code }: { code: string }) => {
 
   const { mutate, isPending, isError, error, isSuccess } = useMutation({
     mutationFn: () =>
-      postResetPassword({
+      passwordReset({
         password: formData.password,
         verificationCode: code,
       }),
   });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((oldState) => ({ ...oldState, [name]: value }));
   };
 
   const buttonDisabled =
     !formData.password ||
-    formData.password.length < 6 ||
+    formData.password.length < 8 ||
     !formData.confirmPassword ||
     formData.password !== formData.confirmPassword;
 
@@ -48,10 +52,12 @@ const ResetPasswordForm = ({ code }: { code: string }) => {
   return (
     <div className="p-4 flex flex-col items-center">
       <PageHeading>Change your password</PageHeading>
-      <AuthForm handler={mutate}>
-        {isError && <InputErrors error={error as unknown as InputError} />}
+      <Form onSubmit={mutate}>
+        {isError && (
+          <InputErrors response={error as unknown as ResponseInputErrorsType} />
+        )}
 
-        <AuthInput
+        <FormInput
           type="password"
           label="new password"
           name="password"
@@ -59,7 +65,7 @@ const ResetPasswordForm = ({ code }: { code: string }) => {
           onChange={handleChange}
         />
 
-        <AuthInput
+        <FormInput
           type="password"
           label="confirm new password"
           name="confirmPassword"
@@ -73,7 +79,7 @@ const ResetPasswordForm = ({ code }: { code: string }) => {
           isLoading={isPending}
           isDisabled={buttonDisabled}
         />
-      </AuthForm>
+      </Form>
     </div>
   );
 };

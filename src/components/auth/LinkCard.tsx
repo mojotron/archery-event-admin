@@ -9,7 +9,7 @@ type Props = {
 
 const LinkCard = ({ message, linkText, linkPath, replace = false }: Props) => {
   return (
-    <div className="font-inter w-full sm:w-96 px-4 py-2 ">
+    <div className="text-center font-inter w-full sm:w-96 px-4 py-2 ">
       <p className="text-main-300">
         {message}{" "}
         <Link
