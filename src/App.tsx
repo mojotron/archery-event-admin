@@ -23,6 +23,8 @@ import VerifyEmail from "./pages/auth/VerifyEmail";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import UserSettings from "./pages/settings/UserSettings";
+import ClubsLayout from "./layouts/ClubsLayout";
+import Clubs from "./pages/clubs/Clubs";
 
 const App = () => {
   const navigate = useNavigate();
@@ -34,6 +36,10 @@ const App = () => {
         <Route path="/dashboard" element={<ProtectedRoutes />}>
           <Route index element={<Dashboard />} />
           <Route path="settings" element={<UserSettings />} />
+
+          <Route path="clubs" element={<ClubsLayout />}>
+            <Route index element={<Clubs />} />
+          </Route>
 
           <Route path="seasons" element={<SeasonRoutes />}>
             <Route index element={<Seasons />} />

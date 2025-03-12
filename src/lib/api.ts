@@ -1,4 +1,5 @@
 import API from "../config/apiClient";
+import { ClubType } from "../types/clubTypes";
 import {
   ResponseScandinavian3DScorecards,
   Scandinavian3DTargetType,
@@ -56,6 +57,14 @@ export const getSessions = async (): Promise<SessionType[]> =>
 
 export const deleteSession = async (sessionId: string): Promise<SessionType> =>
   API.delete(`/sessions/${sessionId}`);
+
+// CLUBS
+type CreateClubParams = {
+  name: string;
+  address: string;
+};
+export const createClub = async (data: CreateClubParams): Promise<ClubType> =>
+  API.post("/clubs", data);
 
 // SEASONS
 type CreateSeasonParams = {
