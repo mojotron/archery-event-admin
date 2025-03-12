@@ -66,6 +66,8 @@ type CreateClubParams = {
 export const createClub = async (data: CreateClubParams): Promise<ClubType> =>
   API.post("/clubs", data);
 
+export const getClubs = async (): Promise<ClubType[]> => API.get("/clubs");
+
 // SEASONS
 type CreateSeasonParams = {
   title: string;
