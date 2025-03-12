@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import { verifyEmail } from "../../lib/api";
 import LoadingSpinner from "../../components/ui/LoadingSpinner";
-import LinkCard from "../../components/auth/LinkCard";
+import LinkCard from "./components/LinkCard";
 
 const VerifyEmail = () => {
   const { code } = useParams() as { code: string };

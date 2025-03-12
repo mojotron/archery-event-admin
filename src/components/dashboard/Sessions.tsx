@@ -14,7 +14,7 @@ const Sessions = () => {
       {isError && <LoadingError />}
 
       {sessions && (
-        <ul>
+        <ul className="space-y-2">
           {sessions.map((session) => (
             <SessionCard key={session.id} session={session} />
           ))}

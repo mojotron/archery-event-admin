@@ -49,9 +49,13 @@ export const getUser = async (): Promise<UserType> => API.get("/user");
 
 export const getUsersList = async (): Promise<ResponseUsersListType> =>
   API.get("/user/list");
+
 // USER SESSIONS
 export const getSessions = async (): Promise<SessionType[]> =>
   API.get("/sessions");
+
+export const deleteSession = async (sessionId: string): Promise<SessionType> =>
+  API.delete(`/sessions/${sessionId}`);
 
 // SEASONS
 type CreateSeasonParams = {

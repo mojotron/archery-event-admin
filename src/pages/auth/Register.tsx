@@ -1,13 +1,16 @@
+// hooks
 import { ChangeEvent, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+// api
+import { register } from "../../lib/api";
 // components
 import PageHeading from "../../components/ui/PageHeading";
 import Form from "../../components/ui/Form";
 import FormInput from "../../components/ui/FormInput";
 import Button from "../../components/ui/Button";
-import LinkCard from "../../components/auth/LinkCard";
-import { useMutation } from "@tanstack/react-query";
-import { register } from "../../lib/api";
-import InputErrors from "../../components/auth/InputErrors";
+import LinkCard from "./components/LinkCard";
+import InputErrors from "./components/InputErrors";
+// types
 import { ResponseInputErrorsType } from "../../types/errorTypes";
 
 const Register = () => {

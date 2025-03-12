@@ -9,10 +9,10 @@ import PageHeading from "../../components/ui/PageHeading";
 import Form from "../../components/ui/Form";
 import FormInput from "../../components/ui/FormInput";
 import Button from "../../components/ui/Button";
-
-import InputErrors from "../../components/auth/InputErrors";
+import InputErrors from "./components/InputErrors";
+import LinkCard from "./components/LinkCard";
+// types
 import { ResponseInputErrorsType } from "../../types/errorTypes";
-import LinkCard from "../../components/auth/LinkCard";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });

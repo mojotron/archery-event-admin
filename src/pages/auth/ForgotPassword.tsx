@@ -1,12 +1,16 @@
+// hooks
 import { ChangeEvent, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+// api
+import { passwordForget } from "../../lib/api";
+// components
 import PageHeading from "../../components/ui/PageHeading";
 import Form from "../../components/ui/Form";
 import FormInput from "../../components/ui/FormInput";
 import Button from "../../components/ui/Button";
-import { useMutation } from "@tanstack/react-query";
-import InputErrors from "../../components/auth/InputErrors";
+import InputErrors from "./components/InputErrors";
+// types
 import { ResponseInputErrorsType } from "../../types/errorTypes";
-import { passwordForget } from "../../lib/api";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");

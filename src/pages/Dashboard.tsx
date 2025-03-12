@@ -8,7 +8,7 @@ const Dashboard = () => {
   return (
     <div>
       <header>
-        <h2 className="p-4 font-passion-one text-main-300 uppercase text-2xl">
+        <h2 className="font-passion-one text-main-300 uppercase text-2xl">
           Archery Event Control Dashboard
         </h2>
         <p className="font-source-code-pro text-main-300">
@@ -17,7 +17,7 @@ const Dashboard = () => {
       </header>
 
       <section className="flex">
-        <aside className="bg-main-500 w-[400px]">
+        <aside className="w-[400px]">
           <MainMenu />
         </aside>
       </section>

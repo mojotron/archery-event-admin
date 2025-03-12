@@ -1,10 +1,10 @@
-import { Routes, Route, useNavigate } from "react-router";
+import { Routes, Route, useNavigate, Navigate } from "react-router";
 import { setNavigate } from "./lib/navigation";
 import ProtectedRoutes from "./components/layouts/ProtectedRoutes";
 import SeasonRoutes from "./components/layouts/SeasonRoutes";
 import Dashboard from "./pages/Dashboard";
 import Seasons from "./pages/Seasons";
-import SeasonCreateForm from "./pages/SeasonCreateForm";
+import SeasonCreateForm from "./pages/seasons/SeasonCreateForm";
 import SeasonDetails from "./pages/SeasonDetails";
 import SeasonDelete from "./pages/SeasonDelete";
 import SeasonEdit from "./pages/SeasonEdit";
@@ -22,7 +22,7 @@ import Login from "./pages/auth/Login";
 import VerifyEmail from "./pages/auth/VerifyEmail";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
-import UserSettings from "./pages/UserSettings";
+import UserSettings from "./pages/settings/UserSettings";
 
 const App = () => {
   const navigate = useNavigate();
@@ -43,6 +43,7 @@ const App = () => {
             <Route path=":seasonId/edit" element={<SeasonEdit />} />
             <Route path=":seasonId/finish" element={<SeasonFinish />} />
           </Route>
+
           <Route path="tournaments" element={<TournamentRoutes />}>
             <Route index element={"list of tournaments"} />
             <Route path="create" element={<TournamentCreateForm />} />
@@ -62,6 +63,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/password/forgot" element={<ForgotPassword />} />
         <Route path="/password/reset/" element={<ResetPassword />} />
+
+        <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
     </div>
   );

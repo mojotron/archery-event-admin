@@ -1,6 +1,5 @@
-import React from "react";
-import Sessions from "../components/dashboard/Sessions";
-import DashboardHeader from "../components/dashboard/DashboardHeader";
+import Sessions from "../../components/dashboard/Sessions";
+import DashboardHeader from "../../components/dashboard/DashboardHeader";
 
 const UserSettings = () => {
   return (

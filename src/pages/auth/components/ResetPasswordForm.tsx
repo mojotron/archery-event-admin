@@ -1,14 +1,17 @@
+// hooks
 import { ChangeEvent, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import PageHeading from "../ui/PageHeading";
-import Form from "../ui/Form";
+// api
+import { passwordReset } from "../../../lib/api";
+// components
+import PageHeading from "../../../components/ui/PageHeading";
+import Form from "../../../components/ui/Form";
 import LinkCard from "./LinkCard";
 import InputErrors from "./InputErrors";
-import FormInput from "../ui/FormInput";
-
-import Button from "../ui/Button";
-import { ResponseInputErrorsType } from "../../types/errorTypes";
-import { passwordReset } from "../../lib/api";
+import FormInput from "../../../components/ui/FormInput";
+import Button from "../../../components/ui/Button";
+// types
+import { ResponseInputErrorsType } from "../../../types/errorTypes";
 
 const ResetPasswordForm = ({ code }: { code: string }) => {
   const [formData, setFormData] = useState({

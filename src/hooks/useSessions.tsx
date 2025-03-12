@@ -5,7 +5,7 @@ export const QUERY_KEY_SESSIONS = "user-sessions";
 
 const useSessions = () => {
   const { data: sessions, ...rest } = useQuery({
-    queryKey: [],
+    queryKey: [QUERY_KEY_SESSIONS],
     queryFn: () => getSessions(),
   });
 

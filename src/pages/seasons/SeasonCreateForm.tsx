@@ -1,13 +1,13 @@
 import { ChangeEvent, useState } from "react";
-import PageHeading from "../components/ui/PageHeading";
-import Form from "../components/ui/Form";
-import FormInput from "../components/ui/FormInput";
-import Button from "../components/ui/Button";
-import FormSelect from "../components/ui/FormSelect";
+import PageHeading from "../../components/ui/PageHeading";
+import Form from "../../components/ui/Form";
+import FormInput from "../../components/ui/FormInput";
+import Button from "../../components/ui/Button";
+import FormSelect from "../../components/ui/FormSelect";
 
-import { TOURNAMENT_TYPE } from "../constants/apiConstants";
+import { TOURNAMENT_TYPE } from "../../constants/apiConstants";
 import { useMutation } from "@tanstack/react-query";
-import { postCreateSeason } from "../lib/api";
+import { postCreateSeason } from "../../lib/api";
 import { useNavigate } from "react-router";
 
 const SeasonCreateForm = () => {
