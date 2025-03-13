@@ -25,6 +25,8 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import UserSettings from "./pages/settings/UserSettings";
 import ClubsLayout from "./layouts/ClubsLayout";
 import Clubs from "./pages/clubs/Clubs";
+import ClubDelete from "./pages/clubs/ClubDelete";
+import ClubEditForm from "./pages/clubs/ClubEditForm";
 
 const App = () => {
   const navigate = useNavigate();
@@ -39,6 +41,8 @@ const App = () => {
 
           <Route path="clubs" element={<ClubsLayout />}>
             <Route index element={<Clubs />} />
+            <Route path=":clubId/delete" element={<ClubDelete />} />
+            <Route path=":clubId/edit" element={<ClubEditForm />} />
           </Route>
 
           <Route path="seasons" element={<SeasonRoutes />}>

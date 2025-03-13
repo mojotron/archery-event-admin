@@ -1,4 +1,4 @@
-import Sessions from "../../components/dashboard/Sessions";
+import Sessions from "./components/Sessions";
 import DashboardHeader from "../../components/dashboard/DashboardHeader";
 
 const UserSettings = () => {

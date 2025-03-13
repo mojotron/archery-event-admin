@@ -1,6 +1,6 @@
-import useSessions from "../../hooks/useSessions";
-import LoadingError from "../general/LoadingError";
-import LoadingSpinner from "../ui/LoadingSpinner";
+import useSessions from "../../../hooks/useSessions";
+import LoadingError from "../../../components/general/LoadingError";
+import LoadingSpinner from "../../../components/ui/LoadingSpinner";
 import SessionCard from "./SessionCard";
 
 const Sessions = () => {

@@ -68,6 +68,21 @@ export const createClub = async (data: CreateClubParams): Promise<ClubType> =>
 
 export const getClubs = async (): Promise<ClubType[]> => API.get("/clubs");
 
+export const getClub = async (clubId: string): Promise<ClubType> =>
+  API.get(`/clubs/${clubId}`);
+
+export const deleteClub = async (clubId: string): Promise<ClubType> =>
+  API.delete(`/clubs/${clubId}`);
+
+export type UpdateClubParams = {
+  name?: string;
+  address?: string;
+};
+export const editClub = async (
+  clubId: string,
+  data: UpdateClubParams
+): Promise<ClubType> => API.patch(`/clubs/${clubId}`, data);
+
 // SEASONS
 type CreateSeasonParams = {
   title: string;

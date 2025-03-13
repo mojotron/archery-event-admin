@@ -4,7 +4,7 @@ const LoadingSpinnerBtn = () => {
       <svg
         aria-hidden="true"
         role="status"
-        className="inline w-4 h-4 me-3 text-white animate-spin"
+        className="inline w-4 h-4 me-3 text-sec-blue-500 animate-spin"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +18,6 @@ const LoadingSpinnerBtn = () => {
           fill="currentColor"
         />
       </svg>
-      Loading...
     </span>
   );
 };

@@ -19,7 +19,7 @@ const ToggleActiveForm = ({
   labelInactive = "open",
 }: Props) => {
   return (
-    <Form handler={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <h3 className="font-bold text-main-300 text-lg">{label}</h3>
       <ButtonIcon
         label={isActive ? labelInactive : labelActive}
