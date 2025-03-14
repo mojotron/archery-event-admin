@@ -1,4 +1,5 @@
 import API from "../config/apiClient";
+import { ArcherType } from "../types/archerTypes";
 import { ClubType } from "../types/clubTypes";
 import {
   ResponseScandinavian3DScorecards,
@@ -83,6 +84,26 @@ export const editClub = async (
   data: UpdateClubParams
 ): Promise<ClubType> => API.patch(`/clubs/${clubId}`, data);
 
+// ARCHERS
+type CreateArcherParams = {
+  clubId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+};
+export const createArcher = async (
+  data: CreateArcherParams
+): Promise<ArcherType> => API.post("/archers", data);
+
+export const getArchers = async (): Promise<ArcherType[]> =>
+  API.get("/archers");
+
+export const getArcher = async (archerId: string): Promise<ArcherType> =>
+  API.get(`/archers/${archerId}`);
+
+export const deleteArcher = async (archerId: string): Promise<ArcherType> =>
+  API.delete(`/archers/${archerId}`);
 // SEASONS
 type CreateSeasonParams = {
   title: string;

@@ -15,7 +15,7 @@ const ClubDelete = () => {
   });
 
   return (
-    <div className="">
+    <div>
       <ConfirmDelete
         heading="delete club"
         text="You are about to delete club from the database. Are you sure?"

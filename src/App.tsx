@@ -1,6 +1,6 @@
 import { Routes, Route, useNavigate, Navigate } from "react-router";
 import { setNavigate } from "./lib/navigation";
-import ProtectedRoutes from "./components/layouts/ProtectedRoutes";
+import ProtectedRoutes from "./layouts/ProtectedRoutes";
 import SeasonRoutes from "./components/layouts/SeasonRoutes";
 import Dashboard from "./pages/Dashboard";
 import Seasons from "./pages/Seasons";
@@ -27,6 +27,11 @@ import ClubsLayout from "./layouts/ClubsLayout";
 import Clubs from "./pages/clubs/Clubs";
 import ClubDelete from "./pages/clubs/ClubDelete";
 import ClubEditForm from "./pages/clubs/ClubEditForm";
+import ArchersLayout from "./layouts/ArchersLayout";
+import Archers from "./pages/archers/Archers";
+import CreateArcherForm from "./pages/archers/CreateArcherForm";
+import ArcherDetails from "./pages/archers/ArcherDetails";
+import ArcherDelete from "./pages/archers/ArcherDelete";
 
 const App = () => {
   const navigate = useNavigate();
@@ -43,6 +48,14 @@ const App = () => {
             <Route index element={<Clubs />} />
             <Route path=":clubId/delete" element={<ClubDelete />} />
             <Route path=":clubId/edit" element={<ClubEditForm />} />
+          </Route>
+
+          <Route path="archers" element={<ArchersLayout />}>
+            <Route index element={<Archers />} />
+            <Route path="create" element={<CreateArcherForm />} />
+            <Route path=":archerId" element={<ArcherDetails />} />
+            <Route path=":archerId/edit" element={<CreateArcherForm />} />
+            <Route path=":archerId/delete" element={<ArcherDelete />} />
           </Route>
 
           <Route path="seasons" element={<SeasonRoutes />}>
