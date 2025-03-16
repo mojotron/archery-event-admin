@@ -13,7 +13,7 @@ import ChangeDataField from "../../components/general/ChangeDataField";
 
 type ClubField = "name" | "address";
 
-const ClubEditForm = () => {
+const ClubEdit = () => {
   const { clubId } = useParams() as { clubId: string };
   const { club, isLoading, isError } = useClub(clubId);
 
@@ -95,4 +95,4 @@ const ClubEditForm = () => {
   );
 };
 
-export default ClubEditForm;
+export default ClubEdit;

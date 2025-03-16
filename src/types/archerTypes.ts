@@ -1,5 +1,6 @@
 export type ArcherType = {
   clubId: string | null;
+  club: { name: string } | null;
   firstName: string;
   lastName: string;
   email: string | null;

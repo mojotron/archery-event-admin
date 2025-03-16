@@ -26,12 +26,13 @@ import UserSettings from "./pages/settings/UserSettings";
 import ClubsLayout from "./layouts/ClubsLayout";
 import Clubs from "./pages/clubs/Clubs";
 import ClubDelete from "./pages/clubs/ClubDelete";
-import ClubEditForm from "./pages/clubs/ClubEditForm";
+import ClubEdit from "./pages/clubs/ClubEdit";
 import ArchersLayout from "./layouts/ArchersLayout";
 import Archers from "./pages/archers/Archers";
 import CreateArcherForm from "./pages/archers/CreateArcherForm";
 import ArcherDetails from "./pages/archers/ArcherDetails";
 import ArcherDelete from "./pages/archers/ArcherDelete";
+import ArcherEdit from "./pages/archers/ArcherEdit";
 
 const App = () => {
   const navigate = useNavigate();
@@ -47,14 +48,14 @@ const App = () => {
           <Route path="clubs" element={<ClubsLayout />}>
             <Route index element={<Clubs />} />
             <Route path=":clubId/delete" element={<ClubDelete />} />
-            <Route path=":clubId/edit" element={<ClubEditForm />} />
+            <Route path=":clubId/edit" element={<ClubEdit />} />
           </Route>
 
           <Route path="archers" element={<ArchersLayout />}>
             <Route index element={<Archers />} />
             <Route path="create" element={<CreateArcherForm />} />
             <Route path=":archerId" element={<ArcherDetails />} />
-            <Route path=":archerId/edit" element={<CreateArcherForm />} />
+            <Route path=":archerId/edit" element={<ArcherEdit />} />
             <Route path=":archerId/delete" element={<ArcherDelete />} />
           </Route>
 
