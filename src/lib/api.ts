@@ -104,6 +104,19 @@ export const getArcher = async (archerId: string): Promise<ArcherType> =>
 
 export const deleteArcher = async (archerId: string): Promise<ArcherType> =>
   API.delete(`/archers/${archerId}`);
+
+export type UpdateArcherParams = {
+  clubId?: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  username?: string;
+  public?: boolean;
+};
+export const editArcher = async (
+  archerId: string,
+  data: UpdateArcherParams
+): Promise<ArcherType> => API.patch(`/archers/${archerId}`, data);
 // SEASONS
 type CreateSeasonParams = {
   title: string;

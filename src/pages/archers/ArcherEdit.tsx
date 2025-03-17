@@ -5,14 +5,19 @@ import LoadingError from "../../components/general/LoadingError";
 import ButtonGoBack from "../../components/ui/ButtonGoBack";
 import SectionHeading from "../../components/ui/SectionHeading";
 import ChangeDataField from "../../components/general/ChangeDataField";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import FormInput from "../../components/ui/FormInput";
+import Button from "../../components/ui/Button";
+import Form from "../../components/ui/Form";
+import useArcherMutate from "../../hooks/useArcherMutate";
+import SelectClub from "./components/SelectClub";
 
 type ArcherFields =
   | "firstName"
   | "lastName"
   | "username"
   | "email"
-  | "club"
+  | "clubId"
   | "public";
 
 const ArcherEdit = () => {
@@ -20,6 +25,23 @@ const ArcherEdit = () => {
   const { archer, isLoading, isError } = useArcher(archerId);
 
   const [archerField, setArcherField] = useState<ArcherFields | null>(null);
+  const [archerFieldValue, setArcherFieldValue] = useState("");
+
+  const {
+    updateArcher,
+    isPending,
+    isSuccess,
+    isError: isUpdateError,
+  } = useArcherMutate(archerId);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setArcherField(null);
+      setArcherFieldValue("");
+    }
+  }, [isSuccess]);
+
+  console.log(archerField, archerFieldValue);
 
   return (
     <div className="p-4 flex gap-8">
@@ -37,6 +59,7 @@ const ArcherEdit = () => {
               field={archer.firstName}
               handleClick={() => {
                 setArcherField("firstName");
+                setArcherFieldValue(archer.firstName);
               }}
             />
 
@@ -45,6 +68,7 @@ const ArcherEdit = () => {
               field={archer.lastName}
               handleClick={() => {
                 setArcherField("lastName");
+                setArcherFieldValue(archer.lastName);
               }}
             />
 
@@ -53,6 +77,7 @@ const ArcherEdit = () => {
               field={archer.username}
               handleClick={() => {
                 setArcherField("username");
+                setArcherFieldValue(archer.username);
               }}
             />
 
@@ -61,6 +86,7 @@ const ArcherEdit = () => {
               field={archer.email || "undefined"}
               handleClick={() => {
                 setArcherField("email");
+                setArcherFieldValue(archer?.email || "");
               }}
             />
 
@@ -68,7 +94,8 @@ const ArcherEdit = () => {
               label="club name"
               field={archer.club?.name || "undefined"}
               handleClick={() => {
-                setArcherField("club");
+                setArcherField("clubId");
+                setArcherFieldValue(archer.clubId || "");
               }}
             />
 
@@ -83,6 +110,41 @@ const ArcherEdit = () => {
           {archerField !== null && (
             <div>
               <SectionHeading>update {archerField} field</SectionHeading>
+
+              <Form
+                onSubmit={() => {
+                  updateArcher({ [archerField]: archerFieldValue });
+                }}
+              >
+                {isUpdateError && (
+                  <LoadingError message="failed to update archer data" />
+                )}
+
+                {archerField !== "clubId" && archerField !== "public" && (
+                  <FormInput
+                    type={archerField === "email" ? "email" : "text"}
+                    label={archerField}
+                    name={archerField}
+                    value={archerFieldValue}
+                    onChange={(e) => setArcherFieldValue(e.target.value)}
+                  />
+                )}
+
+                {archerField === "clubId" && (
+                  <SelectClub
+                    currentClub={archer.club?.name || ""}
+                    name={archerField}
+                    onChange={(e) => setArcherFieldValue(e.target.value)}
+                  />
+                )}
+
+                <Button
+                  label="update"
+                  type="submit"
+                  isLoading={isPending}
+                  isDisabled={archerFieldValue === archer[archerField]}
+                />
+              </Form>
             </div>
           )}
         </>
