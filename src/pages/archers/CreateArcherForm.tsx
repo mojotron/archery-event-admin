@@ -10,12 +10,11 @@ import Form from "../../components/ui/Form";
 import Button from "../../components/ui/Button";
 import LoadingError from "../../components/general/LoadingError";
 import FormInput from "../../components/ui/FormInput";
-import useClubs from "../../hooks/useClubs";
-import FormSelect from "../../components/ui/FormSelect";
+
 import ButtonGoBack from "../../components/ui/ButtonGoBack";
+import SelectClub from "./components/SelectClub";
 
 const CreateArcherForm = () => {
-  const { clubs } = useClubs();
   const navigate = useNavigate();
 
   const [formData, setFormDate] = useState({
@@ -42,14 +41,6 @@ const CreateArcherForm = () => {
     onSuccess: () => navigate("/dashboard/archers"),
   });
 
-  if (!clubs)
-    return (
-      <div className="p-8">
-        <ButtonGoBack path="/dashboard/archers" />
-        <LoadingError message="failed to fetch list of clubs" />
-      </div>
-    );
-
   return (
     <div className="px-4">
       <ButtonGoBack path="/dashboard/archers" />
@@ -58,16 +49,7 @@ const CreateArcherForm = () => {
         <Form onSubmit={addArcher}>
           {isError && <LoadingError message="failed to create archer" />}
 
-          <FormSelect
-            label="club"
-            name="clubId"
-            defaultValue={formData.clubId}
-            options={[
-              { label: "--- pick club ---", value: "" },
-              ...clubs.map((club) => ({ label: club.name, value: club.id })),
-            ]}
-            handleChange={handleChange}
-          />
+          <SelectClub currentClub={""} name="clubId" onChange={handleChange} />
 
           <FormInput
             type="text"

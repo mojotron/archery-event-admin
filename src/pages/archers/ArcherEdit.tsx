@@ -11,6 +11,7 @@ import Button from "../../components/ui/Button";
 import Form from "../../components/ui/Form";
 import useArcherMutate from "../../hooks/useArcherMutate";
 import SelectClub from "./components/SelectClub";
+import FormRadio from "../../components/ui/FormRadio";
 
 type ArcherFields =
   | "firstName"
@@ -41,7 +42,14 @@ const ArcherEdit = () => {
     }
   }, [isSuccess]);
 
-  console.log(archerField, archerFieldValue);
+  const submitHandler = () => {
+    if (archerField === null) return;
+    if (archerField === "public") {
+      updateArcher({ public: archerFieldValue === "public" ? true : false });
+    } else {
+      updateArcher({ [archerField]: archerFieldValue });
+    }
+  };
 
   return (
     <div className="p-4 flex gap-8">
@@ -104,6 +112,7 @@ const ArcherEdit = () => {
               field={`${archer.public}`}
               handleClick={() => {
                 setArcherField("public");
+                setArcherFieldValue(archer.public ? "public" : "private");
               }}
             />
           </div>
@@ -111,11 +120,7 @@ const ArcherEdit = () => {
             <div>
               <SectionHeading>update {archerField} field</SectionHeading>
 
-              <Form
-                onSubmit={() => {
-                  updateArcher({ [archerField]: archerFieldValue });
-                }}
-              >
+              <Form onSubmit={submitHandler}>
                 {isUpdateError && (
                   <LoadingError message="failed to update archer data" />
                 )}
@@ -135,6 +140,18 @@ const ArcherEdit = () => {
                     currentClub={archer.club?.name || ""}
                     name={archerField}
                     onChange={(e) => setArcherFieldValue(e.target.value)}
+                  />
+                )}
+
+                {archerField === "public" && (
+                  <FormRadio
+                    name={archerField}
+                    options={[
+                      { label: "public", value: "public" },
+                      { label: "private", value: "private" },
+                    ]}
+                    selected={archerFieldValue}
+                    handleChange={(e) => setArcherFieldValue(e.target.value)}
                   />
                 )}
 
