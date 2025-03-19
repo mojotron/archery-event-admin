@@ -117,16 +117,15 @@ export const editArcher = async (
   archerId: string,
   data: UpdateArcherParams
 ): Promise<ArcherType> => API.patch(`/archers/${archerId}`, data);
-// SEASONS
-type CreateSeasonParams = {
+// SEASONS SCANDINAVIAN 3D
+type CreateSeasonScan3DParams = {
   title: string;
   description: string;
   tournamentCount: number;
-  type: string;
 };
-export const postCreateSeason = async (data: CreateSeasonParams) =>
-  API.post("/seasons", data);
-
+export const createSeasonScan3D = async (data: CreateSeasonScan3DParams) =>
+  API.post("/seasons/scandinavian3D", data);
+//
 export const getSeasons = async (
   filter: SeasonFilterType
 ): Promise<ResponseSeasonType> => API.get(`/seasons?seasonFilter=${filter}`);

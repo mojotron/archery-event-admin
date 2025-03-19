@@ -1,10 +1,8 @@
 import { Routes, Route, useNavigate, Navigate } from "react-router";
 import { setNavigate } from "./lib/navigation";
 import ProtectedRoutes from "./layouts/ProtectedRoutes";
-import SeasonRoutes from "./components/layouts/SeasonRoutes";
 import Dashboard from "./pages/Dashboard";
-import Seasons from "./pages/Seasons";
-import SeasonCreateForm from "./pages/seasons/SeasonCreateForm";
+import Seasons from "./pages/seasons/Seasons";
 import SeasonDetails from "./pages/SeasonDetails";
 import SeasonDelete from "./pages/SeasonDelete";
 import SeasonEdit from "./pages/SeasonEdit";
@@ -23,16 +21,21 @@ import VerifyEmail from "./pages/auth/VerifyEmail";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import UserSettings from "./pages/settings/UserSettings";
+// pages Club
 import ClubsLayout from "./layouts/ClubsLayout";
 import Clubs from "./pages/clubs/Clubs";
 import ClubDelete from "./pages/clubs/ClubDelete";
 import ClubEdit from "./pages/clubs/ClubEdit";
+// pages archery
 import ArchersLayout from "./layouts/ArchersLayout";
 import Archers from "./pages/archers/Archers";
 import CreateArcherForm from "./pages/archers/CreateArcherForm";
 import ArcherDetails from "./pages/archers/ArcherDetails";
 import ArcherDelete from "./pages/archers/ArcherDelete";
 import ArcherEdit from "./pages/archers/ArcherEdit";
+import SeasonLayout from "./layouts/SeasonLayout";
+import { RulesEnum } from "./types/ruleType";
+import CreateSeasonScan3D from "./pages/seasons/CreateSeasonScan3D";
 
 const App = () => {
   const navigate = useNavigate();
@@ -59,9 +62,16 @@ const App = () => {
             <Route path=":archerId/delete" element={<ArcherDelete />} />
           </Route>
 
-          <Route path="seasons" element={<SeasonRoutes />}>
+          <Route path="seasons" element={<SeasonLayout />}>
             <Route index element={<Seasons />} />
-            <Route path="create" element={<SeasonCreateForm />} />
+            <Route
+              path={`${RulesEnum.scandinavian3D}/create`}
+              element={<CreateSeasonScan3D />}
+            />
+            <Route
+              path={`${RulesEnum.worldArchery}/create`}
+              element={"create wa"}
+            />
             <Route path=":seasonId" element={<SeasonDetails />} />
             <Route path=":seasonId/delete" element={<SeasonDelete />} />
             <Route path=":seasonId/edit" element={<SeasonEdit />} />
