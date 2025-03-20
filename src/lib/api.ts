@@ -5,11 +5,7 @@ import {
   ResponseScandinavian3DScorecards,
   Scandinavian3DTargetType,
 } from "../types/scorecardType";
-import {
-  ResponseSeasonDetailsType,
-  ResponseSeasonType,
-  SeasonFilterType,
-} from "../types/seasonType";
+import { SeasonStatusType, SeasonType } from "../types/seasonType";
 import { SessionType } from "../types/sessionTypes";
 import { ResponseTournamentType } from "../types/tournamentType";
 import { ResponseUsersListType, UserType } from "../types/userTypes";
@@ -125,10 +121,11 @@ type CreateSeasonScan3DParams = {
 };
 export const createSeasonScan3D = async (data: CreateSeasonScan3DParams) =>
   API.post("/seasons/scandinavian3D", data);
+
+export const getSeasonsScan3D = async (
+  filter: SeasonStatusType | undefined
+): Promise<SeasonType[]> => API.get(`/seasons/scandinavian3D?status=${filter}`);
 //
-export const getSeasons = async (
-  filter: SeasonFilterType
-): Promise<ResponseSeasonType> => API.get(`/seasons?seasonFilter=${filter}`);
 
 export const getSingleSeason = async (
   seasonId: string

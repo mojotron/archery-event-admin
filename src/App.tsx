@@ -3,10 +3,6 @@ import { setNavigate } from "./lib/navigation";
 import ProtectedRoutes from "./layouts/ProtectedRoutes";
 import Dashboard from "./pages/Dashboard";
 import Seasons from "./pages/seasons/Seasons";
-import SeasonDetails from "./pages/SeasonDetails";
-import SeasonDelete from "./pages/SeasonDelete";
-import SeasonEdit from "./pages/SeasonEdit";
-import SeasonFinish from "./pages/SeasonFinish";
 import TournamentRoutes from "./components/layouts/TournamentRoutes";
 import TournamentDetails from "./pages/TournamentDetails";
 import TournamentCreateForm from "./pages/TournamentCreateForm";
@@ -72,10 +68,6 @@ const App = () => {
               path={`${RulesEnum.worldArchery}/create`}
               element={"create wa"}
             />
-            <Route path=":seasonId" element={<SeasonDetails />} />
-            <Route path=":seasonId/delete" element={<SeasonDelete />} />
-            <Route path=":seasonId/edit" element={<SeasonEdit />} />
-            <Route path=":seasonId/finish" element={<SeasonFinish />} />
           </Route>
 
           <Route path="tournaments" element={<TournamentRoutes />}>
