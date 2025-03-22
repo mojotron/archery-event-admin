@@ -1,11 +1,11 @@
-import { SeasonType } from "../../../types/seasonType";
+import { SeasonTypeScan3D, SeasonTypeWA } from "../../../types/seasonType";
 import Button from "../../../components/ui/Button";
 import { useNavigate } from "react-router";
 import HighlightRecord from "../../../components/ui/HighlightRecord";
 import { createdAtDate, dateDistanceFrom } from "../../../utils/dateFormat";
 
 type Props = {
-  season: SeasonType;
+  season: SeasonTypeScan3D | SeasonTypeWA;
 };
 
 const SeasonListCard = ({ season }: Props) => {
@@ -22,10 +22,12 @@ const SeasonListCard = ({ season }: Props) => {
         </p>
       </div>
       <div className="space-y-1">
-        <HighlightRecord
-          regular="progress"
-          highlighted={`${season.tournaments.length}/${season.tournamentCount}`}
-        />
+        {season.tournaments && (
+          <HighlightRecord
+            regular="progress"
+            highlighted={`${season.tournaments.length}/${season.tournamentCount}`}
+          />
+        )}
         <HighlightRecord
           regular="created at"
           highlighted={createdAtDate(season.createdAt)}

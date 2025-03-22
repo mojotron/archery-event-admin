@@ -1,21 +1,19 @@
 import { useNavigate } from "react-router";
-import SeasonListCard from "./components/SeasonListCard";
+
 import ButtonIcon from "../../components/ui/ButtonIcon";
 import { GiArcheryTarget, GiDeer, GiTrophiesShelf } from "react-icons/gi";
 import SectionHeading from "../../components/ui/SectionHeading";
 import { RulesEnum } from "../../types/ruleType";
-import useSeasonList from "../../hooks/season/useSeasonList";
+
+import SeasonList from "./components/SeasonList";
+import useSeasonsScan3D from "../../hooks/season/useSeasonsScan3D";
 
 const Seasons = () => {
   const navigate = useNavigate();
-
-  const { seasons } = useSeasonList({
-    type: RulesEnum.scandinavian3D,
-    filter: "active",
-  });
+  const { seasons } = useSeasonsScan3D({ filter: "active" });
 
   return (
-    <div className="px-4 w-full">
+    <div className="px-4 w-full pb-8">
       <div className="flex justify-end">
         <ButtonIcon
           label="finished seasons"
@@ -32,13 +30,7 @@ const Seasons = () => {
           clickHandler={() => navigate(`${RulesEnum.scandinavian3D}/create`)}
         />
 
-        {seasons && (
-          <ul className="mb-4 w-full space-y-1">
-            {seasons?.map((season) => (
-              <SeasonListCard key={season.id} season={season} />
-            ))}
-          </ul>
-        )}
+        <SeasonList type={RulesEnum.scandinavian3D} />
       </section>
 
       <section className="space-y-4 border-t border-main-500 pt-4">
@@ -48,6 +40,8 @@ const Seasons = () => {
           label="create new season"
           clickHandler={() => navigate(`${RulesEnum.worldArchery}/create`)}
         />
+
+        <SeasonList type={RulesEnum.worldArchery} />
       </section>
     </div>
   );

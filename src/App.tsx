@@ -32,6 +32,7 @@ import ArcherEdit from "./pages/archers/ArcherEdit";
 import SeasonLayout from "./layouts/SeasonLayout";
 import { RulesEnum } from "./types/ruleType";
 import CreateSeasonScan3D from "./pages/seasons/CreateSeasonScan3D";
+import CreateSeasonWA from "./pages/seasons/CreateSeasonWA";
 
 const App = () => {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ const App = () => {
             />
             <Route
               path={`${RulesEnum.worldArchery}/create`}
-              element={"create wa"}
+              element={<CreateSeasonWA />}
             />
           </Route>
 
