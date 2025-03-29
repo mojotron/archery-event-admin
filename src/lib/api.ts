@@ -1,15 +1,12 @@
 import API from "../config/apiClient";
 import { ArcherType } from "../types/archerTypes";
 import { ClubType } from "../types/clubTypes";
+import { RulesEnum } from "../types/rulesType";
 import {
   ResponseScandinavian3DScorecards,
   Scandinavian3DTargetType,
 } from "../types/scorecardType";
-import {
-  SeasonStatusType,
-  SeasonTypeScan3D,
-  SeasonTypeWA,
-} from "../types/seasonType";
+import { SeasonType } from "../types/seasonType";
 import { SessionType } from "../types/sessionTypes";
 import { ResponseTournamentType } from "../types/tournamentType";
 import { ResponseUsersListType, UserType } from "../types/userTypes";
@@ -117,52 +114,16 @@ export const editArcher = async (
   archerId: string,
   data: UpdateArcherParams
 ): Promise<ArcherType> => API.patch(`/archers/${archerId}`, data);
-// SEASONS SCANDINAVIAN 3D
-type CreateSeasonScan3DParams = {
+// SEASONS
+type CreateSeasonParams = {
+  rules: RulesEnum;
   title: string;
   description: string;
   tournamentCount: number;
 };
-export const createSeasonScan3D = async (
-  data: CreateSeasonScan3DParams
-): Promise<SeasonTypeScan3D> => API.post("/seasons/scandinavian3D", data);
-
-export const getSeasonsScan3D = async (
-  filter: SeasonStatusType | undefined
-): Promise<SeasonTypeScan3D[]> =>
-  API.get(`/seasons/scandinavian3D${filter ? `?status=${filter}` : ""}`);
-
-// SEASONS WORLD ARCHERY
-type CrateSeasonWAParams = {
-  title: string;
-  description: string;
-  tournamentCount: number;
-  distance: number;
-};
-export const createSeasonWA = async (
-  data: CrateSeasonWAParams
-): Promise<SeasonTypeWA> => API.post("/seasons/worldArchery", data);
-
-export const getSeasonsWA = async (
-  filter: SeasonStatusType | undefined
-): Promise<SeasonTypeWA[]> =>
-  API.get(`/seasons/worldArchery${filter ? `?status=${filter}` : ""}`);
-
-export const getSingleSeason = async (seasonId: string) =>
-  API.get(`/seasons/${seasonId}`);
-
-export const deleteSeason = async (seasonId: string) =>
-  API.delete(`/seasons/${seasonId}`);
-
-export type UpdateSeasonFields = {
-  title?: string;
-  description?: string;
-  tournamentCount?: number;
-  isFinished?: boolean;
-};
-export const patchSeason = async (seasonId: string, data: UpdateSeasonFields) =>
-  API.patch(`/seasons/${seasonId}`, data);
-
+export const createSeason = async (
+  data: CreateSeasonParams
+): Promise<SeasonType> => API.post("/seasons", data);
 // TOURNAMENT
 export const getSingleTournament = async (
   tournamentId: string

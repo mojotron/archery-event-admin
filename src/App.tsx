@@ -30,9 +30,7 @@ import ArcherDetails from "./pages/archers/ArcherDetails";
 import ArcherDelete from "./pages/archers/ArcherDelete";
 import ArcherEdit from "./pages/archers/ArcherEdit";
 import SeasonLayout from "./layouts/SeasonLayout";
-import { RulesEnum } from "./types/ruleType";
-import CreateSeasonScan3D from "./pages/seasons/CreateSeasonScan3D";
-import CreateSeasonWA from "./pages/seasons/CreateSeasonWA";
+import SeasonCreateForm from "./pages/seasons/SeasonCreateForm";
 
 const App = () => {
   const navigate = useNavigate();
@@ -61,14 +59,7 @@ const App = () => {
 
           <Route path="seasons" element={<SeasonLayout />}>
             <Route index element={<Seasons />} />
-            <Route
-              path={`${RulesEnum.scandinavian3D}/create`}
-              element={<CreateSeasonScan3D />}
-            />
-            <Route
-              path={`${RulesEnum.worldArchery}/create`}
-              element={<CreateSeasonWA />}
-            />
+            <Route path="create" element={<SeasonCreateForm />} />
           </Route>
 
           <Route path="tournaments" element={<TournamentRoutes />}>
