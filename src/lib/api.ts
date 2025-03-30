@@ -114,8 +114,9 @@ export const editArcher = async (
   archerId: string,
   data: UpdateArcherParams
 ): Promise<ArcherType> => API.patch(`/archers/${archerId}`, data);
+
 // SEASONS
-type CreateSeasonParams = {
+export type CreateSeasonParams = {
   rules: RulesEnum;
   title: string;
   description: string;
