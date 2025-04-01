@@ -3,7 +3,8 @@ import { RulesEnum } from "./rulesType";
 export type SeasonStatusType = "active" | "finished";
 
 type TournamentList = {
-  id: string;
+  title: true;
+  id: true;
 };
 
 export type SeasonType = {

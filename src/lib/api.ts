@@ -8,6 +8,7 @@ import {
 } from "../types/scorecardType";
 import { SeasonType } from "../types/seasonType";
 import { SessionType } from "../types/sessionTypes";
+import { StatusEnum } from "../types/statusType";
 import { ResponseTournamentType } from "../types/tournamentType";
 import { ResponseUsersListType, UserType } from "../types/userTypes";
 
@@ -125,6 +126,25 @@ export type CreateSeasonParams = {
 export const createSeason = async (
   data: CreateSeasonParams
 ): Promise<SeasonType> => API.post("/seasons", data);
+
+type SeasonListParams = {
+  rules?: RulesEnum;
+  status?: StatusEnum;
+};
+export const getSeasonList = async ({
+  rules,
+  status,
+}: SeasonListParams): Promise<SeasonType[]> => {
+  let filters: string | undefined = undefined;
+
+  console.log(rules, status);
+
+  if (rules && status) filters = `?rules=${rules}&status=${status}`;
+  else if (rules) filters = `?rules=${rules}`;
+  else if (status) filters = `?status=${status}`;
+
+  return API.get(`/seasons${filters ? filters : ""}`);
+};
 // TOURNAMENT
 export const getSingleTournament = async (
   tournamentId: string
