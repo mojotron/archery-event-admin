@@ -6,7 +6,11 @@ import {
   ResponseScandinavian3DScorecards,
   Scandinavian3DTargetType,
 } from "../types/scorecardType";
-import { SeasonType } from "../types/seasonType";
+import {
+  SeasonType,
+  SeasonTypeWithTournamentInfo,
+  SeasonTypeWithTournaments,
+} from "../types/seasonType";
 import { SessionType } from "../types/sessionTypes";
 import { StatusEnum } from "../types/statusType";
 import { ResponseTournamentType } from "../types/tournamentType";
@@ -134,10 +138,8 @@ type SeasonListParams = {
 export const getSeasonList = async ({
   rules,
   status,
-}: SeasonListParams): Promise<SeasonType[]> => {
+}: SeasonListParams): Promise<SeasonTypeWithTournamentInfo[]> => {
   let filters: string | undefined = undefined;
-
-  console.log(rules, status);
 
   if (rules && status) filters = `?rules=${rules}&status=${status}`;
   else if (rules) filters = `?rules=${rules}`;
@@ -145,6 +147,10 @@ export const getSeasonList = async ({
 
   return API.get(`/seasons${filters ? filters : ""}`);
 };
+
+export const getSeason = async (
+  seasonId: string
+): Promise<SeasonTypeWithTournamentInfo> => API.get(`/seasons/${seasonId}`);
 // TOURNAMENT
 export const getSingleTournament = async (
   tournamentId: string

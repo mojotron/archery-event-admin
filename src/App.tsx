@@ -31,6 +31,7 @@ import ArcherDelete from "./pages/archers/ArcherDelete";
 import ArcherEdit from "./pages/archers/ArcherEdit";
 import SeasonLayout from "./layouts/SeasonLayout";
 import SeasonCreateForm from "./pages/seasons/SeasonCreateForm";
+import SeasonDetails from "./pages/seasons/SeasonDetails";
 
 const App = () => {
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="seasons" element={<SeasonLayout />}>
             <Route index element={<Seasons />} />
             <Route path="create" element={<SeasonCreateForm />} />
+            <Route path=":seasonId" element={<SeasonDetails />} />
           </Route>
 
           <Route path="tournaments" element={<TournamentRoutes />}>

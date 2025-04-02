@@ -18,7 +18,7 @@ const SeasonList = ({ rules, status }: Props) => {
       {isError && <LoadingError message="failed to fetch seasons" />}
 
       {seasons && (
-        <ul>
+        <ul className="space-y-2">
           {seasons.map((season) => (
             <SeasonCard key={season.id} season={season} />
           ))}

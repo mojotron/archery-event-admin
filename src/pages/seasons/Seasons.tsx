@@ -24,7 +24,7 @@ const Seasons = () => {
         />
       </div>
 
-      <section className="space-y-4">
+      <section className="space-y-4 mb-8">
         <SectionHeading>Scandinavian 3D</SectionHeading>
         <SeasonList
           rules={RulesEnum.scandinavian3D}
@@ -32,7 +32,7 @@ const Seasons = () => {
         />
       </section>
 
-      <section className="space-y-4 border-t border-main-500 pt-4">
+      <section className="space-y-4 mb-8 border-t border-main-500 pt-4">
         <SectionHeading>World Archery Target</SectionHeading>
         <SeasonList rules={RulesEnum.worldArchery} status={StatusEnum.active} />
       </section>

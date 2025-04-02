@@ -7,3 +7,7 @@ export const createdAtDate = (date: string) => {
 export const dateDistanceFrom = (date: string, suffix = true) => {
   return formatDistance(new Date(date), new Date(), { addSuffix: suffix });
 };
+
+export const dateDistanceTo = (date: string) => {
+  return formatDistance(new Date(), new Date(date));
+};

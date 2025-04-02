@@ -1,11 +1,5 @@
 import { RulesEnum } from "./rulesType";
-
-export type SeasonStatusType = "active" | "finished";
-
-type TournamentList = {
-  title: true;
-  id: true;
-};
+import { TournamentInfoType, TournamentType } from "./tournamentType";
 
 export type SeasonType = {
   title: string;
@@ -16,5 +10,12 @@ export type SeasonType = {
   createdAt: string;
   updatedAt: string;
   isFinished: boolean;
-  tournaments?: TournamentList[];
+};
+
+export type SeasonTypeWithTournamentInfo = SeasonType & {
+  tournaments: TournamentInfoType[];
+};
+
+export type SeasonTypeWithTournaments = SeasonType & {
+  tournaments: TournamentType[];
 };

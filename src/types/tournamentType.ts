@@ -1,17 +1,24 @@
-export type TournamentType = {
+import { RulesEnum } from "./rulesType";
+
+export type TournamentInfoType = {
   id: string;
   title: string;
-  description: string | null;
+  attendAt: string;
+};
+
+export type TournamentType = {
+  id: string;
   createdAt: string;
   updatedAt: string;
-  createdById: string;
-  attendAt: string;
-  location: string;
-  organizedBy: string;
-  seasonId: string;
+  rules: RulesEnum;
+  title: string;
+  description: string;
   isFinished: boolean;
-  // added TODO
-  season: { type: string };
+  attendAt: string;
+  address: string;
+  rounds: number;
+  organizedById: string | null;
+  seasonId: string | null;
 };
 
 export type ResponseTournamentType = {
