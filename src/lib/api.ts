@@ -6,11 +6,7 @@ import {
   ResponseScandinavian3DScorecards,
   Scandinavian3DTargetType,
 } from "../types/scorecardType";
-import {
-  SeasonType,
-  SeasonTypeWithTournamentInfo,
-  SeasonTypeWithTournaments,
-} from "../types/seasonType";
+import { SeasonType, SeasonTypeWithTournamentInfo } from "../types/seasonType";
 import { SessionType } from "../types/sessionTypes";
 import { StatusEnum } from "../types/statusType";
 import { ResponseTournamentType } from "../types/tournamentType";

@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useSeason from "../../hooks/season/useSeason";
 import LoadingSpinner from "../../components/ui/LoadingSpinner";
 import LoadingError from "../../components/general/LoadingError";
@@ -11,6 +11,7 @@ import UpdatedAt from "../../components/general/UpdatedAt";
 import TournamentList from "./components/TournamentList";
 
 const SeasonDetails = () => {
+  const navigate = useNavigate();
   const { seasonId } = useParams() as { seasonId: string };
   const { season, isLoading, isError } = useSeason(seasonId);
 
@@ -26,7 +27,7 @@ const SeasonDetails = () => {
               <PageHeading>{season.title}</PageHeading>
             </div>
             <div>
-              <IconDelete onDelete={() => {}} />
+              <IconDelete onDelete={() => navigate(`delete`)} />
               <IconEdit onEdit={() => {}} />
             </div>
           </header>
