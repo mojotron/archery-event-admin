@@ -28,7 +28,7 @@ const SeasonDetails = () => {
             </div>
             <div>
               <IconDelete onDelete={() => navigate(`delete`)} />
-              <IconEdit onEdit={() => {}} />
+              <IconEdit onEdit={() => navigate(`edit`)} />
             </div>
           </header>
           <main className="flex gap-8">

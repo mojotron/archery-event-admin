@@ -147,6 +147,23 @@ export const getSeasonList = async ({
 export const getSeason = async (
   seasonId: string
 ): Promise<SeasonTypeWithTournamentInfo> => API.get(`/seasons/${seasonId}`);
+
+export type UpdateSeasonParams = {
+  rules?: RulesEnum;
+  title?: string;
+  description?: string;
+  tournamentCount?: number;
+  isFinished?: boolean;
+};
+export const updateSeason = async (
+  seasonId: string,
+  data: UpdateSeasonParams
+): Promise<SeasonTypeWithTournamentInfo> =>
+  API.patch(`/seasons/${seasonId}`, data);
+
+export const deleteSeason = async (seasonId: string): Promise<SeasonType> =>
+  API.delete(`/seasons/${seasonId}`);
+
 // TOURNAMENT
 export const getSingleTournament = async (
   tournamentId: string

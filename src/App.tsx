@@ -33,6 +33,7 @@ import SeasonLayout from "./layouts/SeasonLayout";
 import SeasonCreateForm from "./pages/seasons/SeasonCreateForm";
 import SeasonDetails from "./pages/seasons/SeasonDetails";
 import SeasonDelete from "./pages/seasons/SeasonDelete";
+import SeasonEdit from "./pages/seasons/SeasonEdit";
 
 const App = () => {
   const navigate = useNavigate();
@@ -63,6 +64,7 @@ const App = () => {
             <Route index element={<Seasons />} />
             <Route path="create" element={<SeasonCreateForm />} />
             <Route path=":seasonId" element={<SeasonDetails />} />
+            <Route path=":seasonId/edit" element={<SeasonEdit />} />
             <Route path=":seasonId/delete" element={<SeasonDelete />} />
           </Route>
 
