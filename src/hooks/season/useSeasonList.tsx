@@ -12,7 +12,7 @@ type SeasonFilters = {
 
 const useSeasonList = ({ rules, status }: SeasonFilters) => {
   const { data: seasons, ...rest } = useQuery({
-    queryKey: [QUERY_KEY_SEASON_LIST],
+    queryKey: [QUERY_KEY_SEASON_LIST, rules, status],
     queryFn: () => getSeasonList({ rules, status }),
   });
 

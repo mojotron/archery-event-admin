@@ -45,7 +45,13 @@ const SeasonEdit = () => {
 
   const submitHandler = () => {
     if (seasonField === null) return;
-    editSeason({ [seasonField]: seasonFiledValue });
+    if (seasonField === "tournamentCount")
+      editSeason({ tournamentCount: parseInt(seasonFiledValue) });
+    else if (seasonField === "isFinished")
+      editSeason({
+        isFinished: seasonFiledValue === "finished" ? true : false,
+      });
+    else editSeason({ [seasonField]: seasonFiledValue });
   };
 
   return (

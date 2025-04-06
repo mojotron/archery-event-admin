@@ -1,26 +1,21 @@
 import { useNavigate } from "react-router";
 import SeasonList from "./components/SeasonList";
 import ButtonIcon from "../../components/ui/ButtonIcon";
-import { GiArcheryTarget, GiTrophiesShelf } from "react-icons/gi";
+import { GiTrophy } from "react-icons/gi";
 import SectionHeading from "../../components/ui/SectionHeading";
 import { RulesEnum } from "../../types/rulesType";
 import { StatusEnum } from "../../types/statusType";
 
-const Seasons = () => {
+const FinishedSeasons = () => {
   const navigate = useNavigate();
 
   return (
     <div className="px-4 w-full pb-8">
       <div className="flex justify-end">
         <ButtonIcon
-          icon={<GiArcheryTarget className="text-xl text-sec-green-500" />}
-          label="create new season"
-          clickHandler={() => navigate(`${RulesEnum.scandinavian3D}/create`)}
-        />
-        <ButtonIcon
-          label="finished seasons"
-          clickHandler={() => navigate("finished")}
-          icon={<GiTrophiesShelf className="text-xl " />}
+          label="active seasons"
+          clickHandler={() => navigate("/dashboard/seasons")}
+          icon={<GiTrophy className="text-xl " />}
         />
       </div>
 
@@ -28,16 +23,19 @@ const Seasons = () => {
         <SectionHeading>Scandinavian 3D</SectionHeading>
         <SeasonList
           rules={RulesEnum.scandinavian3D}
-          status={StatusEnum.active}
+          status={StatusEnum.finished}
         />
       </section>
 
       <section className="space-y-4 mb-8 border-t border-main-500 pt-4">
         <SectionHeading>World Archery Target</SectionHeading>
-        <SeasonList rules={RulesEnum.worldArchery} status={StatusEnum.active} />
+        <SeasonList
+          rules={RulesEnum.worldArchery}
+          status={StatusEnum.finished}
+        />
       </section>
     </div>
   );
 };
 
-export default Seasons;
+export default FinishedSeasons;
