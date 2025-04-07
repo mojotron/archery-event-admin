@@ -5,7 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import Seasons from "./pages/seasons/Seasons";
 import TournamentRoutes from "./components/layouts/TournamentRoutes";
 import TournamentDetails from "./pages/TournamentDetails";
-import TournamentCreateForm from "./pages/TournamentCreateForm";
+import TournamentCreateForm from "./pages/tournaments/TournamentCreateForm";
 import TournamentDelete from "./pages/TournamentDelete";
 import TournamentEdit from "./pages/TournamentEdit";
 import TournamentFinish from "./pages/TournamentFinish";

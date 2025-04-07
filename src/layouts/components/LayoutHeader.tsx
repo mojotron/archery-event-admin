@@ -9,7 +9,7 @@ const LayoutHeader = ({ heading, section }: Props) => {
   const navigate = useNavigate();
 
   return (
-    <header className="p-4 mb-4 flex items-center justify-between">
+    <header className="p-4 flex items-center justify-between">
       <h2 className="font-passion-one text-main-300 text-2xl uppercase">
         {heading}
       </h2>

@@ -9,6 +9,11 @@ import IconEdit from "../../components/ui/IconEdit";
 import CreatedAt from "../../components/general/CreatedAt";
 import UpdatedAt from "../../components/general/UpdatedAt";
 import TournamentList from "./components/TournamentList";
+import ButtonGoBack from "../../components/ui/ButtonGoBack";
+import Paragraph from "../../components/ui/Paragraph";
+import HighlightRecord from "../../components/ui/HighlightRecord";
+import ButtonIcon from "../../components/ui/ButtonIcon";
+import { GiTargetArrows } from "react-icons/gi";
 
 const SeasonDetails = () => {
   const navigate = useNavigate();
@@ -19,26 +24,53 @@ const SeasonDetails = () => {
     <div className="px-4">
       {isLoading && <LoadingSpinner />}
       {isError && <LoadingError message="failed to fetch season details" />}
+
+      <ButtonGoBack path="/dashboard/seasons" />
+
       {season && (
-        <>
-          <header className="flex justify-between">
-            <div>
+        <main className="flex pt-2 gap-8">
+          <aside className="space-y-2">
+            <header>
               <SectionHeading>season details</SectionHeading>
               <PageHeading>{season.title}</PageHeading>
-            </div>
+            </header>
+            <Paragraph text={season.description} />
             <div>
-              <IconDelete onDelete={() => navigate(`delete`)} />
-              <IconEdit onEdit={() => navigate(`edit`)} />
-            </div>
-          </header>
-          <main className="flex gap-8">
-            <aside>
               <CreatedAt date={season.createdAt} />
               <UpdatedAt date={season.updatedAt} />
-            </aside>
+              <HighlightRecord
+                regular="tournament progress"
+                highlighted={`${season.tournaments.length} / ${season.tournamentCount}`}
+              />
+              <div className="space-x-2 font-inter text-lg">
+                <span className="text-main-300">season status</span>
+                {season.isFinished ? (
+                  <span className="uppercase text-sec-blue-500">finished</span>
+                ) : (
+                  <span className="uppercase text-sec-green-500">active</span>
+                )}
+              </div>
+            </div>
+            <div className="space-x-2">
+              <IconEdit onEdit={() => navigate(`edit`)} />
+              <IconDelete onDelete={() => navigate(`delete`)} />
+            </div>
+          </aside>
+
+          <section>
+            <header className="space-y-2">
+              <SectionHeading>tournaments</SectionHeading>
+              <ButtonIcon
+                label="create new tournament"
+                icon={<GiTargetArrows />}
+                clickHandler={() =>
+                  navigate(`/dashboard/tournaments/create?seasonId=${seasonId}`)
+                }
+              />
+            </header>
             <TournamentList tournaments={season.tournaments} />
-          </main>
-        </>
+          </section>
+        </main>
       )}
     </div>
   );
