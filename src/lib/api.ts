@@ -9,7 +9,7 @@ import {
 import { SeasonType, SeasonTypeWithTournamentInfo } from "../types/seasonType";
 import { SessionType } from "../types/sessionTypes";
 import { StatusEnum } from "../types/statusType";
-import { ResponseTournamentType } from "../types/tournamentType";
+import { TournamentType } from "../types/tournamentType";
 import { ResponseUsersListType, UserType } from "../types/userTypes";
 
 // AUTH
@@ -165,38 +165,19 @@ export const deleteSeason = async (seasonId: string): Promise<SeasonType> =>
   API.delete(`/seasons/${seasonId}`);
 
 // TOURNAMENT
-export const getSingleTournament = async (
-  tournamentId: string
-): Promise<ResponseTournamentType> => API.get(`/tournaments/${tournamentId}`);
-
-type CreateTournamentParams = {
-  seasonId: string;
+export type CreateTournamentParams = {
+  seasonId?: string;
+  organizedById?: string;
+  rules: RulesEnum;
   title: string;
-  description: string;
-  location: string;
-  organizedBy: string;
   attendAt: string;
+  description: string;
+  address: string;
+  rounds: number;
 };
-export const postCreateTournament = async (data: CreateTournamentParams) =>
-  API.post("/tournaments", data);
-
-export const deleteTournament = async (tournamentId: string) =>
-  API.delete(`/tournaments/${tournamentId}`);
-
-export type UpdateTournamentParams = {
-  title?: string;
-  description?: string;
-  location?: string;
-  attendAt?: string;
-  isFinished?: boolean;
-};
-export const patchTournament = async (
-  tournamentId: string,
-  data: UpdateTournamentParams
-) => {
-  console.log(data);
-  return API.patch(`/tournaments/${tournamentId}`, data);
-};
+export const createTournament = async (
+  data: CreateTournamentParams
+): Promise<TournamentType> => API.post("/tournaments", data);
 
 // SCORECARDS
 type CreateS3DScorecardParams = {

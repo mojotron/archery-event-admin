@@ -52,6 +52,7 @@ const SeasonCreateForm = () => {
             name="rules"
             onChange={handleChange}
           />
+
           <FormInput
             type="text"
             label="title"

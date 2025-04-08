@@ -20,8 +20,3 @@ export type TournamentType = {
   organizedById: string | null;
   seasonId: string | null;
 };
-
-export type ResponseTournamentType = {
-  message: string;
-  tournament: TournamentType;
-};
