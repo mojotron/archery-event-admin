@@ -3,7 +3,7 @@ import ButtonIcon from "./ButtonIcon";
 import { useNavigate } from "react-router";
 
 type Params = {
-  path: string;
+  path?: string;
   replace?: boolean;
 };
 
@@ -14,7 +14,13 @@ const ButtonGoBack = ({ path, replace = false }: Params) => {
     <ButtonIcon
       label="go back"
       icon={<IconBack className="text-sec-blue-500" />}
-      clickHandler={() => navigate(path, { replace })}
+      clickHandler={() => {
+        if (path) {
+          navigate(path, { replace });
+        } else {
+          navigate(-1);
+        }
+      }}
     />
   );
 };

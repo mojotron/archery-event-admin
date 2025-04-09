@@ -179,6 +179,29 @@ export const createTournament = async (
   data: CreateTournamentParams
 ): Promise<TournamentType> => API.post("/tournaments", data);
 
+export const getTournament = async (
+  tournamentId: string
+): Promise<TournamentType> => API.get(`/tournaments/${tournamentId}`);
+
+export const deleteTournament = async (
+  tournamentId: string
+): Promise<TournamentType> => API.delete(`/tournaments/${tournamentId}`);
+
+export type UpdateTournamentParams = {
+  seasonId?: string;
+  organizedById?: string;
+  rules?: RulesEnum;
+  title?: string;
+  description?: string;
+  attendAt?: string;
+  address?: string;
+  isFinished?: boolean;
+  rounds?: number;
+};
+export const updateTournament = async (
+  tournamentId: string,
+  data: UpdateTournamentParams
+): Promise<TournamentType> => API.patch(`/tournaments/${tournamentId}`, data);
 // SCORECARDS
 type CreateS3DScorecardParams = {
   userId: string;

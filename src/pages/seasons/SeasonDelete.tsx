@@ -12,8 +12,6 @@ const SeasonDelete = () => {
     onSuccess: () => navigate("/dashboard/seasons"),
   });
 
-  console.log(error);
-
   return (
     <ConfirmDelete
       heading="delete season"

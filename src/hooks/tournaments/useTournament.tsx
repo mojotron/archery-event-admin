@@ -1,15 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import { getSingleTournament } from "../lib/api";
+import { getTournament } from "../../lib/api";
 
 export const QUERY_KEY_TOURNAMENT = "tournament";
 
 const useTournament = (tournamentId: string) => {
-  const { data, ...rest } = useQuery({
+  const { data: tournament, ...rest } = useQuery({
     queryKey: [QUERY_KEY_TOURNAMENT, tournamentId],
-    queryFn: () => getSingleTournament(tournamentId),
+    queryFn: () => getTournament(tournamentId),
   });
-
-  return { tournament: data?.tournament, ...rest };
+  return { tournament, ...rest };
 };
 
 export default useTournament;

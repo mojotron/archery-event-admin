@@ -19,4 +19,8 @@ export type TournamentType = {
   rounds: number;
   organizedById: string | null;
   seasonId: string | null;
+  organizedBy: {
+    id: string;
+    name: string;
+  };
 };
