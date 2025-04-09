@@ -8,7 +8,6 @@ import TournamentDetails from "./pages/tournaments/TournamentDetails";
 import TournamentCreateForm from "./pages/tournaments/TournamentCreateForm";
 import TournamentDelete from "./pages/tournaments/TournamentDelete";
 import TournamentEdit from "./pages/tournaments/TournamentEdit";
-import ScoreCardFormScandinavian3D from "./pages/ScoreCardFormScandinavian3D";
 // pages auth
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
@@ -75,11 +74,6 @@ const App = () => {
             <Route path=":tournamentId" element={<TournamentDetails />} />
             <Route path=":tournamentId/delete" element={<TournamentDelete />} />
             <Route path=":tournamentId/edit" element={<TournamentEdit />} />
-
-            {/* <Route
-              path=":tournamentId/add-score-card/:tournamentType"
-              element={<ScoreCardFormScandinavian3D />}
-            /> */}
           </Route>
         </Route>
         {/* AUTH */}
