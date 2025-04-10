@@ -62,7 +62,7 @@ const SeasonEdit = () => {
       {season && (
         <>
           <div className="space-y-4">
-            <ButtonGoBack path={`/dashboard/seasons/${seasonId}`} />
+            <ButtonGoBack />
             <PageHeading>Edit Season</PageHeading>
 
             <ChangeDataField

@@ -10,7 +10,7 @@ import FormInput from "../../components/ui/FormInput";
 import Button from "../../components/ui/Button";
 import Form from "../../components/ui/Form";
 import useArcherMutate from "../../hooks/useArcherMutate";
-import SelectClub from "./components/SelectClub";
+import SelectClub from "../../components/ui/SelectClub";
 import FormRadio from "../../components/ui/FormRadio";
 
 type ArcherFields =

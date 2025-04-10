@@ -1,5 +1,5 @@
-import useClubs from "../../../hooks/useClubs";
-import FormSelect from "../../../components/ui/FormSelect";
+import useClubs from "../../hooks/useClubs";
+import FormSelect from "./FormSelect";
 import { ChangeEvent } from "react";
 
 type Props = {
@@ -19,7 +19,7 @@ const SelectClub = ({ currentClub, name, onChange }: Props) => {
       label={name}
       name={name}
       options={[
-        { value: "---pick club", label: "---pick club" },
+        { value: "--- pick club", label: "--- pick club" },
         ...clubs.map((club) => ({ value: club.id, label: club.name })),
       ]}
       handleChange={onChange}

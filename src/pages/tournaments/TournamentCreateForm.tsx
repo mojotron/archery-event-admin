@@ -7,7 +7,7 @@ import Form from "../../components/ui/Form";
 import Button from "../../components/ui/Button";
 import FormInput from "../../components/ui/FormInput";
 import SelectRules from "../../components/ui/SelectRules";
-import SelectClub from "../archers/components/SelectClub";
+import SelectClub from "../../components/ui/SelectClub";
 import useCreateTournament from "../../hooks/tournaments/useCreateTournament";
 
 type FormState = {

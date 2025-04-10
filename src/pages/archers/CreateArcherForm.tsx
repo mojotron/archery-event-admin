@@ -12,7 +12,7 @@ import LoadingError from "../../components/general/LoadingError";
 import FormInput from "../../components/ui/FormInput";
 
 import ButtonGoBack from "../../components/ui/ButtonGoBack";
-import SelectClub from "./components/SelectClub";
+import SelectClub from "../../components/ui/SelectClub";
 
 const CreateArcherForm = () => {
   const navigate = useNavigate();
