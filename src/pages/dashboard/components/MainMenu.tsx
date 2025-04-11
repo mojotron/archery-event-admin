@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { logout } from "../../lib/api";
+import { logout } from "../../../lib/api";
 // icons
 import {
   GiBarracksTent as IconClub,

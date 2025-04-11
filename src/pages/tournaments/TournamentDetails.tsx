@@ -78,7 +78,11 @@ const TournamentDetails = () => {
               <ButtonIcon
                 label="add scorecard"
                 icon={<GiCardBurn />}
-                clickHandler={() => navigate(``)}
+                clickHandler={() =>
+                  navigate(
+                    `/scorecards/create?tournamentId=${tournament.id}&rules=${tournament.rules}`
+                  )
+                }
               />
             </header>
 

@@ -1,6 +1,6 @@
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
-import MainMenu from "../components/dashboard/MainMenu";
+import MainMenu from "./components/MainMenu";
 
 const Dashboard = () => {
   const { user } = useAuth();

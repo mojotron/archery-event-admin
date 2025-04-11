@@ -1,9 +1,8 @@
 import { Routes, Route, useNavigate, Navigate } from "react-router";
 import { setNavigate } from "./lib/navigation";
-import ProtectedRoutes from "./layouts/ProtectedRoutes";
-import Dashboard from "./pages/Dashboard";
+import ProtectedRoutes from "./components/layouts/ProtectedRoutes";
+import Dashboard from "./pages/dashboard/Dashboard";
 import Seasons from "./pages/seasons/Seasons";
-import TournamentRoutes from "./components/layouts/TournamentRoutes";
 import TournamentDetails from "./pages/tournaments/TournamentDetails";
 import TournamentCreateForm from "./pages/tournaments/TournamentCreateForm";
 import TournamentDelete from "./pages/tournaments/TournamentDelete";
@@ -16,23 +15,22 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import UserSettings from "./pages/settings/UserSettings";
 // pages Club
-import ClubsLayout from "./layouts/ClubsLayout";
 import Clubs from "./pages/clubs/Clubs";
 import ClubDelete from "./pages/clubs/ClubDelete";
 import ClubEdit from "./pages/clubs/ClubEdit";
 // pages archery
-import ArchersLayout from "./layouts/ArchersLayout";
 import Archers from "./pages/archers/Archers";
 import CreateArcherForm from "./pages/archers/CreateArcherForm";
 import ArcherDetails from "./pages/archers/ArcherDetails";
 import ArcherDelete from "./pages/archers/ArcherDelete";
 import ArcherEdit from "./pages/archers/ArcherEdit";
-import SeasonLayout from "./layouts/SeasonLayout";
 import SeasonCreateForm from "./pages/seasons/SeasonCreateForm";
 import SeasonDetails from "./pages/seasons/SeasonDetails";
 import SeasonDelete from "./pages/seasons/SeasonDelete";
 import SeasonEdit from "./pages/seasons/SeasonEdit";
 import FinishedSeasons from "./pages/seasons/FinishedSeasons";
+import SectionLayout from "./components/layouts/SectionLayout";
+import ScorecardCreateForm from "./pages/scorecards/ScorecardCreateForm";
 
 const App = () => {
   const navigate = useNavigate();
@@ -45,13 +43,13 @@ const App = () => {
           <Route index element={<Dashboard />} />
           <Route path="settings" element={<UserSettings />} />
 
-          <Route path="clubs" element={<ClubsLayout />}>
+          <Route path="clubs" element={<SectionLayout section="clubs" />}>
             <Route index element={<Clubs />} />
             <Route path=":clubId/delete" element={<ClubDelete />} />
             <Route path=":clubId/edit" element={<ClubEdit />} />
           </Route>
 
-          <Route path="archers" element={<ArchersLayout />}>
+          <Route path="archers" element={<SectionLayout section="archers" />}>
             <Route index element={<Archers />} />
             <Route path="create" element={<CreateArcherForm />} />
             <Route path=":archerId" element={<ArcherDetails />} />
@@ -59,7 +57,7 @@ const App = () => {
             <Route path=":archerId/delete" element={<ArcherDelete />} />
           </Route>
 
-          <Route path="seasons" element={<SeasonLayout />}>
+          <Route path="seasons" element={<SectionLayout section="season" />}>
             <Route index element={<Seasons />} />
             <Route path="create" element={<SeasonCreateForm />} />
             <Route path=":seasonId" element={<SeasonDetails />} />
@@ -68,7 +66,10 @@ const App = () => {
             <Route path="finished" element={<FinishedSeasons />} />
           </Route>
 
-          <Route path="tournaments" element={<TournamentRoutes />}>
+          <Route
+            path="tournaments"
+            element={<SectionLayout section="tournaments" />}
+          >
             <Route index element={"list of tournaments"} />
             <Route path="create" element={<TournamentCreateForm />} />
             <Route path=":tournamentId" element={<TournamentDetails />} />
@@ -76,6 +77,14 @@ const App = () => {
             <Route path=":tournamentId/edit" element={<TournamentEdit />} />
           </Route>
         </Route>
+
+        <Route
+          path="scorecards"
+          element={<SectionLayout section="scorecards" />}
+        >
+          <Route path="create" element={<ScorecardCreateForm />} />
+        </Route>
+
         {/* AUTH */}
         <Route path="/register" element={<Register />} />
         <Route path="/email/verify/:code" element={<VerifyEmail />} />

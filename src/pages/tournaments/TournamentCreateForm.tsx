@@ -45,11 +45,7 @@ const TournamentCreateForm = () => {
 
   return (
     <div className="px-4">
-      <ButtonGoBack
-        path={
-          seasonId ? `/dashboard/seasons/${seasonId}` : `/dashboard/tournaments`
-        }
-      />
+      <ButtonGoBack />
       <div className="flex flex-col items-center pt-2">
         <PageHeading>create new tournament</PageHeading>
         <Form
