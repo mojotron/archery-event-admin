@@ -203,14 +203,11 @@ export const updateTournament = async (
   data: UpdateTournamentParams
 ): Promise<TournamentType> => API.patch(`/tournaments/${tournamentId}`, data);
 // SCORECARDS
-type CreateS3DScorecardParams = {
-  userId: string;
-  tournamentId: string;
-  targets: Scandinavian3DTargetType[];
+export type CreateScorecardParams = {
+  temp: string;
 };
-export const postScandinavian3DScorecard = async (
-  data: CreateS3DScorecardParams
-) => API.post(`/scorecards/add-score-card/scandinavian3D`, data);
+export const createScorecard = async (data: CreateScorecardParams) =>
+  API.post(`/scorecards/`, data);
 
 export const getScandinavian3DScorecardList = async (
   tournamentId: string
