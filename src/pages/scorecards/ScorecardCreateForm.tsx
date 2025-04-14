@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useSearchParams } from "react-router";
 import ButtonGoBack from "../../components/ui/ButtonGoBack";
 import PageHeading from "../../components/ui/PageHeading";
 import Form from "../../components/ui/Form";
 import Button from "../../components/ui/Button";
+import FormInput from "../../components/ui/FormInput";
+import { RulesEnum } from "../../types/rulesType";
 
 type FormState = {
   archerId: string;
+  rounds: string;
   scores3D?: string[];
   scoresWA?: string[];
 };
@@ -14,10 +17,20 @@ type FormState = {
 const ScorecardCreateForm = () => {
   const [searchParams] = useSearchParams();
 
-  const rules = searchParams.get("rules");
+  const rules = searchParams.get("rules") as RulesEnum;
   const tournamentId = searchParams.get("tournamentId");
 
-  const [formData] = useState<FormState>({ archerId: "" });
+  const [formData, setFormData] = useState<FormState>({
+    archerId: "",
+    rounds: "",
+  });
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((oldState) => ({ ...oldState, [name]: value }));
+  };
 
   return (
     <div className="px-4">
@@ -25,6 +38,16 @@ const ScorecardCreateForm = () => {
       <div className="flex flex-col items-center pt-2">
         <PageHeading>create new {rules} scorecard</PageHeading>
         <Form onSubmit={() => {}}>
+          <FormInput
+            type="number"
+            label="number of rounds"
+            name="rounds"
+            value={formData.rounds}
+            onChange={handleChange}
+          />
+
+          {/* {rules === "scandinavian3D" && } */}
+
           <Button
             type="submit"
             label="create scorecard"
