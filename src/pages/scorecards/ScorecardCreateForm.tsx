@@ -6,13 +6,19 @@ import Form from "../../components/ui/Form";
 import Button from "../../components/ui/Button";
 import FormInput from "../../components/ui/FormInput";
 import { RulesEnum } from "../../types/rulesType";
+import ScoreSelect3D from "./components/ScoreSelect3D";
+import { SCORE_3D_ROUNDS } from "../../constants/score";
+import { Score3DType } from "../../types/scorecardType";
+import SelectArcher from "../../components/ui/SelectArcher";
 
 type FormState = {
   archerId: string;
-  rounds: string;
+  rounds: number;
   scores3D?: string[];
   scoresWA?: string[];
 };
+
+type Scores3DState = Score3DType[] | null;
 
 const ScorecardCreateForm = () => {
   const [searchParams] = useSearchParams();
@@ -22,15 +28,16 @@ const ScorecardCreateForm = () => {
 
   const [formData, setFormData] = useState<FormState>({
     archerId: "",
-    rounds: "",
+    rounds: rules === RulesEnum.scandinavian3D ? SCORE_3D_ROUNDS : 20,
   });
+  // TEMP
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((oldState) => ({ ...oldState, [name]: value }));
-  };
+  // const handleChange = (
+  //   e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  // ) => {
+  //   const { name, value } = e.target;
+  //   setFormData((oldState) => ({ ...oldState, [name]: value }));
+  // };
 
   return (
     <div className="px-4">
@@ -42,11 +49,20 @@ const ScorecardCreateForm = () => {
             type="number"
             label="number of rounds"
             name="rounds"
-            value={formData.rounds}
-            onChange={handleChange}
+            value={formData.rounds.toString()}
+            onChange={(e) =>
+              setFormData((oldValue) => ({
+                ...oldValue,
+                rounds: parseInt(e.target.value),
+              }))
+            }
           />
 
-          {/* {rules === "scandinavian3D" && } */}
+          <SelectArcher />
+
+          {rules === "scandinavian3D" && (
+            <ScoreSelect3D rounds={formData.rounds} />
+          )}
 
           <Button
             type="submit"
