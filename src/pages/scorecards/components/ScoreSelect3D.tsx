@@ -13,8 +13,6 @@ const ScoreSelect3D = ({ rounds }: Props) => {
     Array.from({ length: rounds }, () => ({ hit: AnimalHit.center, arrow: 1 }))
   );
 
-  console.log(scores);
-
   return (
     <ul>
       {Array.from({ length: rounds }, (_, i) => (

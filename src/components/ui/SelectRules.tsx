@@ -1,6 +1,6 @@
+import { ChangeEvent } from "react";
 import { RulesEnum } from "../../types/rulesType";
 import FormSelect from "./FormSelect";
-import { ChangeEvent } from "react";
 
 type Props = {
   currentRule: RulesEnum;

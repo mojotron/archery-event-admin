@@ -26,18 +26,8 @@ const ScorecardCreateForm = () => {
   const rules = searchParams.get("rules") as RulesEnum;
   const tournamentId = searchParams.get("tournamentId");
 
-  const [formData, setFormData] = useState<FormState>({
-    archerId: "",
-    rounds: rules === RulesEnum.scandinavian3D ? SCORE_3D_ROUNDS : 20,
-  });
-  // TEMP
-
-  // const handleChange = (
-  //   e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  // ) => {
-  //   const { name, value } = e.target;
-  //   setFormData((oldState) => ({ ...oldState, [name]: value }));
-  // };
+  const [archerId, setArcherId] = useState("");
+  const [rounds, setRounds] = useState(0);
 
   return (
     <div className="px-4">
@@ -49,20 +39,16 @@ const ScorecardCreateForm = () => {
             type="number"
             label="number of rounds"
             name="rounds"
-            value={formData.rounds.toString()}
-            onChange={(e) =>
-              setFormData((oldValue) => ({
-                ...oldValue,
-                rounds: parseInt(e.target.value),
-              }))
-            }
+            value={rounds.toString()}
+            onChange={(e) => setRounds(parseInt(e.target.value))}
           />
 
-          <SelectArcher />
+          <SelectArcher
+            selectedArcherId={archerId}
+            onChange={(e) => setArcherId(e.target.value)}
+          />
 
-          {rules === "scandinavian3D" && (
-            <ScoreSelect3D rounds={formData.rounds} />
-          )}
+          {rules === "scandinavian3D" && <ScoreSelect3D rounds={rounds} />}
 
           <Button
             type="submit"
