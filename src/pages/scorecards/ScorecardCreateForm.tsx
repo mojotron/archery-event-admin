@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router";
 import ButtonGoBack from "../../components/ui/ButtonGoBack";
 import PageHeading from "../../components/ui/PageHeading";
@@ -7,18 +7,9 @@ import Button from "../../components/ui/Button";
 import FormInput from "../../components/ui/FormInput";
 import { RulesEnum } from "../../types/rulesType";
 import ScoreSelect3D from "./components/ScoreSelect3D";
-import { SCORE_3D_ROUNDS } from "../../constants/score";
-import { Score3DType } from "../../types/scorecardType";
 import SelectArcher from "../../components/ui/SelectArcher";
-
-type FormState = {
-  archerId: string;
-  rounds: number;
-  scores3D?: string[];
-  scoresWA?: string[];
-};
-
-type Scores3DState = Score3DType[] | null;
+import useScore3DSelect from "../../hooks/scorecards/useScoreSelect";
+import { SCORE_3D_ROUNDS } from "../../constants/score";
 
 const ScorecardCreateForm = () => {
   const [searchParams] = useSearchParams();
@@ -27,7 +18,11 @@ const ScorecardCreateForm = () => {
   const tournamentId = searchParams.get("tournamentId");
 
   const [archerId, setArcherId] = useState("");
-  const [rounds, setRounds] = useState(0);
+  const [rounds, setRounds] = useState(
+    rules === RulesEnum.scandinavian3D ? SCORE_3D_ROUNDS : 20
+  );
+
+  const { scores3D, updateHit, updateArrow } = useScore3DSelect(rounds);
 
   return (
     <div className="px-4">
@@ -48,13 +43,19 @@ const ScorecardCreateForm = () => {
             onChange={(e) => setArcherId(e.target.value)}
           />
 
-          {rules === "scandinavian3D" && <ScoreSelect3D rounds={rounds} />}
+          {rules === "scandinavian3D" && (
+            <ScoreSelect3D
+              scores={scores3D}
+              updateHit={updateHit}
+              updateArrow={updateArrow}
+            />
+          )}
 
           <Button
             type="submit"
             label="create scorecard"
             isLoading={false}
-            isDisabled={!formData.archerId || !formData.archerId}
+            isDisabled={!archerId || !archerId}
           />
         </Form>
       </div>

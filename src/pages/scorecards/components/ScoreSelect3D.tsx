@@ -1,35 +1,22 @@
-import { useState } from "react";
 import { AnimalHit, Score3DType } from "../../../types/scorecardType";
 import FormRadio from "../../../components/ui/FormRadio";
 
 type Props = {
-  rounds: number;
+  scores: Score3DType[];
+  updateHit: (index: number, hit: AnimalHit) => void;
+  updateArrow: (index: number, hit: number) => void;
 };
 
-type ScoreState = Score3DType[];
-
-const ScoreSelect3D = ({ rounds }: Props) => {
-  const [scores, setScores] = useState<ScoreState>(() =>
-    Array.from({ length: rounds }, () => ({ hit: AnimalHit.center, arrow: 1 }))
-  );
-
+const ScoreSelect3D = ({ scores, updateHit, updateArrow }: Props) => {
   return (
     <ul>
-      {Array.from({ length: rounds }, (_, i) => (
+      {scores.map((score, i) => (
         <li key={i} className="border-b py-2 border-b-main-500">
           <h3 className="text-lg text-main-300 font-bold">Target {i + 1}</h3>
           <div className="flex gap-8">
             <FormRadio
               name={`score-${i}`}
-              handleChange={(e) =>
-                setScores((oldValue) =>
-                  oldValue.map((score, index) =>
-                    index === i
-                      ? { ...score, hit: e.target.value as AnimalHit }
-                      : score
-                  )
-                )
-              }
+              handleChange={(e) => updateHit(i, e.target.value as AnimalHit)}
               selected={scores[i].hit}
               options={[
                 {
@@ -53,15 +40,7 @@ const ScoreSelect3D = ({ rounds }: Props) => {
 
             <FormRadio
               name={`arrow-${i}`}
-              handleChange={(e) =>
-                setScores((oldValue) =>
-                  oldValue.map((score, index) =>
-                    index === i
-                      ? { ...score, arrow: parseInt(e.target.value) }
-                      : score
-                  )
-                )
-              }
+              handleChange={(e) => updateArrow(i, parseInt(e.target.value))}
               selected={scores[i].arrow.toString()}
               options={[
                 { label: "first arrow", value: "1" },
