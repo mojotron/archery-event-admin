@@ -17,7 +17,7 @@ const ScoreSelect3D = ({ scores, updateHit, updateArrow }: Props) => {
             <FormRadio
               name={`score-${i}`}
               handleChange={(e) => updateHit(i, e.target.value as AnimalHit)}
-              selected={scores[i].hit}
+              selected={score.hit}
               options={[
                 {
                   label: AnimalHit.center,
@@ -41,7 +41,7 @@ const ScoreSelect3D = ({ scores, updateHit, updateArrow }: Props) => {
             <FormRadio
               name={`arrow-${i}`}
               handleChange={(e) => updateArrow(i, parseInt(e.target.value))}
-              selected={scores[i].arrow.toString()}
+              selected={score.arrow.toString()}
               options={[
                 { label: "first arrow", value: "1" },
                 { label: "second arrow", value: "2" },

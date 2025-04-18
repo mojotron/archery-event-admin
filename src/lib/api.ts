@@ -2,10 +2,7 @@ import API from "../config/apiClient";
 import { ArcherType } from "../types/archerTypes";
 import { ClubType } from "../types/clubTypes";
 import { RulesEnum } from "../types/rulesType";
-import {
-  ResponseScandinavian3DScorecards,
-  Scandinavian3DTargetType,
-} from "../types/scorecardType";
+import { Score3DType } from "../types/scorecardType";
 import { SeasonType, SeasonTypeWithTournamentInfo } from "../types/seasonType";
 import { SessionType } from "../types/sessionTypes";
 import { StatusEnum } from "../types/statusType";
@@ -204,12 +201,11 @@ export const updateTournament = async (
 ): Promise<TournamentType> => API.patch(`/tournaments/${tournamentId}`, data);
 // SCORECARDS
 export type CreateScorecardParams = {
-  temp: string;
+  archerId: string;
+  tournamentId: string;
+  rules: RulesEnum;
+  score3DList?: Score3DType[];
+  // scoreWAList?: ScoreWA[];
 };
 export const createScorecard = async (data: CreateScorecardParams) =>
   API.post(`/scorecards/`, data);
-
-export const getScandinavian3DScorecardList = async (
-  tournamentId: string
-): Promise<ResponseScandinavian3DScorecards> =>
-  API.get(`/scorecards/scandinavian3D/${tournamentId}`);

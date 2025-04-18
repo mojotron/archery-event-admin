@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import ButtonGoBack from "../../components/ui/ButtonGoBack";
 import PageHeading from "../../components/ui/PageHeading";
@@ -9,27 +9,45 @@ import { RulesEnum } from "../../types/rulesType";
 import ScoreSelect3D from "./components/ScoreSelect3D";
 import SelectArcher from "../../components/ui/SelectArcher";
 import useScore3DSelect from "../../hooks/scorecards/useScoreSelect";
-import { SCORE_3D_ROUNDS } from "../../constants/score";
+import useCreateScorecard from "../../hooks/scorecards/useCreateScorecard";
 
 const ScorecardCreateForm = () => {
   const [searchParams] = useSearchParams();
 
   const rules = searchParams.get("rules") as RulesEnum;
-  const tournamentId = searchParams.get("tournamentId");
+  const tournamentId = searchParams.get("tournamentId") as string;
 
   const [archerId, setArcherId] = useState("");
-  const [rounds, setRounds] = useState(
-    rules === RulesEnum.scandinavian3D ? SCORE_3D_ROUNDS : 20
-  );
+  const [rounds, setRounds] = useState(0);
 
   const { scores3D, updateHit, updateArrow } = useScore3DSelect(rounds);
+
+  const { createNewScorecard, isSuccess } = useCreateScorecard();
+
+  const submitHandler = () => {
+    if (rules === RulesEnum.scandinavian3D) {
+      createNewScorecard({
+        rules,
+        archerId,
+        tournamentId,
+        score3DList: scores3D,
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setArcherId("");
+      setRounds(0);
+    }
+  }, [isSuccess]);
 
   return (
     <div className="px-4">
       <ButtonGoBack />
       <div className="flex flex-col items-center pt-2">
         <PageHeading>create new {rules} scorecard</PageHeading>
-        <Form onSubmit={() => {}}>
+        <Form onSubmit={submitHandler}>
           <FormInput
             type="number"
             label="number of rounds"
