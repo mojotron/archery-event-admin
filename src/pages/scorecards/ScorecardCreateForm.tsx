@@ -8,7 +8,7 @@ import FormInput from "../../components/ui/FormInput";
 import { RulesEnum } from "../../types/rulesType";
 import ScoreSelect3D from "./components/ScoreSelect3D";
 import SelectArcher from "../../components/ui/SelectArcher";
-import useScore3DSelect from "../../hooks/scorecards/useScoreSelect";
+import useScore3DSelect from "../../hooks/scorecards/useScore3DSelect";
 import useCreateScorecard from "../../hooks/scorecards/useCreateScorecard";
 
 const ScorecardCreateForm = () => {

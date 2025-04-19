@@ -9,3 +9,10 @@ export type Score3DType = {
   arrow: number;
   hit: AnimalHit;
 };
+
+export type ScoreWAType = {
+  first: number;
+  second: number;
+  third: number;
+  isBullseye: boolean;
+};
