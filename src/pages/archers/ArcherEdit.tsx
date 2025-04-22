@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import useArcher from "../../hooks/useArcher";
+import useArcher from "../../hooks/archers/useArcher";
 import LoadingSpinner from "../../components/ui/LoadingSpinner";
 import LoadingError from "../../components/general/LoadingError";
 import ButtonGoBack from "../../components/ui/ButtonGoBack";
@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import FormInput from "../../components/ui/FormInput";
 import Button from "../../components/ui/Button";
 import Form from "../../components/ui/Form";
-import useArcherMutate from "../../hooks/useArcherMutate";
+import useArcherMutate from "../../hooks/archers/useArcherMutate";
 import SelectClub from "../../components/ui/SelectClub";
 import FormRadio from "../../components/ui/FormRadio";
 

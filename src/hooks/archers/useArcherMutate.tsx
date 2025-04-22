@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { UpdateArcherParams, editArcher } from "../lib/api";
-import { ArcherType } from "../types/archerTypes";
+import { UpdateArcherParams, editArcher } from "../../lib/api";
+import { ArcherType } from "../../types/archerTypes";
 import { QUERY_KEY_ARCHER } from "./useArcher";
 
 const useArcherMutate = (archerId: string) => {

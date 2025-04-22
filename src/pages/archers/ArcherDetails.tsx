@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router";
-import useArcher from "../../hooks/useArcher";
+import useArcher from "../../hooks/archers/useArcher";
 import LoadingSpinner from "../../components/ui/LoadingSpinner";
 import LoadingError from "../../components/general/LoadingError";
 import PageHeading from "../../components/ui/PageHeading";

@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import useArcherList from "../../hooks/useArcherList";
+import useArcherList from "../../hooks/archers/useArcherList";
 import FormSelect from "./FormSelect";
 
 type Props = {

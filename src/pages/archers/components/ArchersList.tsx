@@ -1,4 +1,4 @@
-import useArcherList from "../../../hooks/useArcherList";
+import useArcherList from "../../../hooks/archers/useArcherList";
 import LoadingSpinner from "../../../components/ui/LoadingSpinner";
 import LoadingError from "../../../components/general/LoadingError";
 import SectionHeading from "../../../components/ui/SectionHeading";

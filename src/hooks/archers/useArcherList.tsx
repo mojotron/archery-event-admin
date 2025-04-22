@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getArchers } from "../lib/api";
+import { getArchers } from "../../lib/api";
 
 export const QUERY_KEY_ARCHER_LIST = "archers-list";
 
