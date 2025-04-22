@@ -8,7 +8,7 @@ import IconDelete from "../../components/ui/IconDelete";
 import IconEdit from "../../components/ui/IconEdit";
 import CreatedAt from "../../components/general/CreatedAt";
 import UpdatedAt from "../../components/general/UpdatedAt";
-import TournamentList from "./components/TournamentList";
+import TournamentList from "../../components/general/TournamentList";
 import ButtonGoBack from "../../components/ui/ButtonGoBack";
 import Paragraph from "../../components/ui/Paragraph";
 import HighlightRecord from "../../components/ui/HighlightRecord";

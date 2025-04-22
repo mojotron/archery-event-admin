@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useClub from "../../hooks/useClub";
+import useClub from "../../hooks/clubs/useClub";
 import { useParams } from "react-router";
 import LoadingSpinner from "../../components/ui/LoadingSpinner";
 import LoadingError from "../../components/general/LoadingError";
@@ -7,7 +7,7 @@ import SectionHeading from "../../components/ui/SectionHeading";
 import Form from "../../components/ui/Form";
 import FormInput from "../../components/ui/FormInput";
 import Button from "../../components/ui/Button";
-import useClubMutate from "../../hooks/useClubMutate";
+import useClubMutate from "../../hooks/clubs/useClubMutate";
 import ButtonGoBack from "../../components/ui/ButtonGoBack";
 import ChangeDataField from "../../components/general/ChangeDataField";
 

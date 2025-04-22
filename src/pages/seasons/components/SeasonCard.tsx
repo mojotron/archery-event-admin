@@ -23,7 +23,7 @@ const SeasonCard = ({ season }: Props) => {
           <UpdatedAt date={season.updatedAt} />
           <HighlightRecord
             regular="progress"
-            highlighted={`${season.tournaments?.length || 0} / ${
+            highlighted={`${season.tournaments.length || 0} / ${
               season.tournamentCount
             }`}
           />

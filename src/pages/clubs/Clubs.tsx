@@ -1,12 +1,21 @@
 // components
+import { useNavigate } from "react-router";
+import ButtonIcon from "../../components/ui/ButtonIcon";
 import ClubsList from "./components/ClubsList";
-import CreateClubForm from "./components/CreateClubForm";
+import { GiBarracksTent } from "react-icons/gi";
 
 const Clubs = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="px-4 w-full flex gap-8">
+    <div className="px-4 w-full">
+      <ButtonIcon
+        label="create new club"
+        icon={<GiBarracksTent className="text-2xl text-sec-green-500" />}
+        clickHandler={() => navigate("create")}
+      />
+
       <ClubsList />
-      <CreateClubForm />
     </div>
   );
 };

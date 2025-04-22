@@ -16,9 +16,10 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import UserSettings from "./pages/settings/UserSettings";
 // pages Club
 import Clubs from "./pages/clubs/Clubs";
+import ClubDetails from "./pages/clubs/ClubDetails";
 import ClubDelete from "./pages/clubs/ClubDelete";
 import ClubEdit from "./pages/clubs/ClubEdit";
-// pages archery
+// pages
 import Archers from "./pages/archers/Archers";
 import CreateArcherForm from "./pages/archers/CreateArcherForm";
 import ArcherDetails from "./pages/archers/ArcherDetails";
@@ -31,6 +32,7 @@ import SeasonEdit from "./pages/seasons/SeasonEdit";
 import FinishedSeasons from "./pages/seasons/FinishedSeasons";
 import SectionLayout from "./components/layouts/SectionLayout";
 import ScorecardCreateForm from "./pages/scorecards/ScorecardCreateForm";
+import CreateClubForm from "./pages/clubs/CreateClubForm";
 
 const App = () => {
   const navigate = useNavigate();
@@ -45,6 +47,8 @@ const App = () => {
 
           <Route path="clubs" element={<SectionLayout section="clubs" />}>
             <Route index element={<Clubs />} />
+            <Route path="create" element={<CreateClubForm />} />
+            <Route path=":clubId" element={<ClubDetails />} />
             <Route path=":clubId/delete" element={<ClubDelete />} />
             <Route path=":clubId/edit" element={<ClubEdit />} />
           </Route>

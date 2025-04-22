@@ -7,6 +7,7 @@ import Form from "../../components/ui/Form";
 import Button from "../../components/ui/Button";
 import FormInput from "../../components/ui/FormInput";
 import SelectRules from "../../components/ui/SelectRules";
+import LoadingError from "../../components/general/LoadingError";
 
 type FormState = {
   title: string;
@@ -34,7 +35,7 @@ const SeasonCreateForm = () => {
 
   return (
     <div className="px-4">
-      <ButtonGoBack path="/dashboard/seasons" />
+      <ButtonGoBack />
       <div className="flex flex-col items-center pt-2">
         <PageHeading>create new season</PageHeading>
         <Form
@@ -45,7 +46,7 @@ const SeasonCreateForm = () => {
             })
           }
         >
-          {isError && <p>error</p>}
+          {isError && <LoadingError message="failed to create season" />}
 
           <SelectRules
             currentRule={formData.rules}

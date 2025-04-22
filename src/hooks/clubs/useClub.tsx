@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getClub } from "../lib/api";
+import { getClub } from "../../lib/api";
 
 export const QUERY_KEY_CLUB = "club";
 

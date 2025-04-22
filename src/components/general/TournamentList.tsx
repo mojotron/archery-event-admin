@@ -1,6 +1,6 @@
-import { TournamentInfoType } from "../../../types/tournamentType";
-import AttendAt from "../../../components/general/AttendAt";
-import ButtonIcon from "../../../components/ui/ButtonIcon";
+import { TournamentInfoType } from "../../types/tournamentType";
+import AttendAt from "./AttendAt";
+import ButtonIcon from "../ui/ButtonIcon";
 import { useNavigate } from "react-router";
 import { GiArrowFlights } from "react-icons/gi";
 

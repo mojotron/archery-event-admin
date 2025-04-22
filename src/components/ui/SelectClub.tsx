@@ -1,4 +1,4 @@
-import useClubs from "../../hooks/useClubs";
+import useClubs from "../../hooks/clubs/useClubsList";
 import FormSelect from "./FormSelect";
 import { ChangeEvent } from "react";
 

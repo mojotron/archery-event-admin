@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { UpdateClubParams, editClub } from "../lib/api";
-import { ClubType } from "../types/clubTypes";
+import { UpdateClubParams, editClub } from "../../lib/api";
+import { ClubType } from "../../types/clubTypes";
 import { QUERY_KEY_CLUB } from "./useClub";
 
 const useClubMutate = (clubId: string) => {

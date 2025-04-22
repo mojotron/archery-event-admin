@@ -20,7 +20,7 @@ const ClubDelete = () => {
         heading="delete club"
         text="You are about to delete club from the database. Are you sure?"
         onConfirm={mutate}
-        onCancel={() => navigate(pathBack, { replace: true })}
+        onCancel={() => navigate(`${pathBack}/${clubId}`, { replace: true })}
         isPending={isPending}
         isError={isError}
       />

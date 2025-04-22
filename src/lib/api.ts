@@ -55,7 +55,7 @@ export const deleteSession = async (sessionId: string): Promise<SessionType> =>
   API.delete(`/sessions/${sessionId}`);
 
 // CLUBS
-type CreateClubParams = {
+export type CreateClubParams = {
   name: string;
   address: string;
 };

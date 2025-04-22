@@ -11,6 +11,7 @@ type Props = {
 
 const ArcherCard = ({ archer }: Props) => {
   const navigate = useNavigate();
+
   return (
     <li className="bg-main-500 px-6 py-4 flex gap-8 justify-between rounded-md">
       <div>
@@ -20,7 +21,7 @@ const ArcherCard = ({ archer }: Props) => {
       </div>
       <div>
         <ButtonIcon
-          label="manage archer"
+          label="archer details"
           icon={<GiArrowCluster className="text-2xl text-sec-blue-500" />}
           clickHandler={() => navigate(`${archer.id}`)}
         />
