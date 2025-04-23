@@ -1,3 +1,5 @@
+import { RulesEnum } from "./rulesType";
+
 export enum AnimalHit {
   center = "center",
   vital = "vital",
@@ -15,4 +17,17 @@ export type ScoreWAType = {
   second: number;
   third: number;
   isBullseye: boolean;
+};
+
+export type ScorecardInfoType = {
+  id: string;
+  rules: RulesEnum;
+  tournament: {
+    id: string;
+    title: string;
+    season?: {
+      id: string;
+      title: string;
+    };
+  };
 };

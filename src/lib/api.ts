@@ -80,11 +80,11 @@ export const editClub = async (
 ): Promise<ClubType> => API.patch(`/clubs/${clubId}`, data);
 
 // ARCHERS
-type CreateArcherParams = {
+export type CreateArcherParams = {
   clubId: string;
   firstName: string;
   lastName: string;
-  email: string;
+  email: string | undefined;
   username: string;
 };
 export const createArcher = async (

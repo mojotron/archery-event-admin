@@ -12,9 +12,17 @@ type Params = {
     | "number"
     | "textarea"
     | "datetime-local";
+  required?: boolean;
 };
 
-const FormInput = ({ type, label, name, value, onChange }: Params) => {
+const FormInput = ({
+  type,
+  label,
+  name,
+  value,
+  onChange,
+  required = true,
+}: Params) => {
   return (
     <div className="w-full">
       <label className="text-md font-inter text-main-100" htmlFor={name}>
@@ -27,7 +35,7 @@ const FormInput = ({ type, label, name, value, onChange }: Params) => {
           name={name}
           value={value}
           onChange={onChange}
-          required
+          required={required}
         >
           {value}
         </textarea>
@@ -39,7 +47,7 @@ const FormInput = ({ type, label, name, value, onChange }: Params) => {
           name={name}
           value={value}
           onChange={onChange}
-          required
+          required={required}
         />
       )}
     </div>

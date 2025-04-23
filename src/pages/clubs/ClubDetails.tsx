@@ -10,6 +10,7 @@ import IconEdit from "../../components/ui/IconEdit";
 import IconDelete from "../../components/ui/IconDelete";
 import TournamentList from "../../components/general/TournamentList";
 import SectionHeading from "../../components/ui/SectionHeading";
+import ButtonGoBack from "../../components/ui/ButtonGoBack";
 
 const ClubDetails = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const ClubDetails = () => {
 
   return (
     <div className="px-4">
+      <ButtonGoBack path="/dashboard/clubs" />
       <PageHeading>club details</PageHeading>
       {isLoading && <LoadingSpinner />}
       {isError && <LoadingError message="failed to fetch club data" />}

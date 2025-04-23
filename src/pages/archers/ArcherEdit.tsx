@@ -137,8 +137,7 @@ const ArcherEdit = () => {
 
                 {archerField === "clubId" && (
                   <SelectClub
-                    currentClub={archer.club?.name || ""}
-                    name={archerField}
+                    selectedClubId={archer.clubId || ""}
                     onChange={(e) => setArcherFieldValue(e.target.value)}
                   />
                 )}

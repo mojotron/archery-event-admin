@@ -1,27 +1,29 @@
 // hooks
-import { useMutation } from "@tanstack/react-query";
 import { ChangeEvent, useState } from "react";
-import { useNavigate } from "react-router";
-// api
-import { createArcher } from "../../lib/api";
 // components
 import SectionHeading from "../../components/ui/SectionHeading";
 import Form from "../../components/ui/Form";
 import Button from "../../components/ui/Button";
 import LoadingError from "../../components/general/LoadingError";
 import FormInput from "../../components/ui/FormInput";
-
 import ButtonGoBack from "../../components/ui/ButtonGoBack";
 import SelectClub from "../../components/ui/SelectClub";
+import useCreateArcher from "../../hooks/archers/useCreateArcher";
+
+type FormState = {
+  clubId: string;
+  firstName: string;
+  lastName: string;
+  email: string | undefined;
+  username: string;
+};
 
 const CreateArcherForm = () => {
-  const navigate = useNavigate();
-
-  const [formData, setFormDate] = useState({
+  const [formData, setFormDate] = useState<FormState>({
     clubId: "",
     firstName: "",
     lastName: "",
-    email: "",
+    email: undefined,
     username: "",
   });
 
@@ -32,24 +34,20 @@ const CreateArcherForm = () => {
     setFormDate((oldState) => ({ ...oldState, [name]: value }));
   };
 
-  const {
-    mutate: addArcher,
-    isPending,
-    isError,
-  } = useMutation({
-    mutationFn: () => createArcher({ ...formData }),
-    onSuccess: () => navigate("/dashboard/archers"),
-  });
+  const { createNewArcher, isPending, isError } = useCreateArcher();
 
   return (
     <div className="px-4">
       <ButtonGoBack path="/dashboard/archers" />
       <div className="flex flex-col items-center pt-2">
         <SectionHeading>create new archer</SectionHeading>
-        <Form onSubmit={addArcher}>
+        <Form onSubmit={() => createNewArcher(formData)}>
           {isError && <LoadingError message="failed to create archer" />}
 
-          <SelectClub currentClub={""} name="clubId" onChange={handleChange} />
+          <SelectClub
+            selectedClubId={formData.clubId}
+            onChange={handleChange}
+          />
 
           <FormInput
             type="text"
@@ -79,8 +77,9 @@ const CreateArcherForm = () => {
             type="email"
             name="email"
             label="email"
-            value={formData.email}
+            value={formData.email || ""}
             onChange={handleChange}
+            required={false}
           />
 
           <Button

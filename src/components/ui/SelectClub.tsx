@@ -3,23 +3,24 @@ import FormSelect from "./FormSelect";
 import { ChangeEvent } from "react";
 
 type Props = {
-  currentClub: string;
-  name: string;
+  selectedClubId: string;
   onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const SelectClub = ({ currentClub, name, onChange }: Props) => {
+const SelectClub = ({ selectedClubId, onChange }: Props) => {
   const { clubs } = useClubs();
 
   if (!clubs) return undefined;
 
+  const currentClub = clubs.find((club) => club.id === selectedClubId);
+
   return (
     <FormSelect
-      defaultValue={currentClub}
-      label={name}
-      name={name}
+      defaultValue={currentClub ? currentClub.name : "--- pick club"}
+      label="selected club"
+      name="clubId"
       options={[
-        { value: "--- pick club", label: "--- pick club" },
+        { value: "", label: "--- pick club" },
         ...clubs.map((club) => ({ value: club.id, label: club.name })),
       ]}
       handleChange={onChange}

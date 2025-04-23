@@ -1,8 +1,10 @@
 import { Routes, Route, useNavigate, Navigate } from "react-router";
 import { setNavigate } from "./lib/navigation";
+// components
 import ProtectedRoutes from "./components/layouts/ProtectedRoutes";
+import SectionLayout from "./components/layouts/SectionLayout";
+// pages
 import Dashboard from "./pages/dashboard/Dashboard";
-import Seasons from "./pages/seasons/Seasons";
 import TournamentDetails from "./pages/tournaments/TournamentDetails";
 import TournamentCreateForm from "./pages/tournaments/TournamentCreateForm";
 import TournamentDelete from "./pages/tournaments/TournamentDelete";
@@ -16,23 +18,25 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import UserSettings from "./pages/settings/UserSettings";
 // pages Club
 import Clubs from "./pages/clubs/Clubs";
+import CreateClubForm from "./pages/clubs/CreateClubForm";
 import ClubDetails from "./pages/clubs/ClubDetails";
 import ClubDelete from "./pages/clubs/ClubDelete";
 import ClubEdit from "./pages/clubs/ClubEdit";
-// pages
+// pages Archer
 import Archers from "./pages/archers/Archers";
 import CreateArcherForm from "./pages/archers/CreateArcherForm";
 import ArcherDetails from "./pages/archers/ArcherDetails";
 import ArcherDelete from "./pages/archers/ArcherDelete";
 import ArcherEdit from "./pages/archers/ArcherEdit";
+// pages season
+import Seasons from "./pages/seasons/Seasons";
 import SeasonCreateForm from "./pages/seasons/SeasonCreateForm";
 import SeasonDetails from "./pages/seasons/SeasonDetails";
 import SeasonDelete from "./pages/seasons/SeasonDelete";
 import SeasonEdit from "./pages/seasons/SeasonEdit";
 import FinishedSeasons from "./pages/seasons/FinishedSeasons";
-import SectionLayout from "./components/layouts/SectionLayout";
+// pages scorecards
 import ScorecardCreateForm from "./pages/scorecards/ScorecardCreateForm";
-import CreateClubForm from "./pages/clubs/CreateClubForm";
 
 const App = () => {
   const navigate = useNavigate();
