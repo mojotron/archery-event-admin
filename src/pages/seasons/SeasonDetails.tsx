@@ -37,6 +37,7 @@ const SeasonDetails = () => {
             </header>
             <Paragraph text={season.description} />
             <div>
+              <HighlightRecord regular="rules" highlighted={season.rules} />
               <CreatedAt date={season.createdAt} />
               <UpdatedAt date={season.updatedAt} />
               <HighlightRecord

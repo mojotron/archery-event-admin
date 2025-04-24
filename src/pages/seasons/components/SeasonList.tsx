@@ -1,6 +1,9 @@
+// hooks
 import useSeasonList from "../../../hooks/season/useSeasonList";
-import { RulesEnum } from "../../../types/rulesType";
-import { StatusEnum } from "../../../types/statusType";
+// types
+import type { RulesEnum } from "../../../types/rulesType";
+import type { StatusEnum } from "../../../types/statusType";
+// components
 import LoadingSpinner from "../../../components/ui/LoadingSpinner";
 import LoadingError from "../../../components/general/LoadingError";
 import SeasonCard from "./SeasonCard";
@@ -23,6 +26,12 @@ const SeasonList = ({ rules, status }: Props) => {
             <SeasonCard key={season.id} season={season} />
           ))}
         </ul>
+      )}
+
+      {seasons && seasons.length === 0 && (
+        <p className="pl-4 font-source-code-pro text-lg text-main-500">
+          no seasons found
+        </p>
       )}
     </div>
   );

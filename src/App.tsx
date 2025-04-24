@@ -65,7 +65,7 @@ const App = () => {
             <Route path=":archerId/delete" element={<ArcherDelete />} />
           </Route>
 
-          <Route path="seasons" element={<SectionLayout section="season" />}>
+          <Route path="seasons" element={<SectionLayout section="seasons" />}>
             <Route index element={<Seasons />} />
             <Route path="create" element={<SeasonCreateForm />} />
             <Route path=":seasonId" element={<SeasonDetails />} />

@@ -48,11 +48,7 @@ const SeasonCreateForm = () => {
         >
           {isError && <LoadingError message="failed to create season" />}
 
-          <SelectRules
-            currentRule={formData.rules}
-            name="rules"
-            onChange={handleChange}
-          />
+          <SelectRules selectedRule={formData.rules} onChange={handleChange} />
 
           <FormInput
             type="text"

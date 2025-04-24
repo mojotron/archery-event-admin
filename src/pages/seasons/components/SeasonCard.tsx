@@ -3,10 +3,10 @@ import CreatedAt from "../../../components/general/CreatedAt";
 import UpdatedAt from "../../../components/general/UpdatedAt";
 import ButtonIcon from "../../../components/ui/ButtonIcon";
 import HighlightRecord from "../../../components/ui/HighlightRecord";
-import { SeasonType } from "../../../types/seasonType";
+import { SeasonTypeWithTournamentInfo } from "../../../types/seasonType";
 
 type Props = {
-  season: SeasonType;
+  season: SeasonTypeWithTournamentInfo;
 };
 
 const SeasonCard = ({ season }: Props) => {
@@ -30,7 +30,7 @@ const SeasonCard = ({ season }: Props) => {
         </div>
       </div>
       <ButtonIcon
-        clickHandler={() => navigate(`${season.id}`)}
+        clickHandler={() => navigate(`/dashboard/seasons/${season.id}`)}
         icon={""}
         label="open season"
       />

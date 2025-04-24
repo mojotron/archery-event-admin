@@ -34,6 +34,14 @@ const FinishedSeasons = () => {
           status={StatusEnum.finished}
         />
       </section>
+
+      <section className="space-y-4 mb-8 border-t border-main-500 pt-4">
+        <SectionHeading>World Archery 3D</SectionHeading>
+        <SeasonList
+          rules={RulesEnum.worldArchery3D}
+          status={StatusEnum.finished}
+        />
+      </section>
     </div>
   );
 };

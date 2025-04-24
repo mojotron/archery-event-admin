@@ -153,8 +153,7 @@ const SeasonEdit = () => {
 
                 {seasonField === "rules" && (
                   <SelectRules
-                    currentRule={season.rules}
-                    name="rules"
+                    selectedRule={season.rules}
                     onChange={(e) => setSeasonFieldValue(e.target.value)}
                   />
                 )}
