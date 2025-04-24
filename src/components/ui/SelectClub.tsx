@@ -17,7 +17,7 @@ const SelectClub = ({ selectedClubId, onChange }: Props) => {
   return (
     <FormSelect
       defaultValue={currentClub ? currentClub.name : "--- pick club"}
-      label="selected club"
+      label="select club"
       name="clubId"
       options={[
         { value: "", label: "--- pick club" },

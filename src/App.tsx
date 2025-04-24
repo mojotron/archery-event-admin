@@ -9,6 +9,7 @@ import TournamentDetails from "./pages/tournaments/TournamentDetails";
 import TournamentCreateForm from "./pages/tournaments/TournamentCreateForm";
 import TournamentDelete from "./pages/tournaments/TournamentDelete";
 import TournamentEdit from "./pages/tournaments/TournamentEdit";
+import Tournaments from "./pages/tournaments/Tournaments";
 // pages auth
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
@@ -78,7 +79,7 @@ const App = () => {
             path="tournaments"
             element={<SectionLayout section="tournaments" />}
           >
-            <Route index element={"list of tournaments"} />
+            <Route index element={<Tournaments />} />
             <Route path="create" element={<TournamentCreateForm />} />
             <Route path=":tournamentId" element={<TournamentDetails />} />
             <Route path=":tournamentId/delete" element={<TournamentDelete />} />

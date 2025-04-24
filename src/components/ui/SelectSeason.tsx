@@ -3,23 +3,26 @@ import FormSelect from "./FormSelect";
 import useSeasonList from "../../hooks/season/useSeasonList";
 
 type Props = {
-  currentSeason: string;
-  name: string;
+  selectedSeasonId: string;
   onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const SelectSeason = ({ currentSeason, name, onChange }: Props) => {
+const SelectSeason = ({ selectedSeasonId, onChange }: Props) => {
   const { seasons } = useSeasonList({});
 
   if (!seasons) return undefined;
 
+  const currentSeason = seasons.find(
+    (season) => season.id === selectedSeasonId
+  );
+
   return (
     <FormSelect
-      defaultValue={currentSeason}
-      label={name}
-      name={name}
+      defaultValue={currentSeason ? currentSeason.title : "--- pick season"}
+      label="select season"
+      name="seasonId"
       options={[
-        { value: "--- pick season", label: "--- pick season" },
+        { value: "", label: "--- pick season" },
         ...seasons.map((season) => ({ value: season.id, label: season.title })),
       ]}
       handleChange={onChange}

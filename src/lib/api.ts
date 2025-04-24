@@ -180,6 +180,38 @@ export const getTournament = async (
   tournamentId: string
 ): Promise<TournamentType> => API.get(`/tournaments/${tournamentId}`);
 
+type TournamentListParams = {
+  rules?: RulesEnum;
+  status?: StatusEnum;
+  clubId?: string;
+  seasonId?: string;
+};
+export const getTournamentList = async ({
+  rules,
+  status,
+  clubId,
+  seasonId,
+}: TournamentListParams) => {
+  let filters: string | undefined = undefined;
+
+  if (rules) {
+    filters = !filters ? `?rules=${rules}` : filters + `$rules=${rules}`;
+  }
+  if (status) {
+    filters = !filters ? `?status=${status}` : filters + `$status=${status}`;
+  }
+  if (clubId) {
+    filters = !filters ? `?club=${clubId}` : filters + `$club=${clubId}`;
+  }
+  if (seasonId) {
+    filters = !filters
+      ? `?season=${seasonId}`
+      : filters + `$season=${seasonId}`;
+  }
+
+  return API.get(`/tournaments${filters ? filters : ""}`);
+};
+
 export const deleteTournament = async (
   tournamentId: string
 ): Promise<TournamentType> => API.delete(`/tournaments/${tournamentId}`);
@@ -199,6 +231,7 @@ export const updateTournament = async (
   tournamentId: string,
   data: UpdateTournamentParams
 ): Promise<TournamentType> => API.patch(`/tournaments/${tournamentId}`, data);
+
 // SCORECARDS
 export type CreateScorecardParams = {
   archerId: string;

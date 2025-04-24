@@ -3,7 +3,7 @@ import { RulesEnum } from "../../types/rulesType";
 import FormSelect from "./FormSelect";
 
 type Props = {
-  selectedRule: RulesEnum;
+  selectedRule: RulesEnum | undefined;
   onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 };
 
@@ -15,7 +15,7 @@ const rules = Object.values(RulesEnum).map((value) => ({
 const SelectRules = ({ selectedRule, onChange }: Props) => {
   return (
     <FormSelect
-      defaultValue={selectedRule}
+      defaultValue={selectedRule || "---pick rules"}
       label="select rules"
       name="rules"
       options={[{ value: "", label: "--- pick rules" }, ...rules]}
