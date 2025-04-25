@@ -8,6 +8,7 @@ import { SessionType } from "../types/sessionTypes";
 import { StatusEnum } from "../types/statusType";
 import { TournamentType } from "../types/tournamentType";
 import { ResponseUsersListType, UserType } from "../types/userTypes";
+import { tournamentFilterParams } from "../utils/paramsFormat";
 
 // AUTH
 type RegisterParams = {
@@ -180,7 +181,7 @@ export const getTournament = async (
   tournamentId: string
 ): Promise<TournamentType> => API.get(`/tournaments/${tournamentId}`);
 
-type TournamentListParams = {
+export type TournamentListParams = {
   rules?: RulesEnum;
   status?: StatusEnum;
   clubId?: string;
@@ -191,25 +192,15 @@ export const getTournamentList = async ({
   status,
   clubId,
   seasonId,
-}: TournamentListParams) => {
-  let filters: string | undefined = undefined;
+}: TournamentListParams): Promise<TournamentType[]> => {
+  const queryParams = tournamentFilterParams({
+    rules,
+    status,
+    clubId,
+    seasonId,
+  });
 
-  if (rules) {
-    filters = !filters ? `?rules=${rules}` : filters + `$rules=${rules}`;
-  }
-  if (status) {
-    filters = !filters ? `?status=${status}` : filters + `$status=${status}`;
-  }
-  if (clubId) {
-    filters = !filters ? `?club=${clubId}` : filters + `$club=${clubId}`;
-  }
-  if (seasonId) {
-    filters = !filters
-      ? `?season=${seasonId}`
-      : filters + `$season=${seasonId}`;
-  }
-
-  return API.get(`/tournaments${filters ? filters : ""}`);
+  return API.get(`/tournaments${queryParams ? queryParams : ""}`);
 };
 
 export const deleteTournament = async (

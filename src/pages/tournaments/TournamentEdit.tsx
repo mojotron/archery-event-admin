@@ -215,24 +215,21 @@ const TournamentEdit = () => {
 
                 {tournamentField === "rules" && (
                   <SelectRules
-                    currentRule={tournament.rules}
-                    name="rules"
+                    selectedRule={tournament.rules}
                     onChange={(e) => setTournamentFieldValue(e.target.value)}
                   />
                 )}
 
                 {tournamentField === "organizedById" && (
                   <SelectClub
-                    currentClub={tournament.organizedById || ""}
-                    name="organizedById"
+                    selectedClubId={tournament.organizedById || ""}
                     onChange={(e) => setTournamentFieldValue(e.target.value)}
                   />
                 )}
 
                 {tournamentField === "seasonId" && (
                   <SelectSeason
-                    currentSeason={tournament.seasonId || ""}
-                    name="seasonId"
+                    selectedSeasonId={tournament.seasonId || ""}
                     onChange={(e) => setTournamentFieldValue(e.target.value)}
                   />
                 )}

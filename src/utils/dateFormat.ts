@@ -13,9 +13,9 @@ export const dateDistanceFrom = (date: string, suffix = true) => {
 };
 
 export const dateDistanceTo = (date: string, suffix = true) => {
-  return formatDistance(new Date(), new Date(date), { addSuffix: suffix });
+  return formatDistance(new Date(date), new Date(), { addSuffix: suffix });
 };
 
 export const daysDistance = (date: string) => {
-  return differenceInDays(new Date(), new Date(date));
+  return differenceInDays(new Date(date), new Date());
 };

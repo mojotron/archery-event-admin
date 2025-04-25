@@ -9,7 +9,7 @@ const TournamentDelete = () => {
 
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: () => deleteTournament(tournamentId),
-    onSuccess: () => navigate(-1),
+    onSuccess: () => navigate(-2),
   });
 
   return (

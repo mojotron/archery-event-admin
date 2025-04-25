@@ -9,6 +9,7 @@ import FormInput from "../../components/ui/FormInput";
 import SelectRules from "../../components/ui/SelectRules";
 import SelectClub from "../../components/ui/SelectClub";
 import useCreateTournament from "../../hooks/tournaments/useCreateTournament";
+import LoadingError from "../../components/general/LoadingError";
 
 type FormState = {
   rules: RulesEnum;
@@ -29,7 +30,7 @@ const TournamentCreateForm = () => {
     description: "",
     address: "",
     attendAt: "",
-    rules: RulesEnum.scandinavian3D,
+    rules: RulesEnum.worldArchery3D,
     rounds: "",
     organizedById: "",
   });
@@ -58,7 +59,7 @@ const TournamentCreateForm = () => {
             })
           }
         >
-          {isError && <p>error</p>}
+          {isError && <LoadingError message="failed to create tournament" />}
 
           <FormInput
             type="text"
@@ -100,16 +101,16 @@ const TournamentCreateForm = () => {
             onChange={handleChange}
           />
 
-          <SelectRules
-            currentRule={formData.rules}
-            name="rules"
-            onChange={handleChange}
-          />
+          <SelectRules selectedRule={formData.rules} onChange={handleChange} />
 
           <SelectClub
-            currentClub={formData.organizedById || ""}
-            name="organizedById"
-            onChange={handleChange}
+            selectedClubId={formData.organizedById || ""}
+            onChange={(e) =>
+              setFormData((oldState) => ({
+                ...oldState,
+                organizedById: e.target.value,
+              }))
+            }
           />
 
           <Button

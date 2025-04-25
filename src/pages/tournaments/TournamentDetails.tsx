@@ -40,7 +40,7 @@ const TournamentDetails = () => {
             <Paragraph text={tournament.description} />
             <div>
               <CreatedAt date={tournament.createdAt} />
-              <UpdatedAt date={tournament.createdAt} />
+              <UpdatedAt date={tournament.updatedAt} />
               <div className="space-x-2 mt-2">
                 <IconEdit onEdit={() => navigate(`edit`)} />
                 <IconDelete onDelete={() => navigate(`delete`)} />
@@ -68,7 +68,7 @@ const TournamentDetails = () => {
                 highlighted={tournament.organizedBy?.name || "independent"}
               />
 
-              <AttendAt date={tournament.createdAt} />
+              <AttendAt date={tournament.attendAt} />
             </div>
           </aside>
 

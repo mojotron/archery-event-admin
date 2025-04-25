@@ -5,12 +5,13 @@ import Form from "../../components/ui/Form";
 import SelectRules from "../../components/ui/SelectRules";
 import { RulesEnum } from "../../types/rulesType";
 import { StatusEnum } from "../../types/statusType";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import SelectClub from "../../components/ui/SelectClub";
 import SelectSeason from "../../components/ui/SelectSeason";
 import FormRadio from "../../components/ui/FormRadio";
+import TournamentSearchResults from "./components/TournamentSearchResults";
 
-type FormStatus = {
+export type TournamentFilterType = {
   rules?: RulesEnum;
   status?: StatusEnum;
   clubId?: string;
@@ -18,30 +19,39 @@ type FormStatus = {
 };
 
 const Tournaments = () => {
-  const [filters, setFilters] = useState<FormStatus>({});
+  const [filters, setFilters] = useState<TournamentFilterType>({});
+  const [search, setSearch] = useState<boolean>(false);
+
+  const handleChange = (
+    e: ChangeEvent<HTMLSelectElement | HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
+    setFilters((oldState) => ({ ...oldState, [name]: value }));
+    setSearch(false);
+  };
 
   return (
     <div className="px-4 w-full pb-8">
       <section className="space-y-4 mb-8">
         <SectionHeading>Filter tournaments</SectionHeading>
-        <Form onSubmit={() => {}}>
-          <SelectRules selectedRule={filters.rules} onChange={() => {}} />
+        <Form onSubmit={() => setSearch(true)}>
+          <SelectRules selectedRule={filters.rules} onChange={handleChange} />
           <SelectClub
             selectedClubId={filters.clubId || ""}
-            onChange={() => {}}
+            onChange={handleChange}
           />
           <SelectSeason
             selectedSeasonId={filters.seasonId || ""}
-            onChange={() => {}}
+            onChange={handleChange}
           />
           <FormRadio
-            name="season status"
+            name="status"
             options={[
               { label: "finished", value: StatusEnum.finished },
               { label: "active", value: StatusEnum.active },
             ]}
-            selected={""}
-            handleChange={(e) => console.log(e)}
+            selected={filters.status || ""}
+            handleChange={handleChange}
           />
           <ButtonIcon
             type="submit"
@@ -50,6 +60,8 @@ const Tournaments = () => {
           />
         </Form>
       </section>
+
+      {search && <TournamentSearchResults filters={filters} />}
     </div>
   );
 };
