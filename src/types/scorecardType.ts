@@ -7,9 +7,22 @@ export enum AnimalHit {
   miss = "miss",
 }
 
+export enum AnimalHitWA {
+  bullseye = "bullseye",
+  center = "center",
+  vital = "vital",
+  body = "body",
+  miss = "miss",
+}
+
 export type Score3DType = {
   arrow: number;
   hit: AnimalHit;
+};
+
+export type ScoreWA3DType = {
+  first: AnimalHitWA;
+  second: AnimalHitWA;
 };
 
 export type ScoreWAType = {
