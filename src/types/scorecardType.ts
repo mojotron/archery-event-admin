@@ -29,7 +29,6 @@ export type ScoreWAType = {
   first: number;
   second: number;
   third: number;
-  isBullseye: boolean;
 };
 
 export type ScorecardInfoType = {
