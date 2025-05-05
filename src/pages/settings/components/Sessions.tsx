@@ -1,4 +1,4 @@
-import useSessions from "../../../hooks/useSessions";
+import useSessions from "../../../hooks/sessions/useSessions";
 import LoadingError from "../../../components/general/LoadingError";
 import LoadingSpinner from "../../../components/ui/LoadingSpinner";
 import SessionCard from "./SessionCard";

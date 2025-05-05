@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUser } from "../lib/api";
+import { getUser } from "../../lib/api";
 
 const ADMIN_AUTH_QUERY_KEY = "ADMIN_AUTH";
 

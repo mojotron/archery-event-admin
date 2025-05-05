@@ -1,7 +1,7 @@
 import { formatDistance } from "date-fns";
 import { SessionType } from "../../../types/sessionTypes";
 import { MdDeleteForever as IconDelete } from "react-icons/md";
-import useSessionDelete from "../../../hooks/useSessionDelete";
+import useSessionDelete from "../../../hooks/sessions/useSessionDelete";
 
 type Props = {
   session: SessionType;

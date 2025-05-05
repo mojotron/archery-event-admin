@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUsersList } from "../lib/api";
+import { getUsersList } from "../../lib/api";
 
 const QUERY_KEY_USERS_LIST = "users-list";
 
