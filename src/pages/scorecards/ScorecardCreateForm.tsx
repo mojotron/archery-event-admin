@@ -61,13 +61,17 @@ const ScorecardCreateForm = () => {
             onChange={(e) => setArcherId(e.target.value)}
           />
 
-          {rules === "scandinavian3D" && (
+          {rules === RulesEnum.scandinavian3D && (
             <ScoreSelect3D
               scores={scores3D}
               updateHit={updateHit}
               updateArrow={updateArrow}
             />
           )}
+
+          {rules === RulesEnum.worldArchery3D && <p>world archery 3d</p>}
+
+          {rules === RulesEnum.worldArchery && <p>world archery</p>}
 
           <Button
             type="submit"
